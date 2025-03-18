@@ -1,0 +1,188 @@
+:host {
+    display: block;
+    width: 100%;
+  }
+  
+  .footer {
+    font-family: 'Inter', sans-serif;
+    background-color: #ffffff;
+    color: #5d7b6f;
+    /* position: fixed; */
+    /* bottom: 0;
+    left: 0; */
+    width: 100%;
+    z-index: 1000;
+    box-shadow: 0px -2px 4px 0 rgba(0, 0, 0, 0.1);
+  }
+  
+  /* Thanh trên cùng */
+  .footer-thanh-tren-cung {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 100px;
+    border-bottom: 3px solid #5D7B6F;
+  }
+  
+  .footer-mang-xa-hoi {
+    display: flex;
+    gap: 20px;
+  }
+  
+  .footer-mang-xa-hoi-icon img {
+    width: 40px;
+    height: 40px;
+    object-fit: contain;
+  }
+  
+  .footer-thong-tin {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  
+  .footer-thong-tin-text {
+    font-size: 14px;
+    font-weight: bold;
+    color: #000000;
+  }
+  
+  .footer-thong-tin-input {
+    background-color: #ececec;
+    border-top-left-radius: 20px;
+    border-bottom-left-radius: 20px;
+    border: 1px solid #5D7B6F;
+  }
+  
+  .footer-thong-tin-button {
+    background-color: #5D7B6F;
+    border-top-right-radius: 20px;
+    border-bottom-right-radius: 20px;
+    color: white;
+    border: 1px solid #5D7B6F;
+    cursor: pointer;
+    font-weight: bold;
+  }
+  .footer-thong-tin-input, .footer-thong-tin-button {
+    padding: 10px 15px;
+    font-family: 'Inter', sans-serif;
+  }
+  .footer-thong-tin-input::placeholder {
+    color: #999;
+    font-style: italic;
+  }
+
+  .footer-thong-tin-button:hover {
+    background-color: #4a6358;
+  }
+  
+  /* Phần chính */
+  .footer-noi-dung-chinh {
+    display: flex;
+    justify-content: space-between;
+    padding: 20px 100px;
+    align-items: flex-start;
+    gap: 50px;
+  }
+  
+  .footer-cot {
+    flex: 1;
+  min-width: 200px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px; /* Khoảng cách giữa các dòng */
+  }
+  
+  .footer-cot-thong-tin {
+    /* display: flex;
+    flex-direction: column; */
+    gap: 20px;
+  }
+  .footer-cot-thong-tin > *:first-child {
+    margin-top: 0;
+  }
+  .footer-cot-thong-tin .footer-logo-wrapper {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+  }
+  .footer-logo {
+    width: 200px;
+    height: auto;
+  }
+  
+  .footer-thong-tin-lien-he {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    font-size: 16px;
+    margin: 0;
+    color: #5D7B6F;
+  }
+  
+  /* .footer-thong-tin-lien-he-icon {
+    width: 16px;
+    height: 16px; } */
+  
+  .footer-cot-tieu-de {
+    font-size: 16px;
+    font-weight: bold;
+    /* margin: 0 0 20px 0; */
+    color: black;
+    margin-top: 60px;
+  }
+  
+  .footer-cot-link {
+    display: block;
+    font-size: 16px;
+    color: #5D7B6F;
+    text-decoration: none;
+    margin-bottom: 20px;
+  }
+  
+  .footer-cot-link:hover {
+    color: #4a6358;
+    text-decoration: underline;
+  }
+  
+  .footer-phuong-thuc-thanh-toan {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-bottom: 20px;
+  }
+  
+  .footer-phuong-thuc-thanh-toan-icon {
+    width: 60px;
+    height: 50px;
+    object-fit: contain;
+  }
+  
+  .footer-chung-nhan {
+    margin-top: -100px;
+    margin-bottom: -80px;
+  }
+  
+  .footer-chung-nhan-icon {
+    width: 200px;
+    height: auto;
+  }
+  
+  /* Responsive */
+  @media (max-width: 768px) {
+    .footer__top-bar {
+      flex-direction: column;
+      gap: 10px;
+      padding: 10px 20px;
+    }
+  
+    .footer-noi-dung-chinh {
+      flex-direction: column;
+      padding: 20px;
+      gap: 20px;
+    }
+  
+    .footer-thong-tin-input {
+      width: 100%;
+    }
+  }
