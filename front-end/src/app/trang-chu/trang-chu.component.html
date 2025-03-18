@@ -1,0 +1,115 @@
+<div class="home-container">
+    <!-- Phần 1: Banner cuộn -->
+    <section class="bannerslider-section">
+      <div class="banner">
+        <div class="banner-wrapper">
+          <img src="banners1.png"/>
+          <img src="banners2.png"/>
+          <img src="banners3.png"/>
+        </div>
+      </div>
+    </section>
+  
+    <!-- Phần 2: Flashsale -->
+    <section class="banner-section">
+      <div class="flashsale-section">
+        <div class="section-header">
+            <span>
+                <span style="font-size: 24px;"><b>FLASHSALE &nbsp;</b></span>
+                <span>kết thúc trong &nbsp;</span>
+                <span class="timer">00:00:00</span>
+            </span> 
+            <a href="#" class="view-more">Xem thêm >></a>
+          </div>
+          <div class="book-grid">
+            <div class="book-card" *ngFor="let book of flashsaleBooks | slice:0:5" (click)="navigateToBookDetail(book.id)">
+              <img [src]="book.image" [alt]="book.title" class="book-image" />
+              <h3>{{ book.title }}</h3>
+              <p class="price">{{ book.price }}</p>
+              <p class="original-price">{{ book.originalPrice }}</p>
+            </div>
+          </div>
+          <!-- <div class="book-grid">
+            <div class="book-card">
+              <img src="assets/flashsale1.jpg" alt="Test Book" class="book-image" />
+              <h3>Test Book Title</h3>
+              <p class="price">200.000 đ</p>
+              <p class="original-price">250.000 đ</p>
+            </div>
+          </div> -->
+      </div>
+    </section>
+  
+    
+    <!-- Phần 3: Các tác giả -->
+    <section class="authors-section">
+      <div class="section-header">
+        <h2>CÁC TÁC GIẢ</h2>
+        <a href="#" class="view-more">Xem thêm >></a>
+      </div>
+      <div class="author-grid">
+        <div class="author-card" *ngFor="let author of authors">
+          <img [src]="author.avatar" [alt]="author.name" class="author-avatar" />
+          <p>{{ author.name }}</p>
+        </div>
+      </div>
+    </section>
+  
+    <!-- Phần 4: Sách mới -->
+    <section class="new-books-section">
+      <div class="section-header">
+        <h2>SÁCH MỚI</h2>
+        <a href="#" class="view-more">Xem thêm >></a>
+      </div>
+      <div class="new-book">
+        <div class="book-grid">
+            <div class="book-card" *ngFor="let book of newBooks" (click)="navigateToBookDetail(book.id)">
+              <img [src]="book.image" [alt]="book.title" class="book-image" />
+              <h3>{{ book.title }}</h3>
+              <p class="price">{{ book.price }}</p>
+              <p class="original-price">{{ book.originalPrice }}</p>
+            </div>
+          </div>
+      </div>
+    </section>
+  
+    <!-- Phần 5: Về chúng tôi -->
+    <section class="about-us-section">
+        <img src="Aboutus.png" alt="About Us" class="about-us-image" />
+      <div class="about">
+        <h2>{{ aboutUs.title }}</h2>
+      <h3>{{ aboutUs.company }}</h3>
+      <p>{{ aboutUs.description }}</p>
+      <button class="view-more-btn">XEM THÊM</button>
+      </div>
+    </section>
+  
+    <!-- Phần 6: Blogs -->
+    <section class="blogs-section">
+      <!-- <div class="section-header">
+        <h2>THẾ GIỚI ĐỌC</h2>
+        <a href="#" class="view-more">Xem chi tiết >></a>
+      </div> -->
+      <div class="blog-grid">
+        <div class="blog-main">
+          <img [src]="blogs[0].image" [alt]="blogs[0].title" class="blog-image" />
+          <h3>{{ blogs[0].title }}</h3>
+          <p>{{ blogs[0].description }}</p>
+          <p class="date">{{ blogs[0].date }}</p>
+          <button class="view-more-btn">XEM THÊM</button>
+        </div>
+        <div class="blog-list">
+          <div class="blog-card" *ngFor="let blog of blogs.slice(1)">
+            <img [src]="blog.image" [alt]="blog.title" class="blog-image" />
+            <div class="blog-info">
+              <h3>{{ blog.title }}</h3>
+              <p>{{ blog.description }}</p>
+              <p class="date">{{ blog.date }}</p>
+                
+            </div>
+          </div>
+          <button class="view-more-btn">XEM THÊM</button>
+        </div>
+      </div>
+    </section>
+  </div>
