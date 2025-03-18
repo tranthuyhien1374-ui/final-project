@@ -1,0 +1,239 @@
+.container {
+    padding: 50px 100px 50px 100px;
+    background-color: #5e7b6f;
+  }
+  .search-bar {
+    height: 50px;
+    display: flex;
+    align-items: center;
+    margin-bottom: 20px;
+    background-color: #ffffff;
+    border-radius: 50px;
+  }
+  
+  .search-bar input {
+    height: 97%;
+    width: 100%;
+    flex: 1;
+    padding-left: 20px;
+    border: none;
+    outline: none;
+    border-radius: 50px;
+    font-size: 16px;
+  }
+  
+  .search-bar button {
+    height: 100%;
+    width: 50px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-size: 18px;
+  }
+
+  .filter{
+    margin-bottom: 5px;
+  }
+
+  .filter img{
+    width: 35px;
+    height: 35px;
+  }
+
+  .filter span{
+    font-size: 24px;
+    font-weight: bold;
+    color: #ffffff;
+    font-family: Arial, Helvetica, sans-serif;
+    margin-left: 10px;
+  }
+
+  .btn{
+    width: 30px;
+    height: 30px;
+  }
+  
+  /* Bộ lọc */
+  .filter-section {
+    margin-bottom: 20px;
+    color: #ffffff;
+    font-family: Arial, Helvetica, sans-serif;
+  }
+  
+  .filter-group {
+    display: inline-block;
+    margin-right: 20px;
+    margin-top: 10px
+  }
+  
+  .filter-group label {
+    font-weight: bold;
+    margin-right: 5px;
+  }
+  
+  .filter-group select {
+    padding: 5px;
+    border-radius: 5px;
+    border: 1px solid #ddd;
+    background-color: #fff;
+    cursor: pointer;
+  }
+  
+  .clear-filter-btn {
+    padding: 5px 15px;
+    width: 120px;
+    height: 30px;
+    background-color: #ffffff;
+    color: black;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+  }
+  
+  .clear-filter-btn:hover {
+    background-color: #5e7b6f;
+    color: white;
+    border: 1px solid white;
+  }
+  
+  /* Lọc theo thể loại */
+  .genre-checkboxes {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+  }
+  
+  .genre-item {
+    width: calc(100% / 8 - 10px); /* 8 thể loại mỗi dòng */
+    display: flex;
+    align-items: center;
+  }
+  
+  .genre-item input[type="checkbox"] {
+    margin-right: 5px;
+  }
+  
+  .genre-item label {
+    cursor: pointer;
+  }
+  
+  /* Danh sách truyện */
+  .story-display {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: white;
+    border-radius: 16px;
+  }
+
+  .story-grid {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr); /* 5 truyện mỗi dòng */
+    gap: 20px;
+  }
+  
+  .story-card {
+    width: 200px;
+    height: 400px;
+    border: 1px solid #ddd;
+    padding: 20px;
+    text-align: left;
+    background-color: #fff;
+    border-radius: 5px;
+    font-family: Arial, Helvetica, sans-serif;
+  }
+  
+  .story-card img {
+    width: 100%;
+    height: auto;
+    max-height: 300px;
+    object-fit: cover;
+    cursor: pointer;
+  }
+  
+  .story-card h3 {
+    font-size: 16px;
+    margin: 10px 0;
+    color: #333;
+    cursor: pointer;
+    text-align: center;
+  }
+  
+  .story-card p {
+    font-size: 16px;
+    color: #bc0000;
+    font-weight: bold;
+    margin-bottom: 5px;
+  }
+  
+  .story-card .status {
+    color: #3d3d3d;
+  }
+  
+  .no-results {
+    text-align: center;
+    padding: 20px;
+    color: #666;
+  }
+  
+  /* Nút "Xem thêm" */
+  .show-more {
+    text-align: center;
+    margin-top: 20px;
+  }
+  
+  .show-more button {
+    padding: 10px 20px;
+    background-color: #5e7b6f;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  
+  .show-more button:hover {
+    background-color: white;
+    color: #5e7b6f;
+    border: 1px solid #5e7b6f;
+  }
+  
+  /* Responsive Design */
+  @media (max-width: 1200px) {
+    .story-grid {
+      grid-template-columns: repeat(4, 1fr); /* 4 truyện mỗi dòng */
+    }
+  
+    .genre-item {
+      width: calc(100% / 6 - 10px); /* 6 thể loại mỗi dòng */
+    }
+  }
+  
+  @media (max-width: 768px) {
+    .story-grid {
+      grid-template-columns: repeat(2, 1fr); /* 3 truyện mỗi dòng */
+    }
+  
+    .genre-item {
+      width: calc(100% / 4 - 10px); /* 4 thể loại mỗi dòng */
+    }
+  
+    .story-card img {
+      height: 280px;
+    }
+  }
+  
+  @media (max-width: 480px) {
+    .story-grid {
+      grid-template-columns: repeat(1, 1fr); /* 2 truyện mỗi dòng */
+    }
+  
+    .genre-item {
+      width: calc(100% / 2 - 10px); /* 2 thể loại mỗi dòng */
+    }
+  
+    .filter-group {
+      display: block;
+      margin-bottom: 10px;
+    }
+  }

@@ -1,0 +1,79 @@
+<head>
+    <link rel="stylesheet" type="text/css" href="/css_root/flaticon.css" >
+  </head>
+  <!-- story-list.component.html -->
+  <div class="banner"><img src="bannertutruyen.png"></div>
+  <div class="container">
+    <!-- Search Bar -->
+    <div class="search-bar">
+      <input type="text" placeholder="Bạn muốn đọc gì..." [(ngModel)]="searchQuery" (keyup.enter)="searchStories()"/>
+      <button type="button" (click)="searchStories()"><img src="search.png"></button>
+    </div>
+  
+    <!-- Truyện Mới -->
+    <section class="category-section">
+      <div class="banner-header">
+        <div class="banner-title">TRUYỆN MỚI
+          
+        </div>
+        <button class="view-more-btn" (click)="navigateToAllStories()">Xem thêm>>></button>
+      </div>
+      <div class="story-grid">
+        <div class="story-card" *ngFor="let story of newStories | slice:0:5">
+          <img [src]="story.image" [alt]="story.title" loading="lazy" (click)="navigateToStoryDetail(story.id)" />
+          <h3 (click)="navigateToStoryDetail(story.id)">{{ story.title }}</h3>
+          <p class="author-link" (click)="navigateToAuthor(story.authorId)">{{ story.author }}</p>
+          <span class="status">{{ story.status }}</span>
+        </div>
+      </div>
+    </section>
+  
+    <!-- Bạn Đang Đọc -->
+    <section class="category-section">
+      <div class="banner-header">
+        <div class="banner-title">BẠN ĐANG ĐỌC</div>
+        <button class="view-more-btn" (click)="navigateToReadingStories()">Xem thêm>>></button>
+      </div>
+      <div class="story-grid">
+        <div class="story-card" *ngFor="let story of readingStories | slice:0:5">
+          <img [src]="story.image" [alt]="story.title" loading="lazy" (click)="navigateToStoryDetail(story.id)" />
+          <h3 (click)="navigateToStoryDetail(story.id)">{{ story.title }}</h3>
+          <p class="author-link" (click)="navigateToAuthor(story.authorId)">{{ story.author }}</p>
+          <span class="status">{{ story.status }}</span>
+        </div>
+      </div>
+    </section>
+  
+    <!-- Truyện Hot -->
+    <section class="category-section">
+      <div class="banner-header">
+        <div class="banner-title">TRUYỆN HOT</div>
+        <button class="view-more-btn" (click)="navigateToHotStories()">Xem thêm>>></button>
+      </div>
+      <div class="story-grid">
+        <div class="story-card" *ngFor="let story of hotStories | slice:0:5">
+          <img [src]="story.image" [alt]="story.title" loading="lazy" (click)="navigateToStoryDetail(story.id)" />
+          <h3 (click)="navigateToStoryDetail(story.id)">{{ story.title }}</h3>
+          <p class="author-link" (click)="navigateToAuthor(story.authorId)">{{ story.author }}</p>
+          <span class="status">{{ story.status }}</span>
+        </div>
+      </div>
+    </section>
+  
+    <!-- Truyện Đã Hoàn Thành -->
+    <section class="category-section">
+      <div class="banner-header">
+        <div class="banner-title">TRUYỆN ĐÃ HOÀN THÀNH</div>
+        <button class="view-more-btn" (click)="navigateToCompletedStories()">Xem thêm>>></button>
+      </div>
+      <div class="story-grid">
+        <div class="story-card" *ngFor="let story of completedStories | slice:0:5">
+          <img [src]="story.image" [alt]="story.title" loading="lazy" (click)="navigateToStoryDetail(story.id)" />
+          <h3 (click)="navigateToStoryDetail(story.id)">{{ story.title }}</h3>
+          <p class="author-link" (click)="navigateToAuthor(story.authorId)">{{ story.author }}</p>
+          <span class="status">{{ story.status }}</span>
+        </div>
+      </div>
+    </section>
+  </div>
+  <div>end</div>

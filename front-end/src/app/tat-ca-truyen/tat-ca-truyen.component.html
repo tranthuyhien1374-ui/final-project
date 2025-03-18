@@ -1,0 +1,67 @@
+<div class="container">
+    <div class="search-bar">
+        <input type="text" placeholder="Bạn muốn đọc gì..." [(ngModel)]="searchQuery" (keyup.enter)="searchStories()"/>
+        <button type="button" (click)="searchStories()"><img src="search.png"></button>
+      </div>
+    <!-- Bộ lọc -->
+    <div class="filter-section">
+        <div class="filter">
+            <img src="filterlist.png" alt="Filter" />
+            <span>LỌC THEO</span>
+        </div>
+      <!-- Lọc theo tình trạng -->
+      <div class="filter-group">
+        <label>Tình trạng:</label>
+        <select [(ngModel)]="selectedStatus" (change)="applyFilters()">
+          <option value="">Mọi tình trạng</option>
+          <option value="Mới nhất">Mới nhất</option>
+          <option value="Đang đọc">Đang đọc</option>
+          <option value="Truyện hot">Truyện hot</option>
+        </select>
+      </div>
+  
+      <!-- Lọc theo tiến độ -->
+      <div class="filter-group">
+        <select [(ngModel)]="selectedProgress" (change)="applyFilters()">
+          <option value="">Tất cả</option>
+          <option value="Đã hoàn thành">Đã hoàn thành</option>
+          <option value="Đang ra">Đang ra</option>
+        </select>
+      </div>
+  
+      <!-- Nút xóa tất cả lọc -->
+      <button class="clear-filter-btn" (click)="resetFilters()">Bỏ chọn</button>
+    </div>
+  
+    <!-- Lọc theo thể loại -->
+    <div class="filter-section">
+      <label>Thể loại:</label>
+      <div class="genre-checkboxes">
+        <div *ngFor="let genre of genres; let i = index" class="genre-item">
+          <input type="checkbox" [id]="'genre-' + i" [value]="genre" (change)="onGenreChange(genre, $event)" />
+          <label [for]="'genre-' + i">{{ genre }}</label>
+        </div>
+      </div>
+    </div>
+  
+    <!-- Hiển thị thông báo nếu không tìm thấy -->
+    <div *ngIf="filteredStories.length === 0" class="no-results">
+      <p>Không tìm thấy truyện nào với bộ lọc hiện tại.</p>
+    </div>
+  
+    <!-- Danh sách truyện -->
+     <div class="story-display">
+      <div class="story-grid">
+        <div class="story-card" *ngFor="let story of displayedStories">
+          <img [src]="story.image" [alt]="story.title" loading="lazy" (click)="navigateToStoryDetail(story.id)" />
+          <h3 (click)="navigateToStoryDetail(story.id)">{{ story.title }}</h3>
+          <p>{{ story.author }}</p>
+          <span class="status">{{ story.status }}</span>
+        </div>
+      </div>
+      <div class="show-more" *ngIf="displayedStories.length <filteredStories.length">
+        <button (click)="showMore()">Xem thêm</button>
+      </div>
+    </div>
+    
+  </div>
