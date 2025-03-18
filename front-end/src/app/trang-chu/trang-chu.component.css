@@ -1,0 +1,388 @@
+.home-container {
+    font-family: Inter;
+    margin: 0 auto;
+  }
+  
+  /* Phần 1: Banner cuộn */
+  .banner {
+    position: relative;
+    width: 100%;
+    height: 600px;
+    overflow: hidden;
+  }
+  
+  .banner-wrapper {
+    display: flex;
+    width: 100%;
+    height: 100%;
+    animation: slide 9s infinite linear;
+  }
+  
+  .banner-image {
+    width: 1520px;
+    height: 100%;
+    object-fit: cover;
+  }
+  
+  /* Hiệu ứng cuộn ngang */
+  @keyframes slide {
+    0% {
+      transform: translateX(0);
+    }
+    100% {
+      transform: translateX(-200%); /* Cuộn hết 3 hình (50% của wrapper) */
+    }
+  }
+  
+  /* Phần 2: Flashsale */
+  .banner-section {
+    height: auto; /* Loại bỏ chiều cao cố định để giãn theo nội dung */
+    background-color: #a4c3a2;
+    padding: 100px;
+  }
+  
+  .flashsale-section {
+    background-color: white;
+    border-radius: 16px;
+    /* padding: 20px; Thêm padding để khung giãn hợp lý */
+  }
+  
+  .section-header {
+    background-color: #5e7b6f;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    /* margin-bottom: 20px; */
+    border-top-left-radius: 16px;
+    border-top-right-radius: 16px;
+    height: 50px;
+    padding-left: 20px;
+    padding-right: 20px;
+    color: #ffffff;
+  }
+  
+  .section-header h2 {
+    font-size: 24px;
+    font-weight: bold;
+    color: #ffffff;
+  }
+  
+  .section-header .timer {
+    color: #d32f2f;
+  }
+  
+  .section-header .view-more {
+    color: #ffffff;
+    text-decoration: none;
+    font-size: 16px;
+    font-weight: bold;
+  }
+  
+  .section-header .view-more:hover {
+    text-decoration: underline;
+  }
+  
+  .book-grid {
+    padding: 20px;
+    display: flex;
+    justify-content: center;
+    gap: 50px;
+    flex-wrap: wrap;
+
+    /* grid-template-columns: repeat(5, 1fr); /* Mặc định 5 cột */
+    /* gap: 20px;  */
+    width: 100%; 
+  }
+  
+  .book-card {
+    width: 200px;
+    height: 340px;
+    text-align: center;
+    cursor: pointer;
+  }
+  
+  .book-card img {
+    width: 200px;
+    height: 200px;
+    object-fit: cover;
+    border-radius: 5px;
+    margin-bottom: 10px;
+  }
+  
+  .book-card h3 {
+    font-size: 14px;
+    font-weight: bold;
+    margin-bottom: 5px;
+    color: #333;
+  }
+  
+  .book-card .price {
+    font-size: 14px;
+    color: #d32f2f;
+    font-weight: bold;
+    margin-bottom: 5px;
+  }
+  
+  .book-card .original-price {
+    font-size: 12px;
+    color: #666;
+    text-decoration: line-through;
+  }
+  
+  /* Phần 3: Các tác giả */
+  .authors-section {
+    background-color: #e8f5e9;
+    padding: 100px;
+    border-radius: 10px;
+    margin-bottom: 30px;
+  }
+  
+  .author-grid {
+    background-color: #a4c3a2;
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 50px;
+    text-align: center;
+    padding: 20px;
+    border-bottom-right-radius: 16px;
+    border-bottom-left-radius: 16px;
+  }
+
+  .author-card {
+    cursor: pointer;
+    width: 200px;
+    height: 264px;
+  }
+  
+  .author-card img {
+    width: 200px;
+    height: 200px;
+    border-radius: 50%;
+    margin-bottom: 10px;
+  }
+  
+  .author-card p {
+    font-size: 14px;
+    color: #333;
+  }
+  
+  /* Phần 4: Sách mới */
+  .new-books-section {
+    background-color: #e8f5e9;
+    padding: 100px;
+    background-color: #a4c3a2;
+    margin-bottom: 30px;
+  }
+  
+  .new-book{
+    background-color: white;
+    border-bottom-right-radius: 16px;
+    border-bottom-left-radius: 16px;
+    padding: 20px;
+  }
+  /* Phần 5: Về chúng tôi */
+  .about-us-section {
+    display: flex;
+    gap: 22px;
+    padding: 100px;
+    text-align: justify;
+    margin-bottom: 30px;
+  }
+
+  .about-us-section img {
+    width: 450px;
+    height: 450px;
+    object-fit: cover;
+    border-radius: 16px;
+  }
+  
+  .about-us-section h2 {
+    font-size: 24px;
+    font-weight: bold;
+    color: #333;
+    margin-bottom: 10px;
+  }
+  
+  .about-us-section h3 {
+    font-size: 18px;
+    color: #666;
+    margin-bottom: 20px;
+  }
+  
+  .about-us-section p {
+    font-size: 16px;
+    color: #666;
+    line-height: 1.6;
+    margin-bottom: 20px;
+  }
+  
+  .view-more-btn {
+    padding: 10px 20px;
+    background: linear-gradient(90deg, #5e7b6f, #a4c3a2);
+    color: white;
+    border: none;
+    border-radius: 110px;
+    cursor: pointer;
+    font-size: 24px;
+    font-weight: bold;
+    width: 241px;
+    height: 57px;
+  }
+  
+  .view-more-btn:hover {
+    background-color: #0056b3;
+  }
+  
+  /* Phần 6: Blogs */
+  .blogs-section {
+    margin-bottom: 30px;
+    background-color: #5e7b6f;
+    padding: 100px;
+  }
+  
+  .blog-grid {
+    display: flex;
+    flex-direction: column;
+
+    gap: 30px; /* Giảm gap để không quá rộng */
+    background-color: white;
+    border-radius: 16px;
+    padding: 20px;
+    align-items: stretch; 
+  }
+  
+  .blog-main {
+    flex: 3;
+    /* width: 780px;
+    height: 650px; */
+  }
+  
+  .blog-image {
+    width: 500px;
+    height: 750px;
+    /* object-fit: cover; */
+    border-radius: 5px;
+    margin-bottom: 10px;
+  }
+  
+  /* .blog-list {
+    /* flex: 1; /* Blog list chiếm 1 phần diện tích (1 cột bên phải) */
+    /* display: flex;
+    flex-direction: column; */ 
+    /* gap: 10px;
+    height: 100%; Đảm bảo chiều cao bằng main blog */
+    /* width: ; */
+  
+  .blog-card {
+    display: flex;
+    gap: 15px;
+    align-items: flex-start;
+    padding: 5px 0; /* Thêm padding để nội dung không sát mép */
+  }
+  
+  .blog-card img {
+    width: 150px;
+    height: 100px;
+    object-fit: cover;
+    border-radius: 5px;
+  }
+  
+  .blog-card h3 {
+    font-size: 16px;
+    font-weight: bold;
+    margin-bottom: 5px;
+    color: #333;
+  }
+  
+  .blog-card p {
+    font-size: 14px;
+    color: #666;
+    margin-bottom: 5px;
+  }
+  
+  .blog-card .date {
+    font-size: 12px;
+    color: #999;
+  }
+  
+  /* Responsive Design */
+  @media (max-width: 768px) {
+    .blog-grid {
+      flex-direction: column; /* Chuyển thành cột dọc trên màn hình nhỏ */
+      gap: 20px;
+    }
+  
+    .blog-main {
+      flex: none; /* Bỏ flex để main blog chiếm toàn bộ chiều rộng */
+    }
+  
+    .blog-list {
+      flex: none; /* Bỏ flex để blog list chiếm toàn bộ chiều rộng */
+    }
+  
+    .blog-main img {
+      height: 300px; /* Giảm chiều cao hình ảnh trên màn hình nhỏ */
+    }
+  
+    .blog-card img {
+      width: 100px;
+      height: 70px;
+    }
+  }
+  
+  /* Responsive Design */
+  @media (max-width: 1200px) {
+    .book-grid,
+    .author-grid {
+      grid-template-columns: repeat(4, 1fr); /* Giảm xuống 4 cột */
+    }
+  }
+  
+  @media (max-width: 992px) {
+    .book-grid,
+    .author-grid {
+      grid-template-columns: repeat(3, 1fr); /* Giảm xuống 3 cột */
+    }
+  }
+  
+  @media (max-width: 768px) {
+    .book-grid,
+    .author-grid {
+      grid-template-columns: repeat(2, 1fr); /* Giảm xuống 2 cột */
+    }
+    .about-us-section {
+      flex-direction: column;
+      gap: 20px;}
+    }
+
+    .about-us-section img {
+      width: 100%;
+      height: auto;
+      text-align: center;
+    }
+  
+    .blog-grid {
+      flex-direction: column;
+    }
+  
+    .blog-main img {
+      width: 100%;
+      height: auto;
+    }
+  
+    .blog-card img {
+      width: 100px;
+      height: 70px;
+    }
+  
+    .banner {
+      height: 300px; /* Giảm chiều cao trên màn hình nhỏ */
+    }
+
+  
+  @media (max-width: 480px) {
+    .book-grid,
+    .author-grid {
+      grid-template-columns: 1fr; /* Giảm xuống 1 cột */
+    }
+  }
