@@ -1,0 +1,82 @@
+<div class="container tat-ca-blog-container">
+    <div class="tat-ca-blog">
+      <table class="blog-table">
+        <tr>
+          <!-- Phần BLOGS (70%) - Bảng 4x3 -->
+          <td class="blog-column blogs-col">
+            <h1 class="title-module">BLOGS</h1>
+            <table class="blogs-table">
+              <tr *ngFor="let row of [0, 1, 2, 3]; let rowIndex = index">
+                <td *ngFor="let col of [0, 1, 2]; let colIndex = index" class="blog-cell">
+                  <div *ngIf="blogs[rowIndex * 3 + colIndex]">
+                    <article class="item_blog_base">
+                      <a class="thumb radius-5" [href]="blogs[rowIndex * 3 + colIndex].link" [title]="blogs[rowIndex * 3 + colIndex].title">
+                        <img [src]="blogs[rowIndex * 3 + colIndex].image" [alt]="blogs[rowIndex * 3 + colIndex].title" class="lazyload img-responsive">
+                      </a>
+                      <div class="content_blog">
+                        <h3>
+                          <a [href]="blogs[rowIndex * 3 + colIndex].link" [title]="blogs[rowIndex * 3 + colIndex].title" class="a-title">{{ blogs[rowIndex * 3 + colIndex].title }}</a>
+                        </h3>
+                        <span>{{ blogs[rowIndex * 3 + colIndex].date }}</span>
+                      </div>
+                    </article>
+                  </div>
+                </td>
+              </tr>
+            </table>
+            <!-- Phân trang (đặt ở chính giữa) -->
+            <div class="text-center pagenav section clearfix">
+              <nav class="clearfix relative nav_pagi w_100">
+                <ul class="pagination clearfix">
+                  <!-- Nút Previous -->
+                  <li class="page-item disabled">
+                    <a class="page-link" href="#" aria-label="Previous">
+                      <span aria-hidden="true">«</span>
+                    </a>
+                  </li>
+                  <!-- Các số trang -->
+                  <li class="page-item active"><a class="page-link" href="#">1</a></li>
+                  <li class="page-item"><a class="page-link" href="/page2">2</a></li>
+                  <li class="page-item"><a class="page-link" href="/page3">3</a></li>
+                  <!-- Nút Next -->
+                  <li class="page-item">
+                    <a class="page-link" href="/page2" aria-label="Next">
+                      <span aria-hidden="true">»</span>
+                    </a>
+                  </li>
+                </ul>
+              </nav>
+            </div>
+          </td>
+  
+          <!-- Phần DANH MỤC TIN (30%) - 2 cột -->
+          <td class="blog-column categories-col">
+            <aside class="aside-item sidebar-menu">
+              <h2 class="title-module">DANH MỤC TIN</h2>
+              <div class="blog-list" role="list">
+                <div class="item" *ngFor="let category of categories; let last = last" role="listitem">
+                  <article class="item_blog_base first">
+                    <div class="category-row">
+                      <div class="category-image">
+                        <a class="thumb" [href]="category.link" [title]="category.title">
+                          <img [src]="category.image" [alt]="category.title" class="lazyload img-responsive">
+                        </a>
+                      </div>
+                      <div class="category-content">
+                        <h3>
+                          <a [href]="category.link" [title]="category.title" class="a-title">{{ category.title }}</a>
+                        </h3>
+                        <span>{{ category.date }}</span>
+                      </div>
+                    </div>
+                  </article>
+                  <!-- Đường gạch ngang, không thêm vào mục cuối -->
+                  <hr *ngIf="!last" class="category-divider">
+                </div>
+              </div>
+            </aside>
+          </td>
+        </tr>
+      </table>
+    </div>
+  </div>
