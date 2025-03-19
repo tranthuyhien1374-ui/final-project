@@ -96,5 +96,12 @@ export class TrangChuComponent implements OnInit {
 
   navigateToBookDetail(bookId: number) {
     this.router.navigate(['/chi-tiet-truyen', bookId]);
-  }
+  };
+
+  navigateToAllBlogs() {
+    this.router.navigate(['/tat-ca-blog']);
+  };
+  navigateBlogsdetail() {
+    this.router.navigate(['/chi-tiet-blog']);
+  };
 }

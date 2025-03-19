@@ -96,7 +96,7 @@
           <h3>{{ blogs[0].title }}</h3>
           <p>{{ blogs[0].description }}</p>
           <p class="date">{{ blogs[0].date }}</p>
-          <button class="view-more-btn">XEM THÊM</button>
+          <button class="view-more-btn" (click)="navigateBlogsdetail()">XEM THÊM</button>
         </div>
         <div class="blog-list">
           <div class="blog-card" *ngFor="let blog of blogs.slice(1)">
@@ -108,7 +108,7 @@
                 
             </div>
           </div>
-          <button class="view-more-btn">XEM THÊM</button>
+          <button class="view-more-btn" (click)="navigateToAllBlogs()">XEM THÊM</button>
         </div>
       </div>
     </section>
