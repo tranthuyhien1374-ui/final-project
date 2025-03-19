@@ -1,0 +1,456 @@
+<div class="theo-doi-don-hang">
+  <div class="thanh-tai-khoan">
+    <!-- Avatar và thông tin người dùng -->
+    <div class="thanh-tai-khoan__info-wrapper">
+      <div class="thanh-tai-khoan__avatar-wrapper">
+        <img src="avatar-placeholder.png" alt="User Avatar" class="thanh-tai-khoan__avatar">
+      </div>
+      <div class="thanh-tai-khoan__details">
+        <h3 class="thanh-tai-khoan__username">nguyenngoctrinh</h3>
+        <button class="thanh-tai-khoan__edit-button">
+          <img src="pencil-icon.png" alt="Edit Icon" class="thanh-tai-khoan__edit-icon">
+          Sửa hồ sơ
+        </button>
+      </div>
+    </div>
+    <hr class="thanh-tai-khoan__separator">
+    <!-- Danh sách -->
+     <!-- Tài khoản của tôi -->
+    <!-- Danh sách -->
+    <ul class="thanh-tai-khoan-danh-sach">
+      <!-- Tài khoản của tôi -->
+      <li class="thanh-tai-khoan-danh-sach-item" (click)="toggleDropdown('tai-khoan')">
+        <img src="user-icon.png" alt="User Icon" class="thanh-tai-khoan-danh-sach-icon">
+        Tài khoản của tôi
+      </li>
+      <li class="thanh-tai-khoan-danh-sach-dropdown" *ngIf="dropdown === 'tai-khoan'" (click)="navigateToSection('ho-so')">Hồ sơ</li>
+      <li class="thanh-tai-khoan-danh-sach-dropdown" *ngIf="dropdown === 'tai-khoan'" (click)="navigateToSection('dia-chi')">Địa chỉ</li>
+      <li class="thanh-tai-khoan-danh-sach-dropdown" *ngIf="dropdown === 'tai-khoan'" (click)="navigateToSection('doi-ma-pin')">Đổi mã PIN</li>
+      <li class="thanh-tai-khoan-danh-sach-dropdown" *ngIf="dropdown === 'tai-khoan'" (click)="navigateToSection('xoa-tai-khoan')">Xóa tài khoản</li>
+      <!-- Theo dõi đơn hàng -->
+      <li class="thanh-tai-khoan-danh-sach-item" (click)="navigateToSection('theo-doi-don-hang')">
+        <img src="list-icon.png" alt="List Icon" class="thanh-tai-khoan-danh-sach-icon">
+        Theo dõi đơn hàng
+      </li>
+      <!-- Viết sách truyện -->
+      <li class="thanh-tai-khoan-danh-sach-item" (click)="toggleDropdown('viet-sach')">
+        <img src="book-icon.png" alt="Book Icon" class="thanh-tai-khoan-danh-sach-icon">
+        Viết sách/truyện
+      </li>
+      <li class="thanh-tai-khoan-danh-sach-dropdown" *ngIf="dropdown === 'viet-sach'" (click)="navigateToSection('truyen-moi')">Truyện mới</li>
+      <li class="thanh-tai-khoan-danh-sach-dropdown" *ngIf="dropdown === 'viet-sach'" (click)="navigateToSection('viet-tiep')">Viết tiếp</li>
+      <!-- Đăng xuất -->
+      <li class="thanh-tai-khoan-danh-sach-item" (click)="navigateToSection('dang-xuat')">
+        <img src="logout-icon.png" alt="Logout Icon" class="thanh-tai-khoan-danh-sach-icon">
+        Đăng xuất
+      </li>
+      <!-- <li *ngIf="dropdown === 'tai-khoan'"></li>
+      <li *ngIf="dropdown === 'viet-sach'"></li> -->
+    </ul>
+  </div>
+  <div class="thanh-don-hang" *ngIf="activeSection === 'theo-doi-don-hang'">
+    <!-- Thanh trạng thái -->
+    <div class="thanh-trang-thai">
+      <div
+        class="thanh-trang-thai-item"
+        [ngClass]="{'active': selectedTab === 'tat-ca'}"
+        (click)="selectTab('tat-ca')"
+      >Tất cả</div>
+      <div
+        class="thanh-trang-thai-item"
+        [ngClass]="{'active': selectedTab === 'cho-xac-nhan'}"
+        (click)="selectTab('cho-xac-nhan')"
+      >Chờ xác nhận</div>
+      <div
+        class="thanh-trang-thai-item"
+        [ngClass]="{'active': selectedTab === 'van-chuyen'}"
+        (click)="selectTab('van-chuyen')"
+      >Vận chuyển</div>
+      <div
+        class="thanh-trang-thai-item"
+        [ngClass]="{'active': selectedTab === 'cho-giao-hang'}"
+        (click)="selectTab('cho-giao-hang')"
+      >Chờ giao hàng</div>
+      <div
+        class="thanh-trang-thai-item"
+        [ngClass]="{'active': selectedTab === 'hoan-thanh'}"
+        (click)="selectTab('hoan-thanh')"
+      >Hoàn thành</div>
+      <div
+        class="thanh-trang-thai-item"
+        [ngClass]="{'active': selectedTab === 'da-huy'}"
+        (click)="selectTab('da-huy')"
+      >Đã hủy</div>
+    </div>
+    <!-- Thanh tìm kiếm -->
+    <div class="thanh-tim-kiem-trang-thai">
+      <span><img src="search.png" alt="Search Icon" class="thanh-tim-kiem-bieu-tuong"></span>
+      <input type="text" class="thanh-tim-kiem-input" placeholder="Bạn có thể tìm kiếm theo Tên sản phẩm, Mã đơn hàng" (input)="onSearchInput($event)">
+    </div>
+
+    <!-- Nội dung chính (danh sách đơn hàng) -->
+    <div class="theo-doi-don-hang--chinh">
+      <div class="theo-doi-don-hang--don-hang-item" *ngFor="let order of getFilteredOrders()">
+        <!-- Phần trên -->
+        <div class="theo-doi-don-hang--phan-tren" (click)="viewOrderDetails(order)" style="cursor: pointer;">
+          <img [src]="order.imageUrl" [alt]="order.title" class="theo-doi-don-hang--don-hang-anh">
+          <div class="theo-doi-don-hang--don-hang-chi-tiet">
+            <!-- Hàng 1 -->
+            <div class="theo-doi-don-hang--hang">
+              <h3 class="theo-doi-don-hang--don-hang-tieu-de">{{ order.title }}</h3>
+              <p class="theo-doi-don-hang--don-hang-trang-thai">{{ getDisplayStatus(order.status) }}</p>
+            </div>
+            <!-- Hàng 2 -->
+            <div class="theo-doi-don-hang--hang">
+              <p class="theo-doi-don-hang--don-hang-so-luong">Số lượng: {{ order.quantity }}</p>
+              <p class="theo-doi-don-hang--don-hang-gia">
+                <span class="gia-goc">{{ order.originalPrice | number }}đ</span> {{ order.discountedPrice | number }}đ
+              </p>
+            </div>
+          </div>
+        </div>
+        <!-- Đường phân cách -->
+        <hr class="theo-doi-don-hang--separator">
+        <!-- Phần dưới -->
+        <div class="theo-doi-don-hang--phan-duoi">
+          <!-- Placeholder để giữ vị trí -->
+          <div class="theo-doi-don-hang--ghi-chu-placeholder">
+            <!-- Ghi chú thay đổi theo trạng thái -->
+            <p class="theo-doi-don-hang--ghi-chu" *ngIf="order.status !== 'Đã hủy' && order.status === 'Chờ xác nhận'">
+              Người bán đang xác nhận đơn hàng của bạn
+            </p>
+            <p class="theo-doi-don-hang--ghi-chu" *ngIf="order.status !== 'Đã hủy' && order.status === 'Vận chuyển' && order.confirmationDate">
+              Đơn hàng sẽ được giao cho đơn vị vận chuyển trước ngày {{ getExpectedDeliveryDate(order.confirmationDate) }}
+            </p>
+            <p class="theo-doi-don-hang--ghi-chu" *ngIf="order.status !== 'Đã hủy' && order.status === 'Chờ giao hàng'">
+              Vui lòng chỉ nhấn "Đã nhận được hàng" khi đơn hàng đã được giao đến bạn và sản phẩm nhận được không có vấn đề nào
+            </p>
+            <p class="theo-doi-don-hang--ghi-chu" *ngIf="order.status !== 'Đã hủy' && order.status === 'Hoàn thành' && !order.isRated">
+              Vui lòng đánh giá sản phẩm
+            </p>
+          </div>
+          <!-- Nút hành động -->
+          <div class="theo-doi-don-hang--don-hang-hanh-dong">
+            <!-- Nút đầu tiên thay đổi theo trạng thái -->
+            <button *ngIf="order.status === 'cho-xac-nhan'" class="theo-doi-don-hang--don-hang-button" (click)="openCancelPopup(order)">
+              Hủy đơn
+            </button>
+            <button *ngIf="order.status === 'van-chuyen' || order.status === 'cho-giao-hang'" class="theo-doi-don-hang--don-hang-button" [ngClass]="{'btn-disabled': !order.isDelivered}" [disabled]="!order.isDelivered" (click)="confirmReceived(order)">
+              Đã nhận hàng
+            </button>
+            <button *ngIf="order.status === 'hoan-thanh' && !order.isRated" class="theo-doi-don-hang--don-hang-button" (click)="openRatingPopup(order)">
+              Đánh giá
+            </button>
+            <button *ngIf="order.status === 'hoan-thanh' && order.isRated" class="theo-doi-don-hang--don-hang-button" (click)="viewRating(order)">
+              Xem đánh giá
+            </button>
+            <button *ngIf="order.status === 'da-huy'" class="theo-doi-don-hang--don-hang-button" (click)="buyAgain(order)">
+              Mua lại
+            </button>
+
+            <!-- Nút cố định "Liên hệ" -->
+            <button class="theo-doi-don-hang--don-hang-button" [routerLink]="['/lien-he']">
+              Liên hệ
+            </button>
+          </div>
+
+          <!-- Thành tiền -->
+          <div class="theo-doi-don-hang--don-hang-tong">
+            <p class="theo-doi-don-hang--don-hang-tong">Thành tiền:</p>
+            <p class="theo-doi-don-hang--don-hang-gia-tong">{{ order.totalPrice | number }}đ</p>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- Nội dung khác (placeholder cho các section khác) -->
+    <!-- <div *ngIf="activeSection === 'tai-khoan-cua-toi'">Nội dung Tài khoản của tôi</div>
+    <div *ngIf="activeSection === 'viet-sach-truyen'">Nội dung Viết sách/truyện</div>
+    <div *ngIf="activeSection === 'dang-xuat'">
+      <button (click)="onLogout()">Xác nhận đăng xuất</button>
+    </div> -->
+
+  </div>
+  
+  <!-- Chi tiết đơn hàng -->
+<div class="thanh-don-hang" *ngIf="activeSection === 'chi-tiet-don-hang' && selectedOrder">
+  <!-- Thanh trên cùng -->
+  <div class="chi-tiet-don-hang--thanh-trang-thai">
+    <div class="chi-tiet-don-hang--tro-lai" (click)="navigateToSection('theo-doi-don-hang')"> < TRỞ LẠI</div>
+    <div class="chi-tiet-don-hang--trang-thai">{{ getDetailedStatus(selectedOrder.status) | uppercase }}</div>
+  </div>
+
+  <!-- Nội dung chi tiết -->
+  <div class="chi-tiet-don-hang--noi-dung">
+    <!-- Phần head -->
+    <div class="chi-tiet-don-hang--head">
+      <p class="chi-tiet-don-hang--ma-don">MÃ ĐƠN HÀNG: {{ selectedOrder.orderId }}</p>
+      <p class="chi-tiet-don-hang--du-kien" *ngIf="selectedOrder.confirmationDate">
+        Đơn hàng dự kiến được giao trước ngày {{ getExpectedDeliveryDate(selectedOrder.confirmationDate) }}
+      </p>
+    </div>
+
+    <!-- Phần tiến độ đơn hàng -->
+     <div class="chi-tiet-don-hang--tien-do">
+      <div class="chi-tiet-don-hang--tien-do-item">
+        <img [src]="isStatusReached(selectedOrder, 'Đơn hàng đã được đặt thành công') ? 'dat-hang-thanh-cong-green.png' : 'dat-hang-thanh-cong-grey.png'" alt="Order Placed" class="chi-tiet-don-hang--tien-do-icon">
+        <p class="chi-tiet-don-hang--tien-do-trang-thai">Đơn hàng đã đặt</p>
+        <p class="chi-tiet-don-hang--tien-do-thoi-gian">{{ getStatusDate(selectedOrder, 'Đơn hàng đã được đặt thành công') }}</p>
+      </div>
+      <div class="chi-tiet-don-hang--tien-do-item">
+        <img [src]="isStatusReached(selectedOrder, 'Đã xác nhận đơn hàng') ? 'xac-nhan-green.png' : 'xac-nhan-gray.png'" alt="Confirmed" class="chi-tiet-don-hang--tien-do-icon">
+        <p class="chi-tiet-don-hang--tien-do-trang-thai">Đã xác nhận đơn hàng</p>
+        <p class="chi-tiet-don-hang--tien-do-thoi-gian">{{ getStatusDate(selectedOrder, 'Đã xác nhận đơn hàng') }}</p>
+      </div>
+      <div class="chi-tiet-don-hang--tien-do-item">
+        <img [src]="isStatusReached(selectedOrder, 'Đã giao cho đơn vị vận chuyển') ? 'van-chuyen-green.png' : 'van-chuyen-gray.png'" alt="Delivered" class="chi-tiet-don-hang--tien-do-icon">
+        <p class="chi-tiet-don-hang--tien-do-trang-thai">Đã giao cho đơn vị vận chuyển</p>
+        <p class="chi-tiet-don-hang--tien-do-thoi-gian">{{ getStatusDate(selectedOrder, 'Đã giao cho đơn vị vận chuyển') }}</p>
+      </div>
+      <div class="chi-tiet-don-hang--tien-do-item">
+        <img [src]="isStatusReached(selectedOrder, 'Đã nhận được hàng') ? 'nhan-hang-green.png' : 'nhan-hang-gray.png'" alt="Received" class="chi-tiet-don-hang--tien-do-icon">
+        <p class="chi-tiet-don-hang--tien-do-trang-thai">Đã nhận được hàng</p>
+        <p class="chi-tiet-don-hang--tien-do-thoi-gian">{{ getStatusDate(selectedOrder, 'Đã nhận được hàng') }}</p>
+      </div>
+      <div class="chi-tiet-don-hang--tien-do-item">
+        <img [src]="isStatusReached(selectedOrder, 'Đánh giá') ? 'danh-gia-green.png' : 'danh-gia-gray.png'" alt="Rating" class="chi-tiet-don-hang--tien-do-icon">
+        <p class="chi-tiet-don-hang--tien-do-trang-thai">Đánh giá</p>
+        <p class="chi-tiet-don-hang--tien-do-thoi-gian">{{ getStatusDate(selectedOrder, 'Đánh giá') }}</p>
+      </div>
+    </div>
+
+    <!-- Phần lộ trình đơn hàng -->
+    <div class="chi-tiet-don-hang--lo-trinh">
+      <h3 class="chi-tiet-don-hang--lo-trinh-tieu-de">Lộ trình đơn hàng</h3>
+      <div class="chi-tiet-don-hang--lo-trinh-noi-dung">
+        <div class="chi-tiet-don-hang--lo-trinh-thoi-gian">
+          <p *ngFor="let entry of selectedOrder.timeline">{{ entry.date }}</p>
+        </div>
+        <div class="chi-tiet-don-hang--lo-trinh-mo-ta">
+          <p *ngFor="let entry of selectedOrder.timeline">{{ entry.action }}</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Đường phân cách -->
+    <hr class="theo-doi-don-hang--separator">
+
+    <!-- Phần chi tiết đơn hàng -->
+    <div class="chi-tiet-don-hang--chi-tiet">
+      <h3 class="chi-tiet-don-hang--chi-tiet-tieu-de">Chi tiết đơn hàng</h3>
+      <p class="chi-tiet-don-hang--dia-chi-tieu-de">Địa chỉ nhận hàng</p>
+      <p class="chi-tiet-don-hang--dia-chi">{{ selectedOrder.addressName }}</p>
+      <p class="chi-tiet-don-hang--dia-chi">{{ selectedOrder.addressPhone }}</p>
+      <p class="chi-tiet-don-hang--dia-chi">{{ selectedOrder.addressLocation }}</p>
+
+      <div class="chi-tiet-don-hang--san-pham">
+        <img [src]="selectedOrder.imageUrl" [alt]="selectedOrder.title" class="chi-tiet-don-hang--san-pham-anh">
+        <div class="chi-tiet-don-hang--san-pham-chi-tiet">
+          <div class="chi-tiet-don-hang--san-pham-hang">
+            <h3 class="chi-tiet-don-hang--san-pham-tieu-de">{{ selectedOrder.title }}</h3>
+            <div></div>
+          </div>
+          <div class="chi-tiet-don-hang--san-pham-hang">
+            <p class="chi-tiet-don-hang--san-pham-so-luong">Số lượng: {{ selectedOrder.quantity }}</p>
+            <p class="chi-tiet-don-hang--san-pham-gia">
+              <span class="gia-goc">{{ selectedOrder.originalPrice | number }}đ</span> {{ selectedOrder.discountedPrice | number }}đ
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Đường phân cách -->
+    <hr class="theo-doi-don-hang--separator">
+
+    <!-- Phần chi phí -->
+    <div class="chi-tiet-don-hang--chi-phi">
+      <div class="chi-tiet-don-hang--chi-phi-cot-trong"></div>
+      <div class="chi-tiet-don-hang--chi-phi-ten">
+        <p>Tổng tiền hàng:</p>
+        <p>Phí vận chuyển:</p>
+        <p>Giảm giá:</p>
+        <p>Thành tiền:</p>
+        <p>Phương thức thanh toán:</p>
+      </div>
+      <div class="chi-tiet-don-hang--chi-phi-gia">
+        <p>{{ (selectedOrder.discountedPrice * selectedOrder.quantity) | number }}đ</p>
+        <p>{{ selectedOrder.shippingFee | number }}đ</p>
+        <p>{{ selectedOrder.discount | number }}đ</p>
+        <p>{{ selectedOrder.totalPrice | number }}đ</p>
+        <p>{{ selectedOrder.paymentMethod }}</p>
+      </div>
+    </div>
+
+    <!-- Nút hành động -->
+    <div class="chi-tiet-don-hang--hanh-dong">
+      <button *ngIf="selectedOrder.status === 'cho-xac-nhan'" class="theo-doi-don-hang--don-hang-button" (click)="openCancelPopup(selectedOrder)">
+        Hủy đơn
+      </button>
+      <button *ngIf="selectedOrder.status === 'van-chuyen' || selectedOrder.status === 'cho-giao-hang'" class="theo-doi-don-hang--don-hang-button" [ngClass]="{'btn-disabled': !selectedOrder.isDelivered}" [disabled]="!selectedOrder.isDelivered" (click)="confirmReceived(selectedOrder)">
+        Đã nhận hàng
+      </button>
+      <button *ngIf="selectedOrder.status === 'hoan-thanh' && !selectedOrder.isRated" class="theo-doi-don-hang--don-hang-button" (click)="openRatingPopup(selectedOrder)">
+        Đánh giá
+      </button>
+      <button *ngIf="selectedOrder.status === 'hoan-thanh' && selectedOrder.isRated" class="theo-doi-don-hang--don-hang-button" (click)="viewRating(selectedOrder)">
+        Xem đánh giá
+      </button>
+      <button *ngIf="selectedOrder.status === 'da-huy'" class="theo-doi-don-hang--don-hang-button" (click)="buyAgain(selectedOrder)">
+        Mua lại
+      </button>
+      <button class="theo-doi-don-hang--don-hang-button" [routerLink]="['/lien-he']">
+        Liên hệ
+      </button>
+    </div>
+  </div>
+</div>
+</div>
+
+<!-- Popup đánh giá -->
+<div class="rating-popup-overlay" *ngIf="showRatingPopup" (click)="closeRatingPopup()"></div>
+<div class="rating-popup" *ngIf="showRatingPopup">
+  <h3 class="rating-popup--title">Đánh Giá Sản Phẩm</h3>
+  <div class="rating-popup--product">
+    <img [src]="ratingOrder?.imageUrl" [alt]="ratingOrder?.title" class="rating-popup--product-image">
+    <div class="rating-popup--product-details">
+      <p class="rating-popup--product-title">{{ ratingOrder?.title }}</p>
+      <p class="rating-popup--product-quantity">Số lượng: {{ ratingOrder?.quantity }}</p>
+    </div>
+  </div>
+  <div class="rating-popup--stars">
+    <span class="rating-popup--stars-label">Chất lượng sản phẩm</span>
+    <div class="rating-popup--stars-container">
+      <span
+        *ngFor="let star of [1, 2, 3, 4, 5]; let i = index"
+        class="rating-popup--star"
+        [ngClass]="{'filled': i + 1 <= (hoverRating || currentRating)}"
+        (mouseover)="onStarHover(i + 1)"
+        (mouseleave)="onStarLeave()"
+        (click)="onStarClick(i + 1)"
+      >★</span>
+    </div>
+    <span class="rating-popup--stars-text">{{ getRatingText(hoverRating || currentRating) }}</span>
+  </div>
+  <textarea
+    class="rating-popup--textarea"
+    placeholder="Hãy chia sẻ nhận định của bạn thích về sản phẩm này với những người mua khác nhé"
+    [(ngModel)]="ratingText"
+  ></textarea>
+  <div class="rating-popup--actions">
+    <button class="rating-popup--button rating-popup--button-cancel" (click)="closeRatingPopup()">Quay lại</button>
+    <button class="rating-popup--button rating-popup--button-submit" (click)="submitRating()">Gửi đánh giá</button>
+  </div>
+</div>
+
+<!-- Popup thông báo thành công -->
+<div class="success-popup" *ngIf="showSuccessPopup">
+  <div class="success-popup--icon"><img src="danh-gia-thanh-cong.png" alt="" class="success-popup--icon"></div>
+  <p class="success-popup--message">Cảm ơn bạn đã đánh giá!</p>
+</div>
+
+<!-- Popup xem đánh giá -->
+<div class="view-rating-popup-overlay" *ngIf="showViewRatingPopup" (click)="closeViewRatingPopup()"></div>
+<div class="view-rating-popup" *ngIf="showViewRatingPopup">
+  <h3 class="view-rating-popup--title">Đánh giá của tôi</h3>
+  <div class="view-rating-popup--product">
+    <img [src]="ratingOrder?.imageUrl" [alt]="ratingOrder?.title" class="view-rating-popup--product-image">
+    <div class="view-rating-popup--product-details">
+      <p class="view-rating-popup--product-title">{{ ratingOrder?.title }}</p>
+      <p class="view-rating-popup--product-quantity">Số lượng: {{ ratingOrder?.quantity }}</p>
+    </div>
+  </div>
+  <hr class="view-rating-popup--separator">
+  <div class="view-rating-popup--review">
+    <div class="view-rating-popup--user">
+      <div class="view-rating-popup--user-avatar"></div>
+      <div class="view-rating-popup--user-details">
+        <p class="view-rating-popup--user-name">nguyenngoctrinh</p>
+        <div class="view-rating-popup--user-stars">
+          <span *ngFor="let star of [1, 2, 3, 4, 5]; let i = index"
+                class="view-rating-popup--star"
+                [ngClass]="{'filled': i + 1 <= (ratingOrder?.rating || 0)}">★</span>
+        </div>
+      </div>
+    </div>
+    <p class="view-rating-popup--review-text">{{ ratingOrder?.ratingText }}</p>
+    <p class="view-rating-popup--review-date">{{ ratingOrder?.ratingDate }}</p>
+  </div>
+  <div class="view-rating-popup--actions">
+    <button *ngIf="ratingOrder && !ratingOrder.isEdited" class="view-rating-popup--button view-rating-popup--button-edit" (click)="openEditRatingPopup(ratingOrder!)">Sửa</button>
+    <button class="view-rating-popup--button view-rating-popup--button-close" (click)="closeViewRatingPopup()">Thoát</button>
+  </div>
+</div>
+
+<!-- Popup sửa đánh giá -->
+<div class="rating-popup-overlay" *ngIf="showEditRatingPopup" (click)="closeRatingPopup()"></div>
+<div class="rating-popup" *ngIf="showEditRatingPopup">
+  <h3 class="rating-popup--title">Sửa Đánh Giá Sản Phẩm</h3>
+  <div class="rating-popup--product">
+    <img [src]="ratingOrder?.imageUrl" [alt]="ratingOrder?.title" class="rating-popup--product-image">
+    <div class="rating-popup--product-details">
+      <p class="rating-popup--product-title">{{ ratingOrder?.title }}</p>
+      <p class="rating-popup--product-quantity">Số lượng: {{ ratingOrder?.quantity }}</p>
+    </div>
+  </div>
+  <div class="rating-popup--stars">
+    <span class="rating-popup--stars-label">Chất lượng sản phẩm</span>
+    <div class="rating-popup--stars-container">
+      <span
+        *ngFor="let star of [1, 2, 3, 4, 5]; let i = index"
+        class="rating-popup--star"
+        [ngClass]="{'filled': i + 1 <= (hoverRating || currentRating)}"
+        (mouseover)="onStarHover(i + 1)"
+        (mouseleave)="onStarLeave()"
+        (click)="onStarClick(i + 1)"
+      >★</span>
+    </div>
+    <span class="rating-popup--stars-text">{{ getRatingText(hoverRating || currentRating) }}</span>
+  </div>
+  <textarea
+    class="rating-popup--textarea"
+    placeholder="Hãy chia sẻ nhận định của bạn thích về sản phẩm này với những người mua khác nhé"
+    [(ngModel)]="ratingText"
+  ></textarea>
+  <div class="rating-popup--actions">
+    <button class="rating-popup--button rating-popup--button-cancel" (click)="cancelEditRating()">Quay lại</button>
+    <button class="rating-popup--button rating-popup--button-submit" (click)="updateRating()">Cập nhật</button>
+  </div>
+</div>
+
+<!-- Popup "Lý do hủy" -->
+<div class="cancel-popup-overlay" *ngIf="showCancelPopup" (click)="closeCancelPopup()"></div>
+<div class="cancel-popup" *ngIf="showCancelPopup">
+  <h3 class="cancel-popup--title">Lý do hủy</h3>
+  <p class="cancel-popup--message">Nếu bạn xác nhận hủy, toàn bộ đơn hàng sẽ được hủy. Trường hợp bạn đã thanh toán, tiền sẽ được hoàn về ví tài khoản ngân hàng của bạn trong vòng 24 giờ. Mọi vấn đề về hoàn tiền, bạn vui lòng liên hệ chúng tôi để được hỗ trợ.</p>
+  <div class="cancel-popup--options">
+    <label class="cancel-popup--option">
+      <input type="radio" name="cancelReason" value="Tôi tìm thấy sản phẩm rẻ hơn" [(ngModel)]="cancelReason">
+      Tôi tìm thấy sản phẩm rẻ hơn
+    </label>
+    <label class="cancel-popup--option">
+      <input type="radio" name="cancelReason" value="Người bán không trả lời thắc mắc, yêu cầu của tôi" [(ngModel)]="cancelReason">
+      Người bán không trả lời thắc mắc, yêu cầu của tôi
+    </label>
+    <label class="cancel-popup--option">
+      <input type="radio" name="cancelReason" value="Tôi muốn thay đổi địa chỉ giao hàng (số lượng, thêm, giảm giá...)" [(ngModel)]="cancelReason">
+      Tôi muốn thay đổi địa chỉ giao hàng (số lượng, thêm, giảm giá...)
+    </label>
+    <label class="cancel-popup--option">
+      <input type="radio" name="cancelReason" value="Tôi không cần nhu cầu mua nữa" [(ngModel)]="cancelReason">
+      Tôi không cần nhu cầu mua nữa
+    </label>
+  </div>
+  <div class="cancel-popup--actions">
+    <button class="cancel-popup--button cancel-popup--button-back" (click)="closeCancelPopup()">Quay lại</button>
+    <button class="cancel-popup--button cancel-popup--button-confirm" (click)="confirmCancelOrder()">Hủy đơn</button>
+  </div>
+</div>
+
+<!-- Popup "Hủy đơn thành công" -->
+<div class="cancel-success-popup" *ngIf="showCancelSuccessPopup">
+  <div class="cancel-success-popup--icon"><img src="danh-gia-thanh-cong.png" alt=""></div>
+  <p class="cancel-success-popup--message">Hủy đơn thành công</p>
+  <p *ngIf="cancelOrderToProcess?.paymentMethod === 'Chuyển khoản ngân hàng'" class="cancel-success-popup--submessage">
+    Tiền sẽ được hoàn về ví tài khoản ngân hàng của bạn trong vòng 24 giờ.
+  </p>
+</div>
