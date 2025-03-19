@@ -1,18 +1,22 @@
 import { Component } from '@angular/core';
 import { FormsModule } from '@angular/forms';
-import { Router } from '@angular/router';
+import { Router, RouterModule } from '@angular/router';
 
 @Component({
   selector: 'app-header',
   templateUrl: './header.component.html',
   styleUrl: './header.component.css',
   standalone: true,
-  imports: [FormsModule]
+  imports: [FormsModule, RouterModule]
 })
 export class HeaderComponent {
   searchQuery: string = '';
+  private router: Router; // Khai báo router là thuộc tính của class
 
-  constructor(private router: Router) {}
+  constructor(router: Router) {
+    this.router = router; // Gán giá trị inject vào thuộc tính
+  }
+
 
   onSearch() {
     if (this.searchQuery) {
@@ -25,5 +29,10 @@ export class HeaderComponent {
     console.log('Logout clicked');
     // Logic đăng xuất sẽ được thêm sau (ví dụ: xóa token, điều hướng)
     this.router.navigate(['/']); // Quay lại trang chủ sau khi logout
+  }
+  // Hàm động để chuyển hướng đến trang Theo dõi đơn hàng
+  navigateToTheodoidonhang() {
+    console.log('Navigating to Theo dõi đơn hàng');
+    this.router.navigate(['/theo-doi-don-hang']);
   }
 }

@@ -1,0 +1,1066 @@
+.theo-doi-don-hang {
+  padding: 120px 100px;
+  min-height: calc(100vh - 100px);
+  position: relative;
+  overflow-x: hidden;
+  font-family: 'INTER', sans-serif;
+  display: flex;
+  gap: 20px;
+}
+
+.thanh-don-hang {
+  width: 100%;
+  /* margin-left: 20px; */
+}
+
+/* Thanh trạng thái */
+.thanh-trang-thai {
+  background-color: #5D7B6F;
+  height: 60px;
+  display: flex;
+  z-index: 1000;
+  box-shadow: 0 3px 4px rgba(0, 0, 0, 0.1);
+  border-radius: 16px;
+  text-align: center;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.thanh-trang-thai-item {
+  font-size: 16px;
+  color: white;
+  cursor: pointer;
+  padding: 20px 0;
+  transition: 0.3s;
+  width: 100%;
+  position: relative;
+}
+
+.thanh-trang-thai-item:hover {
+  background-color: #4a6358;
+  border-radius: 16px;
+}
+
+.thanh-trang-thai-item.active {
+  font-weight: bold;
+}
+
+.thanh-trang-thai-item.active::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 10%;
+  width: 80%;
+  height: 2px;
+  background-color: white;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.thanh-trang-thai-item.active::after {
+  opacity: 1;
+}
+
+/* Thanh tìm kiếm */
+.thanh-tim-kiem-trang-thai {
+  background-color: #d9d9d9;
+  display: flex;
+  align-items: center;
+  z-index: 1000;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  border-radius: 16px;
+  margin-bottom: 20px;
+}
+
+.thanh-tim-kiem-bieu-tuong {
+  width: 16px;
+  height: 16px;
+  margin-right: 10px;
+  margin-left: 10px;
+}
+
+.thanh-tim-kiem-input {
+  flex: 1;
+  padding: 8px;
+  border: none;
+  background: transparent;
+  font-family: 'Inter', sans-serif;
+  font-size: 13px;
+  color: #333;
+  border-top-right-radius: 16px;
+  border-bottom-right-radius: 16px;
+}
+
+.thanh-tim-kiem-input::placeholder {
+  color: #666;
+  opacity: 1;
+}
+
+/* Css thanh tài khoản */
+.thanh-tai-khoan {
+  width: 190px;
+  background-color: #ececec;
+  /* height: calc(100vh - 150px); */
+  /* overflow-y: auto; */
+}
+
+.thanh-tai-khoan__info-wrapper {
+  display: flex;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.thanh-tai-khoan__avatar-wrapper {
+  flex: 0;
+}
+
+.thanh-tai-khoan__avatar {
+  border-radius: 50%;
+  background-color: #ddd;
+  margin-right: 10px;
+}
+
+.thanh-tai-khoan__details {
+  /* flex-grow: 1; */
+}
+
+.thanh-tai-khoan__username {
+  font-size: 16px;
+  font-weight: bold;
+  color: #333;
+  margin: 0 0 5px 0;
+  font-family: 'Inter', sans-serif;
+}
+
+.thanh-tai-khoan__edit-button {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  background: none;
+  border: none;
+  color: #666;
+  font-size: 13px;
+  cursor: pointer;
+}
+
+.thanh-tai-khoan__edit-icon {
+  width: 13px;
+  height: 13px;
+}
+
+.thanh-tai-khoan__edit-button:hover {
+  color: #5D7B6F;
+}
+
+.thanh-tai-khoan__separator {
+  border: 0;
+  height: 2px;
+  background: #5D7B6F;
+  margin: 20px 0;
+}
+
+.thanh-tai-khoan-danh-sach {
+  list-style: none;
+  padding: 0;
+}
+
+.thanh-tai-khoan-danh-sach-item {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  padding: 10px 0;
+  font-size: 16px;
+  color: #333;
+  cursor: pointer;
+  font-family: "Inter", sans-serif;
+}
+
+
+.thanh-tai-khoan-danh-sach-icon {
+  width: 20px;
+  height: 20px;
+}
+
+.thanh-tai-khoan-danh-sach-item:hover {
+  color: #5D7B6F;
+}
+/* Css dropdown tài khoản */
+.thanh-tai-khoan-danh-sach-dropdown {
+  display: flex; /* Đảm bảo hiển thị flex khi được kích hoạt bởi *ngIf */
+  align-items: center;
+  gap: 20px;
+  padding: 10px 0;
+  font-size: 16px;
+  color: #333;
+  cursor: pointer;
+  margin-left: 40px;
+  font-family: "Inter", sans-serif;
+  transition: opacity 0.3s ease; /* Thêm hiệu ứng mượt khi ẩn/hiện */
+}
+
+.thanh-tai-khoan-danh-sach-dropdown:hover {
+  color: #5D7B6F; /* Giữ hiệu ứng hover */
+}
+/* Css đơn hàng */
+.theo-doi-don-hang--chinh {
+}
+
+.theo-doi-don-hang--don-hang-item {
+  padding: 20px;
+  margin-bottom: 20px;
+  background-color: #ffffff;
+  border-radius: 16px;
+}
+
+/* Phần trên */
+.theo-doi-don-hang--phan-tren {
+  display: flex;
+  align-items: flex-start;
+}
+
+.theo-doi-don-hang--don-hang-anh {
+  width: 110px;
+  height: 110px;
+  margin-right: 20px;
+}
+
+.theo-doi-don-hang--don-hang-chi-tiet {
+  flex: 1;
+}
+
+.theo-doi-don-hang--hang {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 10px;
+}
+
+.theo-doi-don-hang--don-hang-tieu-de {
+  font-size: 16px;
+  font-weight: bold;
+  color: #000000;
+  margin: 0;
+}
+
+.theo-doi-don-hang--don-hang-so-luong {
+  font-size: 16px;
+  color: #666;
+  margin: 0;
+}
+
+.theo-doi-don-hang--don-hang-gia {
+  font-size: 16px;
+  color: #000000;
+  margin: 0;
+  text-align: right;
+}
+
+.theo-doi-don-hang--don-hang-gia .gia-goc {
+  color: #7d7d7d;
+  text-decoration: line-through;
+  margin-right: 20px;
+}
+
+.theo-doi-don-hang--don-hang-trang-thai {
+  font-size: 14px;
+  color: #ff4444;
+  margin: 0;
+  text-align: right;
+  font-weight: bold;
+}
+
+/* Đường phân cách */
+.theo-doi-don-hang--separator {
+  border: 0;
+  height: 2px;
+  background: #5D7B6F;
+  margin: 20px 0;
+}
+
+/* Phần dưới */
+.theo-doi-don-hang--phan-duoi {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.theo-doi-don-hang--ghi-chu-placeholder {
+  flex: 1;
+  min-width: 100px; /* Đảm bảo placeholder có độ rộng tối thiểu */
+  margin-right: 200px;
+}
+
+.theo-doi-don-hang--ghi-chu {
+  font-size: 13px;
+  color: #7d7d7d;
+  margin: 0;
+  /* width: 400px; */
+}
+
+.theo-doi-don-hang--don-hang-hanh-dong {
+  display: flex;
+  gap: 20px;
+  margin-right: 20px;
+}
+
+.theo-doi-don-hang--don-hang-button {
+  padding: 8px 16px;
+  background-color: #5D7B6F;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 16px;
+  height: 50px;
+}
+
+.theo-doi-don-hang--don-hang-button:hover {
+  background-color: #4a6358;
+}
+
+.theo-doi-don-hang--don-hang-tong {
+  font-size: 16px;
+  margin: 0;
+  text-align: right;
+  white-space: nowrap;
+  gap: 20px;
+  display: flex;
+}
+
+.theo-doi-don-hang--don-hang-gia-tong {
+  font-weight: bold;
+  color: #ff4444;
+}
+
+/* Thêm style cho nút "Đã nhận hàng" khi disabled */
+.theo-doi-don-hang--don-hang-button.btn-disabled {
+  background-color: #ccc;
+  color: #666;
+  cursor: not-allowed;
+}
+
+@media (max-width: 768px) {
+  .theo-doi-don-hang {
+    padding: 20px 20px;
+  }
+
+  .thanh-trang-thai {
+    top: 60px;
+    left: 20px;
+    right: 20px;
+    padding: 5px;
+    flex-wrap: wrap;
+    gap: 10px;
+  }
+
+  .thanh-tim-kiem-trang-thai {
+    top: 100px;
+    left: 20px;
+    right: 20px;
+    padding: 5px;
+  }
+
+  .thanh-tai-khoan {
+    display: none;
+  }
+
+  .theo-doi-don-hang--chinh {
+    margin-left: 0;
+    margin-top: 60px;
+  }
+
+  .theo-doi-don-hang--don-hang-item {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .theo-doi-don-hang--don-hang-anh {
+    margin-right: 0;
+    margin-bottom: 10px;
+  }
+
+  .theo-doi-don-hang--don-hang-hanh-dong {
+    align-items: flex-start;
+  }
+}
+
+/* Css chi tiết đơn hàng */
+/* Thanh trên cùng của chi tiết đơn hàng */
+.chi-tiet-don-hang--thanh-trang-thai {
+  background-color: #ffffff;
+  height: 60px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  z-index: 1000;
+  box-shadow: 0 3px 4px rgba(0, 0, 0, 0.1);
+  border-radius: 16px;
+  padding: 0 20px;
+  margin-bottom: 20px;
+}
+
+.chi-tiet-don-hang--tro-lai {
+  font-size: 16px;
+  color: #5D7B6F;
+  cursor: pointer;
+  
+}
+
+.chi-tiet-don-hang--tro-lai:hover {
+  color: #4a6358;
+  font-weight: bold;
+}
+
+.chi-tiet-don-hang--trang-thai {
+  font-size: 16px;
+  color: #ff4444;
+  font-weight: bold;
+}
+
+/* Nội dung chi tiết */
+.chi-tiet-don-hang--noi-dung {
+  /* margin-left: 300px; */
+  /* margin-top: 150px; */
+  /* padding-bottom: 50px; */
+  background-color: #fff;
+  border-radius: 16px;
+  padding: 20px;
+}
+
+/* Phần head */
+.chi-tiet-don-hang--head {
+  margin-bottom: 20px;
+  text-align: right;
+}
+
+.chi-tiet-don-hang--ma-don {
+  font-size: 16x;
+  color: #7d7d7d;
+  margin: 0;
+}
+
+.chi-tiet-don-hang--du-kien {
+  font-size: 16px;
+  color: #7d7d7d;
+  margin: 20px 0;
+}
+
+/* Phần tiến độ đơn hàng */
+.chi-tiet-don-hang--tien-do {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 20px;
+}
+
+.chi-tiet-don-hang--tien-do-item {
+  text-align: center;
+  flex: 1;
+}
+
+.chi-tiet-don-hang--tien-do-icon {
+  width: 100px;
+  height: 100px;
+  margin-bottom: 20px;
+}
+
+.chi-tiet-don-hang--tien-do-trang-thai {
+  font-size: 16px;
+  color: #000000;
+  margin: 0;
+}
+
+.chi-tiet-don-hang--tien-do-thoi-gian {
+  font-size: 13px;
+  color: #666;
+  margin: 5px 0 0 0;
+}
+
+/* Phần lộ trình đơn hàng */
+.chi-tiet-don-hang--lo-trinh {
+  /* margin-bottom: 10px; */
+  margin: 0;
+}
+
+.chi-tiet-don-hang--lo-trinh-tieu-de {
+  font-size: 16px;
+  font-weight: bold;
+  color: #000000;
+  margin: 0 0 10px 0;
+}
+
+.chi-tiet-don-hang--lo-trinh-noi-dung {
+  display: flex;
+  gap: 40px;
+  margin: 0;
+}
+
+.chi-tiet-don-hang--lo-trinh-thoi-gian {
+  /* flex: 1; */
+}
+
+.chi-tiet-don-hang--lo-trinh-mo-ta {
+  /* flex: 3; */
+}
+
+.chi-tiet-don-hang--lo-trinh-thoi-gian p,
+.chi-tiet-don-hang--lo-trinh-mo-ta p {
+  font-size: 13px;
+  color: #000000;
+  margin-top: 10px;
+}
+
+/* Phần chi tiết đơn hàng */
+.chi-tiet-don-hang--chi-tiet {
+  /* margin-bottom: 20px; */
+}
+
+.chi-tiet-don-hang--chi-tiet-tieu-de {
+  font-size: 16px;
+  font-weight: bold;
+  color: #000000;
+  margin: 0 0 20px 0;
+}
+
+.chi-tiet-don-hang--dia-chi-tieu-de {
+  font-size: 13px;
+  font-weight: bold;
+  color: #000000;
+  margin: 0 0 20px 0;
+}
+
+.chi-tiet-don-hang--dia-chi {
+  font-size: 13px;
+  color: #7d7d7d;
+  /* margin-top: 10px; */
+  margin-bottom: 10px;
+}
+
+.chi-tiet-don-hang--san-pham {
+  display: flex;
+  align-items: flex-start;
+  margin-top: 20px;
+}
+
+.chi-tiet-don-hang--san-pham-anh {
+  width: 110px;
+  height: 110px;
+  margin-right: 20px;
+}
+
+.chi-tiet-don-hang--san-pham-chi-tiet {
+  flex: 1;
+}
+
+.chi-tiet-don-hang--san-pham-hang {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 10px;
+}
+
+.chi-tiet-don-hang--san-pham-tieu-de {
+  font-size: 16px;
+  font-weight: bold;
+  color: #000000;
+  margin: 0;
+}
+
+.chi-tiet-don-hang--san-pham-so-luong {
+  font-size: 16px;
+  color: #7d7d7d;
+  margin: 0;
+}
+
+.chi-tiet-don-hang--san-pham-gia {
+  font-size: 16px;
+  color: #000000;
+  margin: 0;
+  font-weight: bold;
+}
+
+.chi-tiet-don-hang--san-pham-gia .gia-goc {
+  color: #7d7d7d;
+  text-decoration: line-through;
+  margin-right: 10px;
+  font-weight: normal;
+}
+
+/* Phần chi phí */
+.chi-tiet-don-hang--chi-phi {
+  display: flex;
+  margin-bottom: 20px;
+}
+
+.chi-tiet-don-hang--chi-phi-cot-trong {
+  flex: 2;
+}
+
+.chi-tiet-don-hang--chi-phi-ten {
+  /* flex: 1; */
+  text-align: left;
+}
+
+.chi-tiet-don-hang--chi-phi-gia {
+  flex: 1;
+  text-align: right;
+}
+
+.chi-tiet-don-hang--chi-phi-ten p,
+.chi-tiet-don-hang--chi-phi-gia p {
+  font-size: 16px;
+  color: #333;
+  margin: 5px 0;
+}
+
+.chi-tiet-don-hang--chi-phi-gia p:nth-child(4) {
+  font-weight: bold;
+  color: #ff4444;
+}
+
+/* Nút hành động */
+.chi-tiet-don-hang--hanh-dong {
+  font-size: 16px;
+  display: flex;
+  gap: 20px;
+  justify-content: flex-end;
+  height: 50px;
+}
+
+/* css popup đánh giá */
+/* Overlay làm tối trang web */
+.rating-popup-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.3);
+  z-index: 1000;
+}
+
+/* Popup đánh giá */
+.rating-popup {
+  font-family: 'Inter', sans-serif;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: white;
+  padding: 20px;
+  border-radius: 16px;
+  width: 600px;
+  z-index: 1001;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.rating-popup--title {
+  font-size: 24px;
+  font-weight: bold;
+  color: #000000;
+  margin: 0 0 40px 0;
+  text-align: left;
+}
+
+.rating-popup--product {
+  display: flex;
+  margin-bottom: 20px;
+}
+
+.rating-popup--product-image {
+  width: 80px;
+  height: 80px;
+  margin-right: 20px;
+}
+
+.rating-popup--product-details {
+  flex: 1;
+}
+
+.rating-popup--product-title {
+  font-size: 16px;
+  color: #000000;
+  margin: 0 0 10px 0;
+}
+
+.rating-popup--product-quantity {
+  font-size: 16px;
+  color: #7d7d7d;
+  margin: 0;
+}
+
+.rating-popup--stars {
+  display: flex;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.rating-popup--stars-label {
+  font-size: 16px;
+  color: #333;
+  margin-right: 30px;
+}
+
+.rating-popup--stars-container {
+  display: flex;
+  margin-right: 30px;
+}
+
+.rating-popup--star {
+  font-size: 24px;
+  color: #ccc;
+  cursor: pointer;
+  transition: color 0.2s;
+}
+
+.rating-popup--star.filled {
+  color: #f5c518;
+}
+
+.rating-popup--stars-text {
+  font-size: 16px;
+  color: #f5c518;
+}
+
+.rating-popup--textarea {
+  width: 100%;
+  height: 200px;
+  border: 1px solid #ccc;
+  border-radius: 16px;
+  padding: 20px;
+  font-size: 16px;
+  margin-bottom: 20px;
+  resize: none;
+  font-family: "Inter", sans-serif;
+}
+
+.rating-popup--actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 20px;
+}
+
+.rating-popup--button {
+  padding: 10px 20px;
+  border: none;
+  border-radius: 8px;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+.rating-popup--button-cancel {
+  background-color: #ececec;
+  color: #000000;
+}
+
+.rating-popup--button-submit {
+  background-color: #5D7B6F;
+  color: white;
+}
+
+.rating-popup--button-cancel:hover {
+  background-color: #ccc;
+}
+
+.rating-popup--button-submit:hover {
+  background-color: #4a6358;
+}
+
+/* Popup thông báo thành công */
+.success-popup {
+  font-family: "Inter", sans-serif;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: white;
+  padding: 40px;
+  border-radius: 16px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  z-index: 1002;
+  text-align: center;
+  width: 500px;
+  display: block;
+}
+
+.success-popup--icon {
+  font-size: 40px;
+  margin-bottom: 20px;
+}
+
+.success-popup--message {
+  font-size: 24px;
+  color: #5D7B6F;
+  font-weight: bold;
+  margin: 0;
+}
+
+/* Overlay cho popup xem đánh giá */
+.view-rating-popup-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  z-index: 1000;
+}
+
+/* Popup xem đánh giá */
+.view-rating-popup {
+  font-family: 'Inter', sans-serif;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: white;
+  padding: 20px;
+  border-radius: 16px;
+  width: 600px;
+  z-index: 1001;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.view-rating-popup--title {
+  font-size: 24px;
+  font-weight: bold;
+  color: #000000;
+  margin: 0 0 20px 0;
+  text-align: left;
+}
+
+.view-rating-popup--product {
+  display: flex;
+}
+
+.view-rating-popup--product-image {
+  width: 80px;
+  height: 80px;
+  margin-right: 20px;
+}
+
+.view-rating-popup--product-details {
+  flex: 1;
+}
+
+.view-rating-popup--product-title {
+  font-size: 16px;
+  color: #000000;
+  margin: 0 0 10px 0;
+}
+
+.view-rating-popup--product-quantity {
+  font-size: 16px;
+  color: #7d7d7d;
+  margin: 0;
+}
+
+.view-rating-popup--separator {
+  border: 0;
+  border-top: 2px solid #5D7B6F;
+  margin: 20px 0;
+}
+
+.view-rating-popup--review {
+  margin-bottom: 20px;
+}
+
+.view-rating-popup--user {
+  display: flex;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+.view-rating-popup--user-avatar {
+  width: 40px;
+  height: 40px;
+  background-color: #ccc;
+  border-radius: 50%;
+  margin-right: 10px;
+}
+
+.view-rating-popup--user-details {
+  flex: 1;
+}
+
+.view-rating-popup--user-name {
+  font-size: 13px;
+  color: #000000;
+  margin: 0 0 5px 0;
+}
+
+.view-rating-popup--user-stars {
+  display: flex;
+}
+
+.view-rating-popup--star {
+  font-size: 16px;
+  color: #ccc;
+}
+
+.view-rating-popup--star.filled {
+  color: #f5c518;
+}
+
+.view-rating-popup--review-text {
+  font-size: 16px;
+  color: #333;
+  margin: 20px 0;
+  margin-left: 50px;
+}
+
+.view-rating-popup--review-date {
+  font-size: 13px;
+  color: #7d7d7d;
+  margin-left: 50px;
+}
+
+.view-rating-popup--actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 20px;
+}
+
+.view-rating-popup--button {
+  padding: 10px 20px;
+  border: none;
+  border-radius: 8px;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+.view-rating-popup--button-edit {
+  background-color: #5D7B6F;
+  color: white;
+}
+
+.view-rating-popup--button-close {
+  background-color: #ccc;
+  color: #333;
+}
+
+.view-rating-popup--button-edit:hover {
+  background-color: #4a6358;
+}
+
+.view-rating-popup--button-close:hover {
+  background-color: #bbb;
+}
+
+/* Overlay cho popup "Lý do hủy" */
+.cancel-popup-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  z-index: 1000;
+}
+
+/* Popup "Lý do hủy" */
+.cancel-popup {
+  font-family: 'Inter', sans-serif;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: white;
+  padding: 40px;
+  border-radius: 16px;
+  width: 600px;
+  z-index: 1001;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.cancel-popup--title {
+  font-size: 24px;
+  font-weight: bold;
+  color: #000000;
+  margin: 0 0 20px 0;
+  /* text-align: center; */
+}
+
+.cancel-popup--message {
+  font-size: 16px;
+  color: #5D7B6F;
+  margin: 0 0 20px 0;
+}
+
+.cancel-popup--options {
+  margin-bottom: 100px;
+}
+
+.cancel-popup--option {
+  display: block;
+  margin-bottom: 20px;
+  font-size: 16px;
+  color: #000000;
+}
+
+.cancel-popup--option input {
+  margin-right: 10px;
+}
+
+.cancel-popup--actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 20px;
+}
+
+.cancel-popup--button {
+  padding: 10px 20px;
+  border: none;
+  border-radius: 8px;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+.cancel-popup--button-back {
+  background-color: #ccc;
+  color: #333;
+}
+
+.cancel-popup--button-confirm {
+  background-color: #5D7B6F;
+  color: white;
+}
+
+.cancel-popup--button-back:hover {
+  background-color: #bbb;
+}
+
+.cancel-popup--button-confirm:hover {
+  background-color: #4a6358;
+}
+
+/* Popup "Hủy đơn thành công" */
+.cancel-success-popup {
+  font-family: 'Inter', sans-serif;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: white;
+  padding: 40px;
+  border-radius: 16px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  z-index: 1002;
+  text-align: center;
+  width: 400px;
+}
+
+.cancel-success-popup--icon {
+  font-size: 40px;
+  margin-bottom: 20px;
+}
+
+.cancel-success-popup--message {
+  font-size: 24px;
+  color: #5D7B6F;
+  font-weight: bold;
+  margin: 0 0 20px 0;
+}
+
+.cancel-success-popup--submessage {
+  font-size: 16px;
+  color: #000000;
+  margin: 0;
+}
