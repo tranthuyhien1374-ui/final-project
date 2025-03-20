@@ -1,0 +1,64 @@
+<div class="doc-truyen-container">
+    <!-- Nút điều hướng đầu trang -->
+    <div class="navigation-top">
+      <button (click)="prevChapter()" [disabled]="currentChapter === 1">←</button>
+      <span>Chương {{ currentChapter }} / {{ totalChapters }}</span>
+      <button (click)="nextChapter()" [disabled]="currentChapter === totalChapters">→</button>
+    </div>
+  
+    <!-- Nội dung truyện -->
+    <div class="story-content">
+      <div *ngIf="chapter; else noChapter">
+        <h2>{{ chapter.title }}</h2>
+        <!-- <p>Debug content: {{ chapter.content }}</p> -->
+        <p *ngIf="chapter.content; else noContent">{{ chapter.content }}</p>
+        <ng-template #noContent>
+          <p>Chương này chưa có nội dung.</p>
+        </ng-template>
+      </div>
+      <ng-template #noChapter>
+        <p>Không tìm thấy .</p>
+      </ng-template>
+    </div>
+    <div class="navigation-bottom">
+      <button (click)="prevChapter()" [disabled]="currentChapter === 1">←</button>
+      <span>Chương {{ currentChapter }} / {{ totalChapters }}</span>
+      <button (click)="nextChapter()" [disabled]="currentChapter === totalChapters">→</button>
+    </div>
+  
+    <!-- Ô bình luận cố định -->
+    <div class="comments-section">
+      <h2>BÌNH LUẬN</h2>
+      <div class="comments-list" *ngFor="let comment of comments | slice:0:5">
+        <p class="comment-user">{{ comment.username }}</p>
+        <p class="comment-content" [ngClass]="{'truncated': comment.content.length > 100}">
+          {{ comment.content }}
+        </p>
+        <p class="comment-timestamp">{{ comment.timestamp }}</p>
+      </div>
+      <button (click)="togglePopup()">Xem thêm</button>
+    </div>
+  
+    <!-- Nút điều hướng cuối trang -->
+    
+  </div>
+  
+  <!-- Popup bình luận -->
+  <div class="popup" *ngIf="showPopup">
+    <div class="popup-content">
+      <h2>Bình luận</h2>
+      <div class="all-comments">
+        <div *ngFor="let comment of comments">
+          <p class="comment-user">{{ comment.username }}</p>
+          <p class="comment-content">{{ comment.content }}</p>
+          <p class="comment-timestamp">{{ comment.timestamp }}</p>
+        </div>
+      </div>
+      <div class="comment-input">
+        <input [(ngModel)]="username" [disabled]="isLoggedIn" placeholder="Tên (Anonymous nếu chưa đăng nhập)" />
+        <textarea [(ngModel)]="newComment" placeholder="Nhập bình luận của bạn..."></textarea>
+        <button (click)="addComment()">Gửi</button>
+      </div>
+      <button (click)="togglePopup()">Đóng</button>
+    </div>
+  </div>

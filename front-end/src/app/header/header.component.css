@@ -1,4 +1,4 @@
-.header {
+header {
     position: fixed;
     top: 0;
     left: 0;
@@ -8,11 +8,21 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
+    transition: transform 0.3s ease;
     z-index: 1000;
     font-family: 'Inter', sans-serif;
     height: 70px;
     /* padding-left: 100px; */
   }
+
+  .visible {
+    transform: translateY(0); /* Hiện header */
+  }
+  
+  .hidden {
+    transform: translateY(-100%); /* Ẩn header */
+  }
+
   .header-noi-dung {
     display: flex;
     align-items: center;
@@ -23,6 +33,7 @@
   .header-logo {
     display: flex;
     align-items: center;
+    cursor: pointer;
   }
   
   .header-logo-img {

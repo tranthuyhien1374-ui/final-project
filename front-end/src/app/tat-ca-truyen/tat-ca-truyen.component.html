@@ -53,8 +53,8 @@
      <div class="story-display">
       <div class="story-grid">
         <div class="story-card" *ngFor="let story of displayedStories">
-          <img [src]="story.image" [alt]="story.title" loading="lazy" (click)="navigateToStoryDetail(story.id)" />
-          <h3 (click)="navigateToStoryDetail(story.id)">{{ story.title }}</h3>
+          <img [src]="story.image" [alt]="story.title" loading="lazy" (click)="navigateToStoryDetail(story._id)" />
+          <h3 (click)="navigateToStoryDetail(story._id)">{{ story.title }}</h3>
           <p>{{ story.author }}</p>
           <span class="status">{{ story.status }}</span>
         </div>
