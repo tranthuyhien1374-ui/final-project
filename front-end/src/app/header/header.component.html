@@ -21,7 +21,9 @@
           <a class="header-tab-link" href="/lien-he">Liên hệ</a>
         </div>
         <div class="header-icons">
-          <span class="header-icon">
+          <!-- Hiển thị nút Đăng nhập nếu chưa đăng nhập -->
+          <button *ngIf="!isLoggedIn" class="login-button" (click)="navigateToLogin()">Đăng nhập</button>
+          <span *ngIf="isLoggedIn" class="header-icon">
             <img src="circle-user.png" alt="">
             <div class="header-dropdown">
               <a class="header-dropdown-item" routerLink="/tai-khoan">Tài khoản của tôi</a>

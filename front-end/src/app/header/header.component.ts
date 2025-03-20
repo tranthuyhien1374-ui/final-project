@@ -1,16 +1,18 @@
 import { Component } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { Router, RouterModule } from '@angular/router';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-header',
   templateUrl: './header.component.html',
   styleUrl: './header.component.css',
   standalone: true,
-  imports: [FormsModule, RouterModule]
+  imports: [FormsModule, RouterModule, CommonModule]
 })
 export class HeaderComponent {
   searchQuery: string = '';
+  isLoggedIn: boolean = false; // Trạng thái đăng nhập (giả lập)
   private router: Router; // Khai báo router là thuộc tính của class
 
   constructor(router: Router) {
@@ -27,9 +29,21 @@ export class HeaderComponent {
 
   onLogout() {
     console.log('Logout clicked');
-    // Logic đăng xuất sẽ được thêm sau (ví dụ: xóa token, điều hướng)
+    this.isLoggedIn = false; // Cập nhật trạng thái đăng nhập
     this.router.navigate(['/']); // Quay lại trang chủ sau khi logout
   }
+
+  navigateToLogin() {
+    console.log('Navigating to Đăng nhập');
+    this.router.navigate(['/dang-nhap']);
+  }
+
+  // Giả lập đăng nhập (sẽ thay bằng logic thực tế sau)
+  login() {
+    this.isLoggedIn = true;
+    this.router.navigate(['/']);
+  }
+
   // Hàm động để chuyển hướng đến trang Theo dõi đơn hàng
   navigateToTheodoidonhang() {
     console.log('Navigating to Theo dõi đơn hàng');
