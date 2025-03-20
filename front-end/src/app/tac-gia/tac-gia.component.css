@@ -1,0 +1,329 @@
+/* Container chính */
+.wrapperMain_content {
+    font-family: 'Inter', sans-serif;
+  }
+  
+  /* Phần nội dung chính */
+  .blogpage {
+    padding: 0; /* Loại bỏ padding mặc định, để container xử lý lề */
+  }
+  
+  /* Container */
+  .tac-gia-container {
+    margin-top: 100px; /* Giữ nguyên 50px */
+    margin-bottom: 100px; /* Giữ nguyên 50px */
+    padding-left: 100px; /* Giữ nguyên 100px */
+    padding-right: 100px; /* Giữ nguyên 100px */
+    font-family: 'Inter', sans-serif; /* Áp dụng font Inter cho toàn bộ container */
+  }
+  
+  .tac-gia {
+    padding: 10px 0;
+  }
+  
+  /* Tiêu đề chính cho cả Tác giả và Danh mục tin */
+  h1.title-module,
+  h2.title-module {
+    font-size: 22px;
+    font-weight: 600; /* Inter trông đẹp hơn với font-weight 600 cho tiêu đề */
+    margin-bottom: 10px;
+    text-transform: uppercase;
+    color: #0e7444;
+  }
+  
+  /* Bảng chính và cột */
+  .blog-table {
+    width: 100%;
+    border-collapse: collapse;
+  }
+  
+  .blog-column {
+    vertical-align: top; /* Đảm bảo nội dung thẳng hàng trên cùng */
+    padding: 0 15px;
+  }
+  
+  .authors-col {
+    width: 70%; /* 70% cho Tác giả */
+  }
+  
+  .categories-col {
+    width: 30%; /* 30% cho Danh mục tin */
+    max-height: 50vh; /* Giới hạn chiều cao tối đa của cột Danh mục tin là 50% chiều cao viewport */
+    overflow-y: auto; /* Thêm thanh cuộn nếu nội dung vượt quá chiều cao */
+  }
+  
+  /* Bảng 4x3 cho Tác giả */
+  .authors-table {
+    width: 100%;
+    border-collapse: collapse;
+  }
+  
+  .author-cell {
+    padding: 8px;
+    vertical-align: top;
+    width: 25%; /* Mỗi cột chiếm 1/4 */
+  }
+  
+  /* Tác giả */
+  .item_author_base {
+    margin-bottom: 0; /* Không cần margin bổ sung */
+    display: flex;
+    flex-direction: column; /* Đảm bảo hình ảnh và nội dung xếp dọc */
+    align-items: center; /* Căn giữa theo chiều ngang */
+  }
+  
+  .item_author_base .thumb {
+    display: block;
+    margin-bottom: 8px;
+    text-align: center; /* Đảm bảo hình ảnh căn giữa */
+  }
+  
+  .item_author_base .thumb img {
+    width: auto;
+    height: auto;
+    max-width: 150px; /* Giới hạn chiều rộng tối đa */
+    max-height: 150px; /* Kích thước ảnh trong Tác giả */
+    border-radius: 50%; /* Hình tròn */
+    object-fit: cover;
+  }
+  
+  .content_author {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start; /* Đảm bảo nội dung căn lên trên */
+    align-items: center; /* Căn giữa theo chiều ngang */
+    width: 100%; /* Đảm bảo nội dung chiếm toàn bộ chiều rộng của container cha */
+  }
+  
+  .content_author h3 {
+    font-size: 16px;
+    font-weight: 500; /* Font-weight 500 cho tiêu đề trong Tác giả */
+    margin-bottom: 3px;
+    line-height: 1.3; /* Điều chỉnh line-height để phù hợp với font Inter */
+    max-width: 100%;
+    white-space: normal; /* Cho phép tự động xuống hàng */
+    overflow: visible;
+    text-overflow: clip;
+    text-align: center; /* Căn giữa tên tác giả */
+  }
+  
+  .content_author h3 a {
+    color: #333;
+    text-decoration: none;
+  }
+  
+  .content_author h3 a:hover {
+    color: #007bff;
+  }
+  
+  /* Danh mục tin */
+  .blog-list {
+    display: flex;
+    flex-direction: column; /* Đảm bảo danh mục tin là 1 cột */
+  }
+  
+  .item {
+    margin-bottom: 3px; /* Khoảng cách giữa các hàng trong Danh mục tin */
+  }
+  
+  .item_blog_base {
+    margin-bottom: 0; /* Không cần margin bổ sung */
+  }
+  
+  /* Danh mục tin 2 cột */
+  .category-row {
+    display: flex;
+    align-items: flex-start; /* Căn chỉnh nội dung lên phía trên */
+    margin-bottom: 3px;
+  }
+  
+  .category-image {
+    flex: 0 0 40%; /* Cột trái chiếm 40% cho ảnh */
+    padding-right: 5px;
+  }
+  
+  .category-image .thumb img {
+    max-height: 80px; /* Kích thước ảnh danh mục tin */
+    object-fit: cover;
+    width: 100%;
+    height: auto;
+    border-radius: 5px;
+  }
+  
+  .category-content {
+    flex: 1; /* Cột phải chiếm phần còn lại cho nội dung */
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start; /* Đảm bảo nội dung căn lên trên */
+    padding-top: 0; /* Bỏ padding-top để không có khoảng cách thừa */
+  }
+  
+  .category-content h3 {
+    font-size: 16px; /* Đồng bộ với Tác giả */
+    font-weight: 500; /* Font-weight 500 cho tiêu đề trong Danh mục tin */
+    margin-bottom: 3px; /* Đồng bộ với Tác giả */
+    line-height: 1.3; /* Đồng bộ với Tác giả */
+    max-width: 100%;
+    white-space: normal; /* Cho phép tự động xuống hàng */
+    overflow: visible;
+    text-overflow: clip;
+    margin-top: 0; /* Đảm bảo không có khoảng cách thừa phía trên */
+  }
+  
+  .category-content h3 a {
+    color: #333;
+    text-decoration: none;
+  }
+  
+  .category-content h3 a:hover {
+    color: #007bff;
+  }
+  
+  .category-content span {
+    font-size: 13px; /* Đồng bộ với Tác giả */
+    font-weight: 400; /* Font-weight 400 cho ngày tháng */
+    color: #666;
+    line-height: 1.2;
+  }
+  
+  /* Đường gạch ngang ngăn cách */
+  .category-divider {
+    border: 0;
+    border-top: 1px solid #ddd; /* Đường gạch ngang màu xám nhạt */
+    margin: 2px 0; /* Khoảng cách trên dưới */
+  }
+  
+  /* Thanh phân trang ở chính giữa */
+  .text-center {
+    text-align: center;
+  }
+  
+  .nav_pagi {
+    display: inline-block; /* Đảm bảo thanh phân trang nằm giữa */
+  }
+  
+  .nav_pagi ul.pagination {
+    display: flex;
+    justify-content: center; /* Căn giữa */
+    list-style: none;
+    padding: 0;
+    margin-top: 15px;
+    margin-bottom: 0;
+  }
+  
+  .nav_pagi ul.pagination li {
+    margin: 0 5px; /* Khoảng cách giữa các nút */
+  }
+  
+  .nav_pagi ul.pagination li a {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 35px;
+    height: 35px;
+    border: 1px solid #ddd;
+    color: #333;
+    text-decoration: none;
+    border-radius: 50%;
+    font-size: 14px;
+    font-weight: 500; /* Font-weight 500 cho số trong phân trang */
+    background-color: #fff;
+    transition: all 0.3s ease;
+  }
+  
+  /* Hover màu xanh lá cây */
+  .nav_pagi ul.pagination li a:hover {
+    background-color: #28a745; /* Màu xanh lá cây khi hover */
+    color: #fff;
+    border-color: #28a745;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  }
+  
+  /* Active màu xanh lá cây */
+  .nav_pagi ul.pagination li.active a {
+    background-color: #28a745;
+    color: #fff;
+    border-color: #28a745;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  }
+  
+  .nav_pagi ul.pagination li.disabled a {
+    color: #ccc;
+    background-color: #f5f5f5;
+    border-color: #ddd;
+    cursor: not-allowed;
+  }
+  
+  .nav_pagi ul.pagination li.disabled a:hover {
+    background-color: #f5f5f5;
+    color: #ccc;
+    box-shadow: none;
+  }
+  
+  /* Kiểu dáng cho nút Previous và Next */
+  .nav_pagi ul.pagination li a[aria-label="Previous"],
+  .nav_pagi ul.pagination li a[aria-label="Next"] {
+    font-size: 16px; /* Tăng kích thước biểu tượng mũi tên */
+    font-weight: 600; /* Làm đậm biểu tượng */
+  }
+  
+  /* Responsive */
+  @media (max-width: 768px) {
+    .tac-gia-container {
+      padding-left: 20px;
+      padding-right: 20px;
+    }
+  
+    .blog-table {
+      display: block; /* Chuyển sang block trên màn hình nhỏ */
+    }
+  
+    .blog-column {
+      display: block;
+      width: 100%; /* Mỗi cột chiếm 100% trên màn hình nhỏ */
+      padding: 0 20px;
+    }
+  
+    .authors-table {
+      display: block; /* Chuyển bảng tác giả thành block */
+    }
+  
+    .author-cell {
+      display: block;
+      width: 100%; /* Mỗi ô chiếm 100% trên màn hình nhỏ */
+      padding: 8px 0;
+    }
+  
+    .item_author_base .thumb img {
+      max-height: 100px; /* Điều chỉnh cho màn hình nhỏ */
+    }
+  
+    .category-image .thumb img {
+      max-height: 50px; /* Điều chỉnh cho màn hình nhỏ */
+    }
+  
+    .category-row {
+      flex-direction: column; /* Chuyển thành cột dọc trên màn hình nhỏ */
+      align-items: flex-start;
+    }
+  
+    .category-image {
+      padding-right: 0;
+      margin-bottom: 3px;
+    }
+  
+    .categories-col {
+      max-height: none; /* Bỏ giới hạn chiều cao trên màn hình nhỏ để tránh tràn nội dung */
+    }
+  
+    .nav_pagi ul.pagination li a {
+      width: 30px;
+      height: 30px;
+      font-size: 12px;
+    }
+  
+    .nav_pagi ul.pagination li a[aria-label="Previous"],
+    .nav_pagi ul.pagination li a[aria-label="Next"] {
+      font-size: 14px; /* Giảm kích thước biểu tượng trên màn hình nhỏ */
+    }
+  }

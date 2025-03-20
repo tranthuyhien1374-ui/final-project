@@ -1,0 +1,325 @@
+/* Container chính */
+.wrapperMain_content {
+    font-family: 'Inter', sans-serif;
+  }
+  
+  /* Breadcrumb */
+  .bread-crumb {
+    background-size: cover;
+    background-position: center;
+    padding: 20px 0;
+    color: #fff;
+  }
+  
+  .breadcrumb {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    align-items: center;
+  }
+  
+  .breadcrumb li {
+    display: flex;
+    align-items: center;
+    font-size: 14px;
+  }
+  
+  .breadcrumb li a {
+    color: #fff;
+    text-decoration: none;
+  }
+  
+  .breadcrumb li a:hover {
+    text-decoration: underline;
+  }
+  
+  .breadcrumb li strong {
+    color: #fff;
+  }
+  
+  .breadcrumb .mr_lr {
+    margin: 0 10px;
+  }
+  
+  .breadcrumb .mr_lr i {
+    font-size: 12px;
+  }
+  
+  /* Phần nội dung chính */
+  .author-detail-page {
+    padding: 0; /* Loại bỏ padding mặc định, để container xử lý lề */
+  }
+  
+  /* Container */
+  .author-detail-container {
+    margin-top: 50px;
+    margin-bottom: 50px;
+    padding-left: 100px;
+    padding-right: 100px;
+    font-family: 'Inter', sans-serif;
+  }
+  
+  /* Tiêu đề chính */
+  h1.title-module,
+  h2.title-module {
+    font-size: 22px;
+    font-weight: 600;
+    margin-bottom: 10px;
+    text-transform: uppercase;
+    color: #0e7444;
+  }
+  
+  /* Phần 1: Thông tin tác giả */
+  .author-info {
+    margin-bottom: 40px;
+  }
+  
+  .author-details {
+    display: flex;
+    align-items: flex-start;
+    gap: 30px;
+  }
+  
+  .author-image {
+    flex: 0 0 200px;
+  }
+  
+  .author-image img {
+    width: 200px;
+    height: 200px;
+    border-radius: 50%;
+    object-fit: cover;
+  }
+  
+  .author-description {
+    flex: 1;
+  }
+  
+  .author-description h2 {
+    font-size: 24px;
+    font-weight: 600;
+    color: #333;
+    margin-bottom: 15px;
+  }
+  
+  .author-description p {
+    font-size: 16px;
+    font-weight: 400;
+    color: #666;
+    line-height: 1.6;
+  }
+  
+  /* Phần 2: Các tác phẩm tiêu biểu */
+  .featured-works {
+    margin-bottom: 40px;
+  }
+  
+  .works-list {
+    display: flex;
+    gap: 20px;
+    flex-wrap: wrap;
+  }
+  
+  .work-item {
+    flex: 0 0 calc(25% - 15px); /* 4 cột, trừ khoảng cách */
+    text-align: center;
+  }
+  
+  .work-item .thumb {
+    display: block;
+    margin-bottom: 8px;
+  }
+  
+  .work-item .thumb img {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+    border-radius: 5px;
+  }
+  
+  .work-item h3 {
+    font-size: 16px;
+    font-weight: 500;
+    margin-bottom: 3px;
+    line-height: 1.3;
+    max-width: 100%;
+    white-space: normal;
+    overflow: visible;
+    text-overflow: clip;
+  }
+  
+  .work-item h3 a {
+    color: #333;
+    text-decoration: none;
+  }
+  
+  .work-item h3 a:hover {
+    color: #007bff;
+  }
+  
+  /* Phần 3: Tin liên quan */
+  .related-news {
+    margin-bottom: 40px;
+  }
+  
+  .related-news-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 15px;
+  }
+  
+  .related-news-title {
+    font-size: 22px;
+    font-weight: 600;
+    text-transform: uppercase;
+    color: #0e7444;
+  }
+  
+  .view-more-link {
+    font-size: 14px;
+    font-weight: 500;
+    color: #0e7444;
+    text-decoration: none;
+  }
+  
+  .view-more-link:hover {
+    text-decoration: underline;
+  }
+  
+  /* Bảng Tin liên quan */
+  .related-news-table {
+    width: 100%;
+    border-collapse: collapse; /* Đảm bảo không có khoảng cách giữa các ô */
+    table-layout: fixed; /* Đảm bảo các cột có chiều rộng đồng đều */
+  }
+  
+  /* Ô trong bảng */
+  .related-news-cell {
+    width: 25%; /* 4 cột, mỗi cột chiếm 25% */
+    padding: 10px;
+    vertical-align: top; /* Căn nội dung lên trên */
+  }
+  
+  /* Thẻ bài viết */
+  .related-news-card {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start; /* Căn nội dung từ trên xuống */
+    text-align: center;
+    height: 100%; /* Đảm bảo thẻ có chiều cao đồng đều */
+  }
+  
+  /* Ảnh */
+  .related-news-card .thumb {
+    display: block;
+    margin-bottom: 5px;
+  }
+  
+  .related-news-card img {
+    width: 100%;
+    height: 150px; /* Chiều cao cố định để hình ảnh đồng đều */
+    object-fit: cover;
+    border-radius: 5px;
+  }
+  
+  /* Tiêu đề */
+  .related-news-card h3 {
+    font-size: 16px;
+    font-weight: 700;
+    margin-bottom: 5px;
+    line-height: 1.3;
+    min-height: 60px; /* Đảm bảo tiêu đề có chiều cao tối thiểu để đồng đều */
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: 3; /* Giới hạn tiêu đề 3 dòng */
+    -webkit-box-orient: vertical;
+    text-align: left;
+  }
+  
+  .related-news-card h3 a {
+    color: #333;
+    text-decoration: none;
+  }
+  
+  .related-news-card h3 a:hover {
+    color: #007bff;
+  }
+  
+  /* Ngày */
+  .related-news-card span {
+    font-size: 13px;
+    font-weight: 400;
+    color: #666;
+    display: block;
+    min-height: 20px; /* Đảm bảo ngày có chiều cao tối thiểu để đồng đều */
+    text-align: left;
+  }
+  
+  /* Responsive */
+  @media (max-width: 768px) {
+    .author-detail-container {
+      padding-left: 20px;
+      padding-right: 20px;
+    }
+  
+    .author-details {
+      flex-direction: column;
+      align-items: center;
+    }
+  
+    .author-image {
+      flex: 0 0 150px;
+    }
+  
+    .author-image img {
+      width: 150px;
+      height: 150px;
+    }
+  
+    .author-description h2 {
+      font-size: 20px;
+    }
+  
+    .author-description p {
+      font-size: 14px;
+    }
+  
+    .work-item {
+      flex: 0 0 calc(50% - 10px); /* 2 cột trên màn hình nhỏ */
+    }
+  
+    .work-item .thumb img {
+      height: 150px;
+    }
+  
+    /* Chuyển bảng thành dạng dọc trên màn hình nhỏ */
+    .related-news-table {
+      display: block;
+    }
+  
+    .related-news-table tr {
+      display: block;
+    }
+  
+    .related-news-cell {
+      display: block;
+      width: 100%; /* Mỗi ô chiếm 100% chiều rộng */
+      margin-bottom: 20px; /* Khoảng cách giữa các ô */
+    }
+  
+    .related-news-card img {
+      height: 120px; /* Giảm kích thước ảnh trên màn hình nhỏ */
+    }
+  
+    .related-news-title {
+      font-size: 18px;
+    }
+    hr{
+      color: #0e7444;
+      size: 4px;
+      margin-bottom: -5px;
+    }
+  }

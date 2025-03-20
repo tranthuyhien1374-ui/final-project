@@ -1,0 +1,82 @@
+<main class="wrapperMain_content">
+    <!-- Breadcrumb -->
+    <nav class="bread-crumb lazyload" data-src="//bizweb.dktcdn.net/100/363/455/themes/918830/assets/bg-breadcrumb.jpg?1724988401192" style="background-image: url('//bizweb.dktcdn.net/100/363/455/themes/918830/assets/bg-breadcrumb.jpg?1724988401192');">
+      <div class="container">
+        <ul class="breadcrumb">
+          <li class="home">
+            <a href="/"><span>Trang chủ</span></a>
+            <span class="mr_lr"><i class="fa fa-angle-right"></i></span>
+          </li>
+          <li>
+            <a href="/tac-gia"><span>Tác giả</span></a>
+            <span class="mr_lr"><i class="fa fa-angle-right"></i></span>
+          </li>
+          <li *ngIf="author"><strong><span>{{ author.name }}</span></strong></li>
+          <li *ngIf="!author && errorMessage"><strong><span>Tác giả không tồn tại</span></strong></li>
+        </ul>
+      </div>
+    </nav>
+  
+    <!-- Nội dung chính -->
+    <section class="author-detail-page">
+      <div class="container author-detail-container">
+        <!-- Hiển thị thông báo lỗi nếu không tìm thấy tác giả -->
+        <div *ngIf="!author && errorMessage" class="error-message">
+          <p>{{ errorMessage }}</p>
+        </div>
+  
+        <!-- Phần 1: Thông tin tác giả -->
+        <div class="author-info" *ngIf="author">
+          <h1 class="title-module">TÁC GIẢ</h1>
+          <div class="author-details">
+            <div class="author-image">
+              <img [src]="author.image" [alt]="author.name" class="lazyload img-responsive">
+            </div>
+            <div class="author-description">
+              <h2>{{ author.name }}</h2>
+              <p>{{ author.description }}</p>
+            </div>
+          </div>
+        </div>
+  
+        <!-- Phần 2: Các tác phẩm tiêu biểu -->
+        <div class="featured-works">
+          <h2 class="title-module">CÁC TÁC PHẨM TIÊU BIỂU</h2>
+          <div class="works-list">
+            <div class="work-item" *ngFor="let work of works">
+              <a class="thumb" [href]="work.title | lowercase" [title]="work.title">
+                <img [src]="work.image" [alt]="work.title" class="lazyload img-responsive">
+              </a>
+              <h3>
+                <a [href]="work.title | lowercase" [title]="work.title" class="a-title">{{ work.title }}</a>
+              </h3>
+            </div>
+          </div>
+        </div>
+        <br><br>
+        <hr>
+        <!-- Phần 3: Tin liên quan -->
+        <div class="related-news">
+          <div class="related-news-header">
+            <h2 class="title-module related-news-title">TIN LIÊN QUAN</h2>
+            <a href="/tat-ca-blog" class="view-more-link">Xem thêm>></a>
+          </div>
+          <table class="related-news-table">
+            <tr>
+              <td *ngFor="let news of relatedNews" class="related-news-cell">
+                <article class="related-news-card">
+                  <a class="thumb" [href]="news.link" [title]="news.title">
+                    <img [src]="news.image" [alt]="news.title" class="lazyload img-responsive">
+                  </a>
+                  <h3>
+                    <a [href]="news.link" [title]="news.title" class="a-title">{{ news.title }}</a>
+                  </h3>
+                  <span>{{ news.date }}</span>
+                </article>
+              </td>
+            </tr>
+          </table>
+        </div>
+      </div>
+    </section>
+  </main>
