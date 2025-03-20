@@ -7,6 +7,9 @@ import { ChiTietBlogComponent } from './chi-tiet-blog/chi-tiet-blog.component';
 import { TacGiaComponent } from './tac-gia/tac-gia.component';
 import { ChiTietTacGiaComponent } from './chi-tiet-tac-gia/chi-tiet-tac-gia.component';
 import { TheoDoiDonHangComponent } from './theo-doi-don-hang/theo-doi-don-hang.component';
+import { ChiTietTruyenComponent } from './chi-tiet-truyen/chi-tiet-truyen.component';
+import { DocTruyenComponent } from './doc-truyen/doc-truyen.component';
+
 export const routes: Routes = [
     { path: '', redirectTo: '/trang-chu', pathMatch: 'full' },
   { path: 'trang-chu', component: TrangChuComponent },
@@ -16,6 +19,7 @@ export const routes: Routes = [
   {path: 'chi-tiet-blog', component: ChiTietBlogComponent},
   { path: 'theo-doi-don-hang', component: TheoDoiDonHangComponent },
   {path: 'chi-tiet-tac-gia/:id', component: ChiTietTacGiaComponent},
-  {path: 'tac-gia', component: TacGiaComponent}
-
+  {path: 'tac-gia', component: TacGiaComponent},
+  { path: 'chi-tiet-truyen/:id', component: ChiTietTruyenComponent },
+  { path: 'doc-truyen/:storyId/:chapterId', component: DocTruyenComponent }
 ];

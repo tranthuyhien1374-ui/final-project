@@ -1,7 +1,7 @@
-<header class="header">
+<header [ngClass]="{'visible': isVisible, 'hidden': !isVisible}">
     <div class="header-noi-dung">
       <div class="header-logo">      
-        <img src="edenbook-logo.png" alt="" class="header-logo-img">
+        <img src="edenbook-logo.png" alt="" class="header-logo-img" (click)="navigateToHome()">
       </div>
       <div class="header-tim-kiem">
         <div class="header-thanh-tim-kiem">

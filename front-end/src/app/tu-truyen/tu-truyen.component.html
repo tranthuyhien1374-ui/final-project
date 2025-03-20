@@ -1,8 +1,8 @@
-<head>
+<!-- <head>
     <link rel="stylesheet" type="text/css" href="/css_root/flaticon.css" >
-  </head>
+  </head> -->
   <!-- story-list.component.html -->
-  <div class="banner"><img src="bannertutruyen.png"></div>
+  <div class="banner"><img src="https://res.cloudinary.com/dfpmnrfgs/image/upload/v1742308891/tu-truyen/aoxwqz3bbnqmojmgoxwz.png"></div>
   <div class="container">
     <!-- Search Bar -->
     <div class="search-bar">
@@ -20,8 +20,8 @@
       </div>
       <div class="story-grid">
         <div class="story-card" *ngFor="let story of newStories | slice:0:5">
-          <img [src]="story.image" [alt]="story.title" loading="lazy" (click)="navigateToStoryDetail(story.id)" />
-          <h3 (click)="navigateToStoryDetail(story.id)">{{ story.title }}</h3>
+          <img [src]="story.image" [alt]="story.title" loading="lazy" (click)="navigateToStoryDetail(story._id)" />
+          <h3 (click)="navigateToStoryDetail(story._id)">{{ story.title }}</h3>
           <p class="author-link" (click)="navigateToAuthor(story.authorId)">{{ story.author }}</p>
           <span class="status">{{ story.status }}</span>
         </div>
@@ -36,8 +36,8 @@
       </div>
       <div class="story-grid">
         <div class="story-card" *ngFor="let story of readingStories | slice:0:5">
-          <img [src]="story.image" [alt]="story.title" loading="lazy" (click)="navigateToStoryDetail(story.id)" />
-          <h3 (click)="navigateToStoryDetail(story.id)">{{ story.title }}</h3>
+          <img [src]="story.image" [alt]="story.title" loading="lazy" (click)="navigateToStoryDetail(story._id)" />
+          <h3 (click)="navigateToStoryDetail(story._id)">{{ story.title }}</h3>
           <p class="author-link" (click)="navigateToAuthor(story.authorId)">{{ story.author }}</p>
           <span class="status">{{ story.status }}</span>
         </div>
@@ -52,8 +52,8 @@
       </div>
       <div class="story-grid">
         <div class="story-card" *ngFor="let story of hotStories | slice:0:5">
-          <img [src]="story.image" [alt]="story.title" loading="lazy" (click)="navigateToStoryDetail(story.id)" />
-          <h3 (click)="navigateToStoryDetail(story.id)">{{ story.title }}</h3>
+          <img [src]="story.image" [alt]="story.title" loading="lazy" (click)="navigateToStoryDetail(story._id)" />
+          <h3 (click)="navigateToStoryDetail(story._id)">{{ story.title }}</h3>
           <p class="author-link" (click)="navigateToAuthor(story.authorId)">{{ story.author }}</p>
           <span class="status">{{ story.status }}</span>
         </div>
@@ -68,12 +68,11 @@
       </div>
       <div class="story-grid">
         <div class="story-card" *ngFor="let story of completedStories | slice:0:5">
-          <img [src]="story.image" [alt]="story.title" loading="lazy" (click)="navigateToStoryDetail(story.id)" />
-          <h3 (click)="navigateToStoryDetail(story.id)">{{ story.title }}</h3>
+          <img [src]="story.image" [alt]="story.title" loading="lazy" (click)="navigateToStoryDetail(story._id)" />
+          <h3 (click)="navigateToStoryDetail(story._id)">{{ story.title }}</h3>
           <p class="author-link" (click)="navigateToAuthor(story.authorId)">{{ story.author }}</p>
           <span class="status">{{ story.status }}</span>
         </div>
       </div>
     </section>
   </div>
-  <div>end</div>
