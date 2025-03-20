@@ -395,7 +395,15 @@ cancelEditRating() {
   buyAgain(order: Order) {
     this.router.navigate([`/san-pham/${order.productId}`]);
   }
-
+  // Liên hệ
+  navigateToLienHe(orderId?: string) {
+    if (orderId) {
+      // Nếu cần truyền orderId, có thể dùng queryParams
+      this.router.navigate(['/lien-he'], { queryParams: { orderId: orderId } });
+    } else {
+      this.router.navigate(['/lien-he']);
+    }
+  }
   // Chọn tab trạng thái
   selectTab(tab: string) {
     this.selectedTab = tab; // Cập nhật tab được chọn

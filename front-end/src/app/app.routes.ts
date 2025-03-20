@@ -29,6 +29,7 @@ export const productBreadcrumbResolver: ResolveFn<string> = (route) => {
 };
 
 
+import { LienHeComponent } from './lien-he/lien-he.component';
 export const routes: Routes = [
     { path: '', redirectTo: '/trang-chu', pathMatch: 'full' },
   { path: 'trang-chu', component: TrangChuComponent },
@@ -39,6 +40,7 @@ export const routes: Routes = [
   {path: 'tat-ca-blog', component: TatCaBlogComponent},
   {path: 'chi-tiet-blog', component: ChiTietBlogComponent},
   { path: 'theo-doi-don-hang', component: TheoDoiDonHangComponent },
+  { path: 'lien-he', component: LienHeComponent },
   { path: 'tac-gia', component: TacGiaComponent },
   { path: 'chi-tiet-tac-gia', component: ChiTietTacGiaComponent },
   {path : 'dang-nhap', component: DangNhapComponent},
