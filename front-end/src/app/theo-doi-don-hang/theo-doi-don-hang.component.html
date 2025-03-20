@@ -27,6 +27,7 @@
       <li class="thanh-tai-khoan-danh-sach-dropdown" *ngIf="dropdown === 'tai-khoan'" (click)="navigateToSection('dia-chi')">Địa chỉ</li>
       <li class="thanh-tai-khoan-danh-sach-dropdown" *ngIf="dropdown === 'tai-khoan'" (click)="navigateToSection('doi-ma-pin')">Đổi mã PIN</li>
       <li class="thanh-tai-khoan-danh-sach-dropdown" *ngIf="dropdown === 'tai-khoan'" (click)="navigateToSection('xoa-tai-khoan')">Xóa tài khoản</li>
+      
       <!-- Theo dõi đơn hàng -->
       <li class="thanh-tai-khoan-danh-sach-item" (click)="navigateToSection('theo-doi-don-hang')">
         <img src="list-icon.png" alt="List Icon" class="thanh-tai-khoan-danh-sach-icon">
@@ -48,6 +49,119 @@
       <li *ngIf="dropdown === 'viet-sach'"></li> -->
     </ul>
   </div>
+  
+<!-- Trang "Hồ sơ" -->
+<div class="content-container" *ngIf="activeSection === 'ho-so'">
+    <h2 class="section-title">Hồ sơ của tôi</h2>
+    <p class="section-subtitle">Quản lý thông tin hồ sơ để bảo mật tài khoản</p>
+    <div class="ho-so--noi-dung">
+      <div class="ho-so--form">
+        <div class="ho-so--input-group">
+          <label for="fullName">Tên đăng nhập</label>
+          <input type="text" id="fullName" [(ngModel)]="userProfile.fullName" placeholder="Nguyễn Ngọc Trinh" />
+        </div>
+        <div class="ho-so--input-group">
+          <label for="email">Email</label>
+          <input type="email" id="email" [(ngModel)]="userProfile.email" placeholder="Thêm email" />
+        </div>
+        <div class="ho-so--input-group">
+          <label for="phone">Số điện thoại</label>
+          <input type="text" id="phone" [(ngModel)]="userProfile.phone" placeholder="834 376 426 259" />
+        </div>
+        <div class="ho-so--input-group">
+          <label for="gender">Giới tính</label>
+          <select id="gender" [(ngModel)]="userProfile.gender">
+            <option value="Nam">Nam</option>
+            <option value="Nữ" selected>Nữ</option>
+            <option value="Khác">Khác</option>
+          </select>
+        </div>
+        <div class="ho-so--input-group">
+          <label for="birthDate">Ngày sinh</label>
+          <input type="text" id="birthDate" [(ngModel)]="userProfile.birthDate" placeholder="**/****/2004" />
+        </div>
+        <div class="ho-so--button-wrapper">
+          <button class="ho-so--save-button" (click)="saveProfile()">Lưu</button>
+        </div>
+      </div>
+      <div class="ho-so--avatar">
+        <div class="ho-so--avatar-placeholder"></div>
+        <button class="ho-so--avatar-button">Chọn ảnh</button>
+        <p>Dung lượng file tối đa 1 MB<br />Định dạng: .JPEG, .PNG</p>
+      </div>
+    </div>
+</div>
+
+<!-- Trang "Địa chỉ" -->
+<div class="content-container" *ngIf="activeSection === 'dia-chi'">
+    <h2 class="section-title">Địa chỉ của tôi</h2>
+    <div class="dia-chi--header">
+      <button class="dia-chi--add-button" (click)="addNewAddress()">+ Thêm địa chỉ mới</button>
+    </div>
+    <div class="dia-chi--list">
+      <div class="dia-chi--item" *ngFor="let address of userAddresses; let i = index">
+        <div class="dia-chi--info">
+          <div class="dia-chi--input-group">
+            <input type="text" [(ngModel)]="address.name" placeholder="Nguyễn Ngọc Trinh" />
+          </div>
+          <div class="dia-chi--input-group">
+            <input type="text" [(ngModel)]="address.phone" placeholder="834 376 426 259" />
+          </div>
+          <div class="dia-chi--input-group">
+            <input type="text" [(ngModel)]="address.location" placeholder="KTX Khu B ĐHQG, Đông Hòa, Thành Phố Dĩ An, Bình Dương" />
+          </div>
+          <span class="dia-chi--default" *ngIf="address.isDefault">Mặc định</span>
+        </div>
+        <div class="dia-chi--actions">
+          <button class="dia-chi--action-button dia-chi--delete-button" (click)="deleteAddress(i)">Xóa</button>
+          <button class="dia-chi--action-button" (click)="saveAddress(i)">Cập nhật</button>
+          <button class="dia-chi--action-button" (click)="setDefaultAddress(i)" [disabled]="address.isDefault">Thiết lập mặc định</button>
+
+        </div>
+      </div>
+    </div>
+</div>
+
+<!-- Trang "Đổi mã PIN" -->
+<div class="content-container" *ngIf="activeSection === 'doi-ma-pin'">
+    <h2 class="section-title">Đổi mã PIN</h2>
+    <p class="section-subtitle">Để bảo mật tài khoản, vui lòng không chia sẻ mã PIN cho người khác</p>
+    <div class="doi-ma-pin--form">
+      <div class="doi-ma-pin--input-group">
+        <label for="newPin">Mã PIN mới</label>
+        <div class="doi-ma-pin--input-wrapper">
+          <input type="password" id="newPin" [(ngModel)]="pinData.newPin" placeholder="Mã PIN mới" />
+          <span class="doi-ma-pin--toggle-icon" (click)="togglePinVisibility('newPin')">👁️</span>
+        </div>
+      </div>
+      <div class="doi-ma-pin--input-group">
+        <label for="confirmPin">Xác nhận mã PIN</label>
+        <div class="doi-ma-pin--input-wrapper">
+          <input type="password" id="confirmPin" [(ngModel)]="pinData.confirmPin" placeholder="Xác nhận mã PIN" />
+          <span class="doi-ma-pin--toggle-icon" (click)="togglePinVisibility('confirmPin')">👁️</span>
+        </div>
+      </div>
+      <div class="doi-ma-pin--button-wrapper">
+        <button class="doi-ma-pin--save-button" (click)="changePin()">Xác nhận</button>
+      </div>
+    </div>
+</div>
+
+<!-- Trang "Xóa tài khoản" -->
+<div class="content-container" *ngIf="activeSection === 'xoa-tai-khoan'">
+    <h2 class="section-title">Xóa tài khoản</h2>
+    <p class="section-subtitle">Yêu cầu xóa tài khoản</p>
+    <div class="xoa-tai-khoan--content">
+      <p class="xoa-tai-khoan--warning">Khi yêu cầu xóa tài khoản, bạn sẽ không thể truy cập vào tài khoản này nữa.</p>
+      <label class="xoa-tai-khoan--checkbox">
+        <input type="checkbox" [(ngModel)]="deleteAccountConfirmation" />
+        Tôi đồng ý xóa tài khoản
+      </label>
+      <div class="xoa-tai-khoan--button-wrapper">
+        <button class="xoa-tai-khoan--delete-button" (click)="confirmDeleteAccount()">Xóa bỏ</button>
+      </div>
+    </div>
+</div>
   <div class="thanh-don-hang" *ngIf="activeSection === 'theo-doi-don-hang'">
     <!-- Thanh trạng thái -->
     <div class="thanh-trang-thai">
@@ -454,3 +568,6 @@
     Tiền sẽ được hoàn về ví tài khoản ngân hàng của bạn trong vòng 24 giờ.
   </p>
 </div>
+
+
+

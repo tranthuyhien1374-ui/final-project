@@ -35,4 +35,8 @@ export class HeaderComponent {
     console.log('Navigating to Theo dõi đơn hàng');
     this.router.navigate(['/theo-doi-don-hang']);
   }
+  navigateToSection() {
+    this.router.navigate(['/theo-doi-don-hang'], { queryParams: { section:'ho-so'} });
+  }
 }
+
