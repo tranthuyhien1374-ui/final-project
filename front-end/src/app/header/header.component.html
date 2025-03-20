@@ -1,7 +1,7 @@
-<header class="header">
+<header [ngClass]="{'visible': isVisible, 'hidden': !isVisible}">
     <div class="header-noi-dung">
       <div class="header-logo">      
-        <img src="edenbook-logo.png" alt="" class="header-logo-img">
+        <img src="edenbook-logo.png" alt="" class="header-logo-img" (click)="navigateToHome()">
       </div>
       <div class="header-tim-kiem">
         <div class="header-thanh-tim-kiem">
@@ -21,7 +21,9 @@
           <a class="header-tab-link" href="/lien-he">Liên hệ</a>
         </div>
         <div class="header-icons">
-          <span class="header-icon">
+          <!-- Hiển thị nút Đăng nhập nếu chưa đăng nhập -->
+          <button *ngIf="!isLoggedIn" class="login-button" (click)="navigateToLogin()">Đăng nhập</button>
+          <span *ngIf="isLoggedIn" class="header-icon">
             <img src="circle-user.png" alt="">
             <div class="header-dropdown">
               <a class="header-dropdown-item" >Tài khoản của tôi</a>

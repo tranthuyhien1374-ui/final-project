@@ -1,0 +1,103 @@
+<div class="container" *ngIf="story">
+    <div class="main-layout">
+      <!-- Cột trái: Thông tin, Mô tả, Mục lục -->
+      <div class="left-column">
+        <!-- Phần 1: Thông tin truyện -->
+        <div class="story-info-section">
+          <div class="story-image">
+            <!-- <img [src]="story.image" [alt]="story.title" /> -->
+            <img src="{{ story.image }}" alt="Story Image" />
+          </div>
+          <div class="story-details">
+            <h1>{{ story.title }}</h1>
+            <div class="author-info">
+              <!-- <img src="assets/author-avatar.jpg" alt="Author Avatar" class="author-avatar" /> -->
+               <img src="demtruoclyhon.png" alt="Author Avatar" class="author-avatar" />
+              <span (click)="navigateToAuthor(story.authorId)" class="author-name">{{ story.author }}</span>
+            </div>
+            <div class="info-items">
+              <div class="info-item">
+                <i class="flaticon-eye"><img src="eye.png" class="icon-menu"></i> <!-- Icon lượt đọc -->
+                <span>Lượt đọc: {{ story.views }}</span>
+              </div>
+              <div class="info-item">
+                <i class="flaticon-book"><img src="menu-burger.png" class="icon-menu"></i> <!-- Icon các phần -->
+                <span>Các phần: {{ story.chapters.length }}</span>
+              </div>
+              <div class="info-item">
+                <i class="flaticon-check"><img src="terms-and-conditions.png" class="icon-menu"></i> <!-- Icon tình trạng -->
+                <span>Tình trạng: {{ story.status }}</span>
+              </div>
+              <div class="info-item">
+                <i class="flaticon-tag"><img src="category-alt.png" class="icon-menu"></i> <!-- Icon thể loại -->
+                <span>Thể loại: {{ story.genres.join(', ') }}</span>
+              </div>
+            </div>
+            <button class="read-btn" (click)="navigateToReadChapter(story.chapters[0]._id)">BẮT ĐẦU ĐỌC</button>
+          </div>
+        </div>
+  
+        <!-- Phần 2: Mô tả truyện -->
+        <div class="story-description">
+          <h3>MÔ TẢ</h3>
+          <p>{{ story.description }}</p>
+        </div>
+  
+        <!-- Phần 3: Mục lục -->
+        <div class="table-of-contents">
+          <h3>MỤC LỤC</h3>
+          <ul>
+            <li *ngFor="let chapter of story.chapters">
+              <span (click)="navigateToReadChapter(chapter._id)" class="chapter-title">{{ chapter.title }}</span>
+              <span class="chapter-date">{{ chapter.date }}</span>
+            </li>
+          </ul>
+        </div>
+      </div>
+  
+      <!-- Cột phải: Truyện hot và Bình luận -->
+      <div class="sidebar">
+        <section class="hot-stories">
+          <h2>TRUYỆN HOT</h2>
+          <div class="story-grid">
+            <div class="story-card" *ngFor="let hotStory of hotStories | slice:0:5">
+              <img [src]="hotStory.image" [alt]="hotStory.title" loading="lazy" (click)="navigateToStoryDetail(hotStory._id)" class="hot-img"/>
+              <div class="hotstory-info">
+                <h3 (click)="navigateToStoryDetail(hotStory._id)">{{ hotStory.title }}</h3>
+                    <div class="hotstoryinfo-item">
+                    <i class="flaticon-eye"><img src="eye.png" class="icon-menu-2"></i> <!-- Icon lượt đọc -->
+                    <span>Lượt đọc: {{ story.views }}</span>
+                  </div>
+                  <div class="hotstoryinfo-item">
+                    <i class="flaticon-book"><img src="menu-burger.png" class="icon-menu-2"></i> <!-- Icon các phần -->
+                    <span>Các phần: {{ story.chapters.length }}</span>
+                  </div>
+                  <div class="hotstoryinfo-item">
+                    <i class="flaticon-check"><img src="terms-and-conditions.png" class="icon-menu-2"></i> <!-- Icon tình trạng -->
+                    <span>Tình trạng: {{ story.status }}</span>
+                  </div>
+                  <div class="hotstoryinfo-item">
+                    <img src="category-alt.png" class="icon-menu-2"> <!-- Icon thể loại -->
+                    <span>Thể loại: {{ story.genres.join(', ') }}</span>
+                  </div>
+              </div>
+            </div>
+          </div>
+        </section>
+  
+        <section class="comments-section">
+          <h2>BÌNH LUẬN</h2>
+          <div class="comment-list">
+            <div class="comment" *ngFor="let comment of comments">
+              <strong>{{ comment.username }}</strong> - {{ comment.timestamp }}
+              <p>{{ comment.content }}</p>
+            </div>
+          </div>
+          <div class="comment-input">
+            <textarea [(ngModel)]="newComment" placeholder="Viết bình luận của bạn..."></textarea>
+            <button (click)="addComment()">Gửi</button>
+          </div>
+        </section>
+      </div>
+    </div>
+  </div>
