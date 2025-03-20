@@ -4,19 +4,18 @@ import { Router } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { TheoDoiDonHangComponent } from '../theo-doi-don-hang/theo-doi-don-hang.component';
 
-
-
 @Component({
   selector: 'app-header',
   templateUrl: './header.component.html',
   styleUrl: './header.component.css',
   standalone: true,
-  imports: [FormsModule, CommonModule]
+  imports: [FormsModule, CommonModule, CommonModule]
 })
 export class HeaderComponent {
   isVisible = true; // Trạng thái hiển thị header
   private lastScrollY = 0;
   searchQuery: string = '';
+  isLoggedIn: boolean = false; // Trạng thái đăng nhập (giả lập)
   private router: Router; // Khai báo router là thuộc tính của class
 
   constructor(router: Router) {
@@ -33,9 +32,21 @@ export class HeaderComponent {
 
   onLogout() {
     console.log('Logout clicked');
-    // Logic đăng xuất sẽ được thêm sau (ví dụ: xóa token, điều hướng)
+    this.isLoggedIn = false; // Cập nhật trạng thái đăng nhập
     this.router.navigate(['/']); // Quay lại trang chủ sau khi logout
   }
+
+  navigateToLogin() {
+    console.log('Navigating to Đăng nhập');
+    this.router.navigate(['/dang-nhap']);
+  }
+
+  // Giả lập đăng nhập (sẽ thay bằng logic thực tế sau)
+  login() {
+    this.isLoggedIn = true;
+    this.router.navigate(['/']);
+  }
+
 
   navigateToHome(){
     this.router.navigate(['/trang-chu']);
