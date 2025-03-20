@@ -104,4 +104,7 @@ export class TrangChuComponent implements OnInit {
   navigateBlogsdetail() {
     this.router.navigate(['/chi-tiet-blog']);
   };
+  navigateToAuthor() {
+    this.router.navigate(['/tac-gia']);
+  };
 }
