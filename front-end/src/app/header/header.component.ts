@@ -1,24 +1,17 @@
 import { Component, HostListener } from '@angular/core';
 import { FormsModule } from '@angular/forms';
-<<<<<<< HEAD
-import { Router, RouterModule } from '@angular/router';
-=======
 import { Router } from '@angular/router';
 import { CommonModule } from '@angular/common';
+import { TheoDoiDonHangComponent } from '../theo-doi-don-hang/theo-doi-don-hang.component';
 
 
->>>>>>> 8807f5c (feat them doc truyen)
 
 @Component({
   selector: 'app-header',
   templateUrl: './header.component.html',
   styleUrl: './header.component.css',
   standalone: true,
-<<<<<<< HEAD
-  imports: [FormsModule, RouterModule]
-=======
   imports: [FormsModule, CommonModule]
->>>>>>> 8807f5c (feat them doc truyen)
 })
 export class HeaderComponent {
   isVisible = true; // Trạng thái hiển thị header
@@ -43,16 +36,13 @@ export class HeaderComponent {
     // Logic đăng xuất sẽ được thêm sau (ví dụ: xóa token, điều hướng)
     this.router.navigate(['/']); // Quay lại trang chủ sau khi logout
   }
-<<<<<<< HEAD
-  // Hàm động để chuyển hướng đến trang Theo dõi đơn hàng
-  navigateToTheodoidonhang() {
-    console.log('Navigating to Theo dõi đơn hàng');
-    this.router.navigate(['/theo-doi-don-hang']);
-  }
-=======
 
   navigateToHome(){
     this.router.navigate(['/trang-chu']);
+  }
+
+  navigateToTheodoidonhang(){
+    this.router.navigate(['/theo-doi-don-hang']);
   }
 
   @HostListener('window:scroll', ['$event'])
@@ -70,7 +60,6 @@ export class HeaderComponent {
     this.lastScrollY = currentScrollY; // Cập nhật vị trí cuộn trước đó
   }
 
->>>>>>> 8807f5c (feat them doc truyen)
 }
 
 
