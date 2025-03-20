@@ -84,7 +84,7 @@ export class ChiTietTacGiaComponent implements OnInit {
           },
           {
             title: "Còn gì nha cho Che Lan Vien hoi ngo ban doc voi truy ngan tan van",
-            date: "Thứ Hai, ngày 3/3/2025",
+            date: "Thứ Hai, ngày 1/3/2025",
             image: "https://bizweb.dktcdn.net/100/363/455/articles/website-a-nh-da-i-die-n-ba-i-vie-t-8-1ee4bcfb-f690-430b-b9ad-e68d852b7886.png?v=1740388337033",
             link: "/nguyen-huu-tam"
           }

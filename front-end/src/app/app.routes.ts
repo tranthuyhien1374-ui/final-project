@@ -7,7 +7,7 @@ import { ChiTietBlogComponent } from './chi-tiet-blog/chi-tiet-blog.component';
 import { TheoDoiDonHangComponent } from './theo-doi-don-hang/theo-doi-don-hang.component';
 import { TacGiaComponent } from './tac-gia/tac-gia.component';
 import { ChiTietTacGiaComponent } from './chi-tiet-tac-gia/chi-tiet-tac-gia.component';
-
+// hdhdh
 export const routes: Routes = [
     { path: '', redirectTo: '/trang-chu', pathMatch: 'full' },
   { path: 'trang-chu', component: TrangChuComponent },
@@ -16,6 +16,7 @@ export const routes: Routes = [
   {path: 'tat-ca-blog', component: TatCaBlogComponent},
   {path: 'chi-tiet-blog', component: ChiTietBlogComponent},
   { path: 'theo-doi-don-hang', component: TheoDoiDonHangComponent },
-  {path: 'tac-gia', component: TacGiaComponent},
   {path: 'chi-tiet-tac-gia/:id', component: ChiTietTacGiaComponent},
+  {path: 'tac-gia', component: TacGiaComponent}
+
 ];
