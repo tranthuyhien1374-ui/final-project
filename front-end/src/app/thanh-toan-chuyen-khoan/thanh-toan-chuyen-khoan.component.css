@@ -1,0 +1,224 @@
+.ttck {
+  padding: 120px 100px 50px;
+  background-color: white;
+}
+
+.title {
+  text-align: center;
+  font-size: 24px;
+  font-weight: bold;
+  margin-bottom: 20px;
+}
+
+.order-header {
+  width: 100%;
+  border-collapse: collapse;
+  border-bottom: 1px solid #ddd;
+  margin-bottom: 20px;
+}
+
+.order-header td {
+  padding-bottom: 10px;
+  text-align: center;
+  width: 25%;
+}
+
+.order-header td span {
+  font-weight: bold;
+}
+
+.order-header td .highlight {
+  color: #f28c38; /* Orange color for MÃ ĐƠN HÀNG and TỔNG CỘNG */
+}
+
+.section {
+  margin-bottom: 20px;
+}
+
+.section h3 {
+  font-size: 16px;
+  font-weight: bold;
+  margin-bottom: 10px;
+  color: #333;
+}
+
+.info-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.info-table tr {
+  border-bottom: 1px solid #ddd;
+}
+
+.info-table td {
+  padding: 10px 0;
+}
+
+.info-table td:first-child {
+  width: 30%;
+  color: #333;
+}
+
+.info-table td:last-child {
+  font-weight: bold;
+}
+
+.bank-details {
+  display: flex;
+  gap: 20px;
+  align-items: center;
+  background: #f9f9f9;
+  padding: 15px;
+  border-radius: 8px;
+}
+
+.banking-content {
+  color: #FF730A;
+}
+
+.qr-code {
+  width: 286px;
+  height: 375px;
+  object-fit: fit;
+}
+
+.bank-info {
+  flex: 1;
+}
+
+.order-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-bottom: 20px;
+}
+
+.order-table thead {
+  background: #f9f9f9;
+}
+
+.order-table th {
+  font-weight: bold;
+  color: #333;
+  padding: 10px;
+  text-align: left;
+}
+
+.order-table th:last-child {
+  text-align: right;
+}
+
+.order-table tbody tr {
+  border-bottom: 1px solid #ddd;
+}
+
+.order-table td {
+  padding: 10px;
+  color: #333;
+}
+
+.order-table td:last-child {
+  text-align: right;
+}
+
+.product-info {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.product-image {
+  width: 100px;
+  height: 100px;
+  object-fit: fit;
+}
+
+.product-info span {
+  font-weight: bold;
+  color: #5E7B6F;
+}
+
+tbody td:last-child{
+  color: #4564ED;
+  font-weight: bold;
+}
+
+.price-info{
+  display: flex;
+  justify-content: end;
+}
+
+.price-summary {
+  margin-top: 20px;
+  padding: 10px;
+  right: 0;
+  width: 35%;
+  background: #f7f7f7;
+  border-radius: 16px;
+}
+
+
+.price-summary .summary-item {
+  display: flex;
+  justify-content: space-between;
+  margin: 8px 0;
+  color: #333;
+  font-size: 14px;
+}
+
+.price-summary .summary-item .label {
+  font-weight: normal;
+}
+
+.price-summary .summary-item .value {
+  font-weight: normal;
+}
+
+.price-summary .summary-item.total .label {
+  font-weight: bold;
+  font-size: 18px;
+  color: #4564ed;
+}
+
+.price-summary .summary-item.total .value {
+  font-weight: bold;
+  font-size: 20px;
+  color: #4564ed;
+}
+
+/* Tthêm style mới cho nút */
+.action-buttons {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+  margin-top: 30px;
+  margin-bottom: 30px;
+}
+
+.success-btn {
+  padding: 10px 20px;
+  background: #28a745;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 16px;
+}
+
+.success-btn:hover {
+  background: #218838;
+}
+
+.error-btn {
+  padding: 10px 20px;
+  background: #dc3545;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 16px;
+}
+
+.error-btn:hover {
+  background: #c82333;
+}

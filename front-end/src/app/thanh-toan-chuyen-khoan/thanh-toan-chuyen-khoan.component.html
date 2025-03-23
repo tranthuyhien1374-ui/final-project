@@ -1,0 +1,129 @@
+<div class="ttck">
+  <div class="payment-container">
+    <h2 class="title">THANH TOÁN</h2>
+    <table class="order-header">
+      <tr>
+        <td>MÃ ĐƠN HÀNG</td>
+        <td>NGÀY</td>
+        <td>TỔNG CỘNG</td>
+        <td class="payment-method">PHƯƠNG THỨC THANH TOÁN</td>
+      </tr>
+      <tr>
+        <td><span class="highlight">{{ orderId }}</span></td>
+        <td><span>{{ orderDate }}</span></td>
+        <td><span>{{ totalAmount | number }}đ</span></td>
+        <td><strong>Chuyển khoản qua ngân hàng</strong></td>
+      </tr>
+    </table>
+  
+    <div class="section">
+      <h3>Thông tin người đặt hàng</h3>
+      <table class="info-table">
+        <tr>
+          <td>Họ và tên</td>
+          <td>{{ orderDetails.fullName }}</td>
+        </tr>
+        <tr>
+          <td>Số điện thoại</td>
+          <td>{{ orderDetails.phoneNumber}}</td>
+        </tr>
+      </table>
+    </div>
+  
+    <div class="section">
+      <h3>Thông tin chuyển khoản ngân hàng</h3>
+      <div class="bank-details">
+        <img src="QR_code.png" alt="QR Code" class="qr-code">
+        <div class="bank-info">
+          <table class="info-table">
+            <tr>
+              <td>Tên tài khoản</td>
+              <td>{{ bankDetails.accountName }}</td>
+            </tr>
+            <tr>
+              <td>Ngân hàng</td>
+              <td>{{ bankDetails.bankName }}</td>
+            </tr>
+            <tr>
+              <td>Số tài khoản</td>
+              <td>{{ bankDetails.accountNumber }}</td>
+            </tr>
+            <tr>
+              <td>Nội dung chuyển khoản</td>
+              <td class="banking-content">{{ orderDetails.fullName }} - {{ orderId }}</td>
+            </tr>
+          </table>
+        </div>
+      </div>
+    </div>
+  
+    <div class="section">
+      <h3>Chi tiết đơn hàng</h3>
+      <table class="order-table">
+        <thead>
+          <tr>
+            <th></th>
+            <th>Đơn giá</th>
+            <th>Số lượng</th>
+            <th>Thành tiền</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let item of selectedItems">
+            <td class="product-info">
+              <img [src]="item.image" class="product-image" [alt]="item.name">
+              <span>{{ item.name }}</span>
+            </td>
+            <td>{{ item.price | number }}đ</td>
+            <td>x {{ item.quantity }}</td>
+            <td>{{ item.price * item.quantity | number }}đ</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="price-info">
+      <div class="price-summary">
+        <div class="summary-item">
+          <span class="label">Tổng tiền hàng</span>
+          <span class="value">{{ totalAmount | number }}đ</span>
+        </div>
+        <div class="summary-item">
+          <span class="label">Phí vận chuyển</span>
+          <span class="value">30.000đ</span>
+        </div>
+        <div class="summary-item">
+          <span class="label">Giảm giá phí vận chuyển</span>
+          <span class="value">-30.000đ</span>
+        </div>
+        <div class="summary-item">
+          <span class="label">Giảm giá ưu đãi</span>
+          <span class="value">0đ</span>
+        </div>
+        <div class="summary-item total">
+          <span class="label">TỔNG CỘNG</span>
+          <span class="value">{{ totalAmount | number }}đ</span>
+        </div>
+      </div>
+    </div>
+  
+    <div class="action-buttons">
+      <button class="success-btn" (click)="onPaymentSuccess()">Thanh toán thành công</button>
+      <button class="error-btn" (click)="onPaymentFailure()">Thanh toán không thành công</button>
+    </div>
+  </div>
+  
+  <app-popup
+    [isVisible]="showSuccessPopup"
+    type="success"
+    title="ĐẶT HÀNG THÀNH CÔNG"
+    (onClose)="onPopupClose1()">
+  </app-popup>
+  
+  <app-popup
+    [isVisible]="showErrorPopup"
+    type="error"
+    title="THANH TOÁN THẤT BẠI"
+    message="Giao dịch không thành công. Vui lòng kiểm tra lại thông tin thanh toán."
+    (onClose)="onPopupClose2()">
+  </app-popup>
+</div>

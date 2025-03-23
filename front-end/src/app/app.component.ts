@@ -4,12 +4,12 @@ import { CommonModule } from '@angular/common';
 import { RouterOutlet } from '@angular/router';
 import { HeaderComponent } from './header/header.component';
 import { FooterComponent } from './footer/footer.component';
-import { ChiTietSanPhamComponent } from "./chi-tiet-san-pham/chi-tiet-san-pham.component";
+
 
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [RouterOutlet,CommonModule, HeaderComponent, FooterComponent, ChiTietSanPhamComponent],
+  imports: [RouterOutlet, CommonModule, HeaderComponent, FooterComponent,],
   templateUrl: './app.component.html',
   styleUrl: './app.component.css',
 })
