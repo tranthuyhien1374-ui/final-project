@@ -1,0 +1,124 @@
+<div class='product-page'>
+  <app-cart-notification></app-cart-notification>
+
+  <div class="container">
+    <div class="sidebar">
+      <div class="sidehead">
+        <img src="filter-list.png" alt="Filter Icon" />
+        LỌC THEO
+      </div>
+      <div class="sidebody">
+        <div class="category">
+          <div class="category-head">Danh mục</div>
+          <div class="category-list">
+            <label class="category-item" *ngFor="let item of categories">
+              <input type="checkbox" [value]="item" (change)="onCheckboxChange($event, 'category', item)" />
+              {{ item }}
+            </label>
+          </div>
+        </div>
+      </div>
+      <div class="sidebody">
+        <div class="category">
+          <div class="category-head">Giá bán</div>
+          <div class="category-list">
+            <label class="category-item" *ngFor="let price of priceRanges">
+              <input type="checkbox" [value]="price" (change)="onCheckboxChange($event, 'priceRange', price)" />
+              {{ price }}
+            </label>
+          </div>
+        </div>
+      </div>
+      <div class="sidebody">
+        <div class="category">
+          <div class="category-head">Quốc gia</div>
+          <div class="category-list">
+            <label class="category-item" *ngFor="let country of countries">
+              <input type="checkbox" [value]="country" (change)="onCheckboxChange($event, 'country', country)" />
+              {{ country }}
+            </label>
+          </div>
+        </div>
+      </div>
+      <div class="sidebody">
+        <div class="category">
+          <div class="category-head">Định dạng sách</div>
+          <div class="category-list">
+            <label class="category-item" *ngFor="let format of formats">
+              <input type="checkbox" [value]="format" (change)="onCheckboxChange($event, 'format', format)" />
+              {{ format }}
+            </label>
+          </div>
+        </div>
+      </div>
+      <div class="sidebody">
+        <div class="category">
+          <div class="category-head">Độ tuổi</div>
+          <div class="category-list">
+            <label class="category-item" *ngFor="let age of ageRanges">
+              <input type="checkbox" [value]="age" (change)="onCheckboxChange($event, 'ageRange', age)" />
+              {{ age }}
+            </label>
+          </div>
+        </div>
+      </div>
+    </div>
+  
+    <div class="data">
+      <div class="SortBy">
+        <img src="layers (1).png" alt="Sort Icon" />
+        Sắp xếp theo
+        <div class="dropdown">
+          <select (change)="onSelectChange($event)">
+            <option value="default">Mặc định</option>
+            <option value="price-asc">Giá thấp - cao</option>
+            <option value="price-desc">Giá cao - thấp</option>
+            <option value="latest">Mới nhất</option>
+          </select>
+        </div>
+      </div>
+      <div class="SelTags">
+        <div class="sorting">Đang lọc</div>
+        <div class="tag-container" id="tag"
+             (mousedown)="startDragging($event)"
+             (mousemove)="drag($event)"
+             (mouseup)="stopDragging()"
+             (mouseleave)="stopDragging()">
+          <span class="tag-item" *ngFor="let tag of selectedTags">
+            {{ tag.label }}
+            <span class="cross" (click)="removeTag(tag)">×</span>
+          </span>
+        </div>
+        <div class="del-all-tags fixed-delete" [class.disabled]="selectedTags.length === 0" (click)="selectedTags.length > 0 && clearAllTags()">Xoá tất cả</div>
+      </div>
+  
+      <div class="product-grid">
+        <div class="product-card" *ngFor="let product of displayedProducts">
+          <img [src]="product.image" [alt]="product.title" class="product-image" (click)="viewProductDetail(product.id)" />
+          <h3 class="product-title" (click)="viewProductDetail(product.id)">{{ product.title }}</h3>
+          <div class="price-and-cart">
+            <div class="price-container">
+              <span class="new-price">{{ product.price | number }} đ</span>
+              <span class="old-price">{{ product.oldPrice | number }} đ</span>
+            </div>
+            <button class="add-to-cart" [disabled]="!product.inStock" (click)="addToCart(product)">
+              <img src="cart-arrow-down.png" alt="Cart Icon" />
+            </button>
+          </div>
+        </div>
+      </div>
+  
+      <div class="pagination" *ngIf="products.length > itemsPerPage">
+        <button class="page-btn" (click)="prevPage()" [disabled]="currentPage === 1">
+          <img class="arrow left-arrow" src="angle-left.png">
+        </button>
+        <button class="page-btn" *ngFor="let page of getPageNumbers()" (click)="handlePageClick(page)" [class.active]="page === currentPage">
+          {{ page }}
+        </button>
+        <button class="page-btn" (click)="nextPage()" [disabled]="currentPage === totalPages">
+          <img class="arrow right-arrow" src="angle-right.png">
+        </button>
+      </div>
+    </div>
+  </div>
+</div>

@@ -93,6 +93,7 @@
   }
   
   .story-card {
+    max-width: 220px;
     border: 1px solid #ddd;
     padding: 10px;
     background-color: #fff;

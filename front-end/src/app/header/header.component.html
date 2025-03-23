@@ -1,41 +1,54 @@
 <header [ngClass]="{'visible': isVisible, 'hidden': !isVisible}">
-    <div class="header-noi-dung">
-      <div class="header-logo">      
-        <img src="edenbook-logo.png" alt="" class="header-logo-img" (click)="navigateToHome()">
-      </div>
-      <div class="header-tim-kiem">
-        <div class="header-thanh-tim-kiem">
-          <input
+  <div class="header-noi-dung">
+    <div class="header-logo">      
+      <img src="edenbook-logo.png" alt="" class="header-logo-img" (click)="navigateToHome()">
+    </div>
+    <div class="header-tim-kiem">
+      <div class="header-thanh-tim-kiem">
+        <input
           type="text"
           class="header-tim-kiem-input"
           placeholder="Tìm kiếm..."
           [(ngModel)]="searchQuery"
-          (keyup.enter)="onSearch()"
+          (keyup)="onSearchInput()"
+          (focus)="onSearchFocus()"
+          (click)="onSearchClick()"
         />
-        <img src="search.png" alt="" class="header-search-icon">
-        </div>
-        <div class="header-tab">
-          <a class="header-tab-link" href="/tu-truyen">Tủ truyện</a>
-          <a class="header-tab-link" href="/vuon-sach">Vườn sách</a>
-          <a class="header-tab-link" href="">Giới thiệu</a>
-          <a class="header-tab-link" href="/lien-he">Liên hệ</a>
-        </div>
-        <div class="header-icons">
-          <!-- Hiển thị nút Đăng nhập nếu chưa đăng nhập -->
-          <button *ngIf="!isLoggedIn" class="login-button" (click)="navigateToLogin()">Đăng nhập</button>
-          <span *ngIf="isLoggedIn" class="header-icon">
-            <img src="circle-user.png" alt="">
-            <div class="header-dropdown">
-              <a class="header-dropdown-item" >Tài khoản của tôi</a>
-              <a class="header-dropdown-item" (click)="navigateToTheodoidonhang()">Theo dõi đơn hàng</a>
-              <a class="header-dropdown-item" routerLink="/viet-truyen">Viết sách/truyện</a>
-              <a class="header-dropdown-item" (click)="onLogout()">Đăng xuất</a>
-            </div>
-          </span>
-          <span class="header-icon"><img src="bell-ring.png" alt=""></span>
-          <span class="header-icon"><img src="shopping-basket.png" alt=""></span>
+        <img src="search.png" alt="" class="header-search-icon" (click)="onSearchIconClick()">
+        <!-- Dropdown for search suggestions -->
+        <div class="search-suggestions-dropdown" *ngIf="showDropdown && suggestions.length > 0">
+          <a 
+            *ngFor="let suggestion of suggestions" 
+            class="search-suggestion-item" 
+            (click)="navigateToProductDetail(suggestion)"
+          >
+            {{ suggestion }}
+          </a>
         </div>
       </div>
+      <div class="header-tab">
+        <a class="header-tab-link" href="/tu-truyen">Tủ truyện</a>
+        <a class="header-tab-link" routerLink="/product-page">Vườn sách</a>
+        <a class="header-tab-link" href="">Giới thiệu</a>
+        <a class="header-tab-link" href="/lien-he">Liên hệ</a>
+      </div>
+      <div class="header-icons">
+        <button *ngIf="!isLoggedIn" class="login-button" (click)="navigateToLogin()">Đăng nhập</button>
+        <span *ngIf="isLoggedIn" class="header-icon">
+          <img src="circle-user.png" alt="">
+          <div class="header-dropdown">
+            <a class="header-dropdown-item" routerLink="/tai-khoan">Tài khoản của tôi</a>
+            <a class="header-dropdown-item" (click)="navigateToTheodoidonhang()">Theo dõi đơn hàng</a>
+            <a class="header-dropdown-item" routerLink="/viet-truyen">Viết sách/truyện</a>
+            <a class="header-dropdown-item" (click)="onLogout()">Đăng xuất</a>
+          </div>
+        </span>
+        <span class="header-icon"><img src="bell-ring.png" alt=""></span>
+        <span class="header-icon cart-icon">
+          <img src="shopping-basket.png" alt="" (click)="navigateToGiohang()">
+          <span class="cart-badge" *ngIf="cartItemCount > 0">{{ cartItemCount }}</span>
+        </span>
+      </div>
     </div>
-    </header>
-  
+  </div>
+</header>

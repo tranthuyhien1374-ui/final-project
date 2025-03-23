@@ -1,0 +1,81 @@
+<app-cart-notification></app-cart-notification>
+<div class="ctsp">
+  <div class="product-container" *ngIf="product">
+    <div class="product-image">
+      <img [src]="product.imageUrl" [alt]="product.title" />
+    </div>
+    <div class="product-info">
+      <h1>{{ product.title }}</h1>
+      <p class="author">Tác giả: <strong>{{ product.author }}</strong></p>
+      <p class="price">
+        <span class="current-price">{{ product.price | number }}đ</span>
+        <span class="old-price">{{ product.oldPrice | number }}đ</span>
+      </p>
+      <div class="quantity">
+        <button (click)="decreaseQuantity()">-</button>
+        <input type="number" [(ngModel)]="quantity" min="1" />
+        <button (click)="increaseQuantity()">+</button>
+      </div>
+      <div class="button">
+        <button class="btn add-to-cart" [disabled]="!product.inStock" (click)="addToCart()">
+          <img src="cart-arrow-down.png" alt="" class="button-img" />Thêm vào giỏ hàng
+        </button>
+        <button class="btn buy-now" (click)="buyNow()">Mua ngay</button>
+      </div>
+      <div class="category">
+        <p><i>Danh mục:</i> <span>{{ product.maincategory }}</span> <span>{{ product.subcategory }}</span></p>
+      </div>
+    </div>
+  </div>
+  
+  <div class="product-info-bot">
+    <div class="product-description">
+      <h2>Giới thiệu sách</h2>
+      <p>{{ product?.description }}</p>
+    </div>
+    <div class="product-details">
+      <h2>Thông tin chi tiết</h2>
+      <ul>
+        <li>Tác giả: <span>{{ product?.author | uppercase }}</span></li>
+        <li>Nhà xuất bản: <span>{{ product?.publisher }}</span></li>
+        <li>Kích thước: <span>{{ product?.size }}</span></li>
+        <li>Số trang: <span>{{ product?.pages }}</span></li>
+        <li>Ngày phát hành: <span>{{ product?.releaseDate }}</span></li>
+      </ul>
+    </div>
+  </div>
+  
+  <div class="featured-works">
+    <h2 class="title-module">CÁC TÁC PHẨM TIÊU BIỂU</h2>
+    <div class="works-list">
+      <div class="work-item" *ngFor="let work of works">
+        <a class="thumb" [href]="work.title | lowercase" [title]="work.title">
+          <img [src]="work.image" [alt]="work.title" class="lazyload img-responsive">
+        </a>
+        <h3>
+          <a [href]="work.title | lowercase" [title]="work.title" class="a-title">{{ work.title }}</a>
+        </h3>
+      </div>
+    </div>
+  </div>
+  
+  <div class="product-reviews">
+    <h2>ĐÁNH GIÁ SẢN PHẨM ({{ reviews.length }})</h2>
+    <div class="review-list">
+      <div class="review-item" *ngFor="let review of displayedReviews">
+        <div class="review-header">
+          <img src="https://via.placeholder.com/40" alt="User Avatar" class="user-avatar" />
+          <div class="review-info">
+            <span class="username">{{ review.username }}</span>
+            <div class="rating">
+              <img *ngFor="let star of getStars(review.rating)" src="star (2).png" alt="Star" class="star-icon" />
+            </div>
+          </div>
+        </div>
+        <p class="review-comment">{{ review.comment }}</p>
+        <p class="review-date">{{ review.date }}</p>
+      </div>
+    </div>
+    <button class="show-more-btn" *ngIf="displayedReviews.length < reviews.length" (click)="showMoreReviews()">Xem thêm</button>
+  </div>
+</div>

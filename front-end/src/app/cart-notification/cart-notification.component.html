@@ -1,0 +1,20 @@
+<div *ngFor="let notification of notifications">
+  <div class="cart-notification" [ngClass]="{'slide-in': notification.isVisible, 'slide-out': !notification.isVisible}" *ngIf="notification.cartItem">
+    <div class="notification-header">
+      <span>Đã thêm vào giỏ hàng!</span>
+      <button class="close-btn" (click)="closeNotification(notification)">×</button>
+    </div>
+    <div class="notification-content">
+      <img [src]="notification.cartItem.imageUrl" alt="Product Image" class="product-image" />
+      <div class="product-info">
+        <h3>{{ notification.cartItem.title }}</h3>
+        <p>Số lượng: {{ notification.cartItem.quantity }}</p>
+        <p class="price">
+          <span class="current-price">{{ notification.cartItem.price | number }}đ</span>
+          <span class="old-price">{{ notification.cartItem.oldPrice | number }}đ</span>
+        </p>
+      </div>
+    </div>
+    <button class="view-cart-btn" (click)="viewCart()">Xem giỏ hàng</button>
+  </div>
+</div>

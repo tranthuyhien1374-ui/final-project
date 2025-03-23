@@ -1,0 +1,109 @@
+.cart-notification {
+    position: fixed;
+    top: 60px;
+    right: 0;
+    width: 300px;
+    background-color: white;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    padding: 15px;
+    z-index: 1000;
+    transform: translateX(100%);
+  }
+  
+  .slide-in {
+    animation: slideIn 0.5s forwards;
+  }
+  
+  .slide-out {
+    animation: slideOut 0.5s forwards;
+  }
+  
+  @keyframes slideIn {
+    from {
+      transform: translateX(100%);
+    }
+    to {
+      transform: translateX(0);
+    }
+  }
+  
+  @keyframes slideOut {
+    from {
+      transform: translateX(0);
+    }
+    to {
+      transform: translateX(100%);
+    }
+  }
+  
+  .notification-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 10px;
+  }
+  
+  .notification-header span {
+    font-size: 16px;
+    font-weight: bold;
+  }
+  
+  .close-btn {
+    background: none;
+    border: none;
+    font-size: 20px;
+    cursor: pointer;
+  }
+  
+  .notification-content {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 10px;
+  }
+  
+  .product-image {
+    width: 60px;
+    height: 80px;
+    object-fit: cover;
+  }
+  
+  .product-info {
+    flex: 1;
+  }
+  
+  .product-info h3 {
+    font-size: 14px;
+    margin: 0 0 5px 0;
+  }
+  
+  .product-info p {
+    margin: 0;
+    font-size: 12px;
+  }
+  
+  .price .current-price {
+    color: #228B22;
+    font-weight: bold;
+  }
+  
+  .price .old-price {
+    color: #999;
+    text-decoration: line-through;
+    margin-left: 5px;
+  }
+  
+  .view-cart-btn {
+    width: 100%;
+    padding: 10px;
+    background-color: #ddd;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 14px;
+  }
+  
+  .view-cart-btn:hover {
+    background-color: #ccc;
+  }

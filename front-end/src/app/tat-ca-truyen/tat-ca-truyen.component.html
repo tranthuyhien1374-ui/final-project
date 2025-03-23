@@ -12,20 +12,17 @@
       <!-- Lọc theo tình trạng -->
       <div class="filter-group">
         <label>Tình trạng:</label>
-        <select [(ngModel)]="selectedStatus" (change)="applyFilters()">
-          <option value="">Mọi tình trạng</option>
-          <option value="Mới nhất">Mới nhất</option>
-          <option value="Đang đọc">Đang đọc</option>
-          <option value="Truyện hot">Truyện hot</option>
+        <select [(ngModel)]="selectedStatus" (change)="loadStories()">
+          <option value="">Tất cả</option>
+          <option *ngFor="let status of statusOptions" [value]="status">{{ status }}</option>
         </select>
       </div>
   
       <!-- Lọc theo tiến độ -->
       <div class="filter-group">
-        <select [(ngModel)]="selectedProgress" (change)="applyFilters()">
+        <select [(ngModel)]="selectedProgress" (change)="loadStories()">
           <option value="">Tất cả</option>
-          <option value="Đã hoàn thành">Đã hoàn thành</option>
-          <option value="Đang ra">Đang ra</option>
+          <option *ngFor="let progress of progressOptions" [value]="progress">{{ progress }}</option>
         </select>
       </div>
   
@@ -56,7 +53,7 @@
           <img [src]="story.image" [alt]="story.title" loading="lazy" (click)="navigateToStoryDetail(story._id)" />
           <h3 (click)="navigateToStoryDetail(story._id)">{{ story.title }}</h3>
           <p>{{ story.author }}</p>
-          <span class="status">{{ story.status }}</span>
+          <span class="status">{{ story.progress }}</span>
         </div>
       </div>
       <div class="show-more" *ngIf="displayedStories.length <filteredStories.length">

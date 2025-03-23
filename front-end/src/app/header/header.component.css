@@ -1,140 +1,156 @@
 header {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    background-color: #ffffff;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    transition: transform 0.3s ease;
-    z-index: 1000;
-    font-family: 'Inter', sans-serif;
-    height: 70px;
-    /* padding-left: 100px; */
-  }
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  background-color: #ffffff;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  transition: transform 0.3s ease;
+  z-index: 1000;
+  font-family: 'Inter', sans-serif;
+  height: 70px;
+}
 
-  .visible {
-    transform: translateY(0); /* Hiện header */
-  }
-  
-  .hidden {
-    transform: translateY(-100%); /* Ẩn header */
-  }
+.visible {
+  transform: translateY(0);
+}
 
-  .header-noi-dung {
-    display: flex;
-    align-items: center;
-    padding-left: 100px;
-    padding-right: 100px;
-    width: 100%;
-  }
-  .header-logo {
-    display: flex;
-    align-items: center;
-    cursor: pointer;
-  }
-  
-  .header-logo-img {
-    width: 150px;
-    height: 70px;
-    margin-right: 20px;
-    margin-top: -5px;
-  }
-    
-  .header-tim-kiem {
-    display: flex;
-    align-items: center;
-    flex-grow: 1;
-    margin: 0 20px;
-    width: 50;
-    gap: 100px;
-    justify-content: right;
-  }
-  
-  .header-tim-kiem-input {
-    padding: 5px 10px;
-    width: 278px;
-    border: 1px solid #ccc;
-    border-radius: 20px;
-    font-family: 'Inter', sans-serif;
-    background-color: #ececec;
-    border: 1px solid black;
-    height: 25px;
-  }
-  
-  .header-search-icon {
-    margin-left: -25px;
-    cursor: pointer;
-    width: 15px;
-    height: 15px;
-    margin-bottom: -2px;
-  }
-  
-  .header-tab {
-    display: flex;
-    gap: 50px;
+.hidden {
+  transform: translateY(-100%);
+}
 
-  }
-  
-  .header-tab-link {
-    text-decoration: none;
-    color: black;
-    font-weight: 500;
-    font-family: 'Inter', sans-serif;
-  }
-  
-  .header-tab-link:hover {
-    text-decoration: underline;
-    color: #5D7B6F;
-  }
-  
-  .header-icons {
-    display: flex;
-    gap: 50px;
-    
-  }
-  
-  .header-icon {
-    cursor: pointer;
-    position: relative; /* Để hiển thị dropdown */
+.header-noi-dung {
+  display: flex;
+  align-items: center;
+  padding-left: 100px;
+  padding-right: 100px;
+  width: 100%;
+}
 
-  }
+.header-logo {
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+}
 
-  .header-dropdown {
-    display: none;
-    position: absolute;
-    left: 50%; /* Đặt ở giữa */
-    transform: translateX(-50%); /* Căn giữa dropdown */
-    background-color: #fff;
-    border: 1px solid #ddd;
-    border-radius: 4px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-    min-width: 150px;
-    z-index: 1000;
-    width: 180px;
-  }
-  
-  .header-icon:hover .header-dropdown {
-    display: block;
-  }
-  
-  .header-dropdown-item {
-    display: block;
-    padding: 8px 16px;
-    text-decoration: none;
-    color: #000000;
-    font-size: 16px;
-  }
-  
-  .header-dropdown-item:hover {
-    background-color: #5D7B6F;
-    color: #fff;
+.header-logo-img {
+  width: 150px;
+  height: 70px;
+  margin-right: 20px;
+  margin-top: -5px;
+}
 
-  }
+.header-tim-kiem {
+  display: flex;
+  align-items: center;
+  flex-grow: 1;
+  margin: 0 20px;
+  width: 50%;
+  gap: 100px;
+  justify-content: right;
+}
 
-  /* Style cho nút Đăng nhập */
+.header-thanh-tim-kiem {
+  position: relative; /* To position the dropdown */
+}
+
+.header-tim-kiem-input {
+  padding: 5px 10px;
+  width: 278px;
+  border: 1px solid #ccc;
+  border-radius: 20px;
+  font-family: 'Inter', sans-serif;
+  background-color: #ececec;
+  border: 1px solid black;
+  height: 25px;
+}
+
+.header-search-icon {
+  margin-left: -25px;
+  cursor: pointer;
+  width: 15px;
+  height: 15px;
+  margin-bottom: -2px;
+}
+
+.header-tab {
+  display: flex;
+  gap: 30px;
+}
+
+.header-tab-link {
+  text-decoration: none;
+  color: black;
+  font-weight: 500;
+  font-family: 'Inter', sans-serif;
+}
+
+.header-tab-link:hover {
+  text-decoration: underline;
+  color: #5D7B6F;
+}
+
+.header-icons {
+  display: flex;
+  gap: 50px;
+}
+
+.header-icon {
+  cursor: pointer;
+  position: relative;
+}
+
+.header-icon.cart-icon {
+  position: relative; /* Để định vị badge */
+}
+
+.cart-badge {
+  position: absolute;
+  top: -8px; /* Đẩy badge lên trên biểu tượng */
+  right: -8px; /* Đẩy badge sang phải */
+  background-color: #BC0000; /* Màu đỏ */
+  color: white;
+  border-radius: 50%; /* Hình tròn */
+  padding: 2px 6px;
+  font-size: 12px;
+  font-weight: bold;
+  line-height: 1;
+}
+
+.header-dropdown {
+  display: none;
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  background-color: #fff;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  min-width: 150px;
+  z-index: 1000;
+  width: 180px;
+}
+
+.header-icon:hover .header-dropdown {
+  display: block;
+}
+
+.header-dropdown-item {
+  display: block;
+  padding: 8px 16px;
+  text-decoration: none;
+  color: #000000;
+  font-size: 16px;
+}
+
+.header-dropdown-item:hover {
+  background-color: #5D7B6F;
+  color: #fff;
+}
+
 .login-button {
   background: linear-gradient(90deg, #32CD32, #228B22);
   color: white;
@@ -143,9 +159,38 @@ header {
   padding: 8px 16px;
   font-size: 16px;
   cursor: pointer;
-font-weight: bold;
+  font-weight: bold;
 }
 
 .login-button:hover {
   background-color: #1e7b1e;
+}
+
+/* Search suggestions dropdown */
+.search-suggestions-dropdown {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  width: 100%;
+  background-color: #fff;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  z-index: 1000;
+  max-height: 200px;
+  overflow-y: auto;
+}
+
+.search-suggestion-item {
+  display: block;
+  padding: 8px 16px;
+  text-decoration: none;
+  color: #000000;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+.search-suggestion-item:hover {
+  background-color: #f0f0f0;
+  color: #000;
 }
