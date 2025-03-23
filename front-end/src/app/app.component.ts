@@ -20,6 +20,7 @@ export class AppComponent implements OnInit {
 
   ngOnInit(): void {
     // Lắng nghe sự kiện thay đổi route
+    console.log('AppComponent loaded');
     this.router.events.subscribe(event => {
       if (event instanceof NavigationEnd) {
         // Kiểm tra route hiện tại
@@ -27,4 +28,5 @@ export class AppComponent implements OnInit {
       }
     });
   }
+
 }

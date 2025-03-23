@@ -25,6 +25,7 @@ export const productBreadcrumbResolver: ResolveFn<string> = (route) => {
   // Fetch product name from service (mocked here)
   return of(`Sản phẩm ${productId}`); // Replace with actual service call
 };
+import { VietTruyenComponent } from './viet-truyen/viet-truyen.component';
 
 export const routes: Routes = [
     { path: '', redirectTo: '/trang-chu', pathMatch: 'full' },
@@ -55,4 +56,6 @@ export const routes: Routes = [
     //   resolve: { breadcrumb: productBreadcrumbResolver },
     //   data: { breadcrumb: null } // Will be overridden by resolver
     // }
+  { path: 'viet-truyen', component: VietTruyenComponent },
+  { path: '**', redirectTo: '/tu-truyen' }
 ];
