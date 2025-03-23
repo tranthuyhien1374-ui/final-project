@@ -110,6 +110,7 @@
   .story-description {
     margin-bottom: 20px;
     color: #3d3d3d;
+    text-align: justify;
   }
   
   .story-description h3 {

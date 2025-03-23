@@ -12,6 +12,7 @@ interface Story {
   status: string;
   image: string;
   genres: string[];
+  progress: string;
 }
 
 @Component({
@@ -32,20 +33,20 @@ export class TatCaTruyenComponent implements OnInit {
   displayLimit: number = 10;
 
   genres: string[] = [
-    'Tình cảm', 'Tâm lý', 'Huyền bí', 'Lịch sử', 'Trinh thám', 'Hài hước', 'Tu tiên', 'Phiêu lưu',
-    'Kinh dị', 'Viễn tưởng', 'Học đường', 'Trọng sinh', 'Thám hiểm', 'Fanfic', 'Bách hợp', 'Đam mỹ'
+    'Tình cảm', 'Hành động', 'Học đường', 'Trinh thám', 'Hài hước', 'Tu tiên', 'Phiêu lưu', 'Đam mỹ',
+    'Kinh dị', 'Viễn tưởng', 'Lịch sử', 'Tâm linh', 'Fanfic', 'Bách hợp', 'Đô thị', 'Tâm lý'
   ];
+
+  statusOptions: string[] = ['Mới nhất', 'Truyện hot'];
+  progressOptions: string[] = ['Đã hoàn thành', 'Đang ra'];
 
   constructor(private router: Router, private route: ActivatedRoute, private storyService: StoryService) {}
 
   ngOnInit() {
     this.route.queryParams.subscribe(params => {
       this.searchQuery = params['search'] || '';
-      this.selectedStatus = params['status'] || '';
-      this.selectedProgress = params['progress'] || '';
-      if (params['completed'] === 'true') {
-        this.selectedProgress = 'Đã hoàn thành';
-      }
+      this.selectedStatus = this.statusOptions.includes(params['status']) ? params['status'] : '';
+      this.selectedProgress = this.progressOptions.includes(params['progress']) ? params['progress'] : '';
       this.loadStories();
     });
   }
@@ -59,34 +60,14 @@ export class TatCaTruyenComponent implements OnInit {
 
   applyFilters() {
     let filtered = [...this.allStories];
-    console.log('Applying filters on:', filtered);
-  
-    if (this.selectedStatus) {
-      filtered = filtered.filter(story => story.status === this.selectedStatus);
-    }
-  
-    if (this.selectedProgress) {
-      filtered = filtered.filter(story =>
-        this.selectedProgress === 'Đã hoàn thành'
-          ? story.status === 'Đã hoàn thành'
-          : story.status !== 'Đã hoàn thành'
-      );
-    }
-  
-    if (this.selectedGenres.length > 0) {
-      filtered = filtered.filter(story =>
-        this.selectedGenres.some(genre => story.genres.includes(genre))
-      );
-    }
-  
+    
     if (this.searchQuery.trim()) {
       const query = this.searchQuery.toLowerCase();
       filtered = filtered.filter(story =>
         story.title.toLowerCase().includes(query) || story.author.toLowerCase().includes(query)
       );
     }
-  
-    console.log('Filtered stories:', filtered);
+    
     this.filteredStories = filtered;
     this.updateDisplayedStories();
   }
