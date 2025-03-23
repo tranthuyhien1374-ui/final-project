@@ -1,0 +1,137 @@
+<div class="thanh-toan">
+  <h2 class="title">THANH TOÁN</h2>
+  <div class="checkout-container">
+    <div class="order-info">
+      <form [formGroup]="checkoutForm" (ngSubmit)="onSubmit()">
+        <div class="section">
+          <h3>1. Địa chỉ nhận hàng</h3>
+          <input type="text" formControlName="fullName" placeholder="Nhập tên của bạn" [ngClass]="{'invalid-input': fullName.touched && fullName.invalid}">
+  
+          <input type="text" formControlName="phoneNumber" placeholder="Nhập số điện thoại của bạn" [ngClass]="{'invalid-input': phoneNumber.touched && phoneNumber.invalid}">
+  
+          <div class="select-group">
+            <!-- Tỉnh/Thành phố -->
+            <select formControlName="province" (change)="fetchDistricts($event)" [ngClass]="{'invalid-input': province.touched && province.invalid}">
+              <option value="">Chọn Tỉnh/Thành phố</option>
+              <option *ngFor="let province of provinces" [value]="province.code">
+                {{ province.name }}
+              </option>
+            </select>
+          
+            <!-- Quận/Huyện -->
+            <select formControlName="district" (change)="fetchWards($event)" [ngClass]="{'invalid-input': district.touched && district.invalid}" [disabled]="!provinces.length || !districts.length">
+              <option value="">Chọn Quận/Huyện</option>
+              <option *ngFor="let district of districts" [value]="district.code">
+                {{ district.name }}
+              </option>
+            </select>
+          
+            <!-- Phường/Xã -->
+            <select formControlName="ward" (change)="onWardChange($event)" [ngClass]="{'invalid-input': ward.touched && ward.invalid}" [disabled]="!districts.length || !wards.length">
+              <option value="">Chọn Phường/Xã</option>
+              <option *ngFor="let ward of wards" [value]="ward.code">
+                {{ ward.name }}
+              </option>
+            </select>
+          </div>
+  
+          <input type="text" formControlName="address" placeholder="Nhập địa chỉ cụ thể" [ngClass]="{'invalid-input': address.touched && address.invalid}">
+  
+          <div class="address-note">
+            <p class="delivery-date">*Đơn hàng sẽ được giao dự kiến vào ngày 28/03/2025</p>
+            <button type="button" class="saved-addresses" (click)="openSavedAddressPopup()">Chọn địa chỉ khác đã lưu</button>
+          </div>
+        </div>
+  
+        <div class="payment-options">
+          <h3>2. Hình thức thanh toán</h3>
+          <label class="payment-option" [ngClass]="{'invalid-input': paymentMethod.touched && paymentMethod.invalid}">
+            <input type="radio" formControlName="paymentMethod" name="paymentMethod" value="bank">
+            Chuyển khoản qua ngân hàng/ ví điện tử
+          </label>
+  
+          <label class="payment-option" [ngClass]="{'invalid-input': paymentMethod.touched && paymentMethod.invalid}">
+            <input type="radio" formControlName="paymentMethod" name="paymentMethod" value="cod">
+            Thanh toán khi nhận hàng
+          </label>
+        </div>
+  
+        <div>
+          <input type="text" formControlName="note" class="order-note" placeholder="Ghi chú đơn hàng (không bắt buộc)">
+        </div>
+  
+        <div class="payment-note">*Khi chọn thanh toán, bạn đồng ý với Điều kiện và Chính sách bảo mật của chúng tôi</div>
+  
+        <div *ngIf="showErrorMessage" class="error-message">
+          Vui lòng nhập đầy đủ thông tin
+        </div>
+  
+        <button type="submit" class="checkout-button">Thanh toán</button>
+      </form>
+    </div>
+  
+    <div class="order-summary">
+      <h3>Thông tin đơn hàng ({{ selectedItems.length }} sản phẩm)</h3>
+      <div class="order-items">
+        <div *ngFor="let item of selectedItems" class="order-item">
+          <img [src]="item.image" class="product-image">
+          <div class="item-info">
+            <p class="item-name">{{ item.name }}</p>
+            <p class="item-price-quantity">{{ item.price | number }} x {{ item.quantity }}</p>
+          </div>
+          <p class="item-total">{{ item.price * item.quantity | number }}</p>
+        </div>
+      </div>
+  
+      <div class="discount-code">
+        <input type="text" placeholder="Mã ưu đãi">
+        <button type="button">Xác nhận</button>
+      </div>
+  
+      <div class="price-summary">
+        <p>Tổng tiền hàng <span>{{ totalAmount | number }}</span></p>
+        <p>Phí vận chuyển <span>30.000</span></p>
+        <p>Giảm giá phí vận chuyển <span>-30.000</span></p>
+        <p>Giảm giá ưu đãi <span>0</span></p>
+      </div>
+      <div>
+        <p class="total">TỔNG CỘNG <span>{{ totalAmount | number }}</span></p>
+      </div>
+    </div>
+  </div>
+
+<!-- Popup for saved addresses -->
+<div *ngIf="showSavedAddressPopup" class="popup-overlay">
+  <div class="popup-content">
+    <h3>Địa chỉ của tôi</h3>
+    <div class="address-list">
+      <label *ngFor="let address of savedAddresses" class="address-item">
+        <input type="radio" name="savedAddress" [value]="address.id" [(ngModel)]="selectedAddressId">
+        <div class="address-details">
+          <p>{{ address.fullName }} ({{ address.phoneNumber }})</p>
+          <p>{{ address.address }}, {{ address.wardName }}, {{ address.districtName }}, {{ address.provinceName }}</p>
+        </div>
+      </label>
+    </div>
+    <div class="popup-buttons">
+      <button class="cancel-btn" (click)="closeSavedAddressPopup()">Hủy</button>
+      <button class="confirm-btn" (click)="confirmSavedAddress()">Xác nhận</button>
+    </div>
+  </div>
+</div>
+
+  <app-popup
+    [isVisible]="showSuccessPopup"
+    type="success"
+    title="ĐẶT HÀNG THÀNH CÔNG"
+    (onClose)="onPopupClose()">
+  </app-popup>
+  
+  <app-popup
+    [isVisible]="showErrorPopup"
+    type="error"
+    title="THANH TOÁN THẤT BẠI"
+    message="Giao dịch không thành công. Vui lòng kiểm tra lại thông tin thanh toán."
+    (onClose)="onPopupClose()">
+  </app-popup>
+</div>

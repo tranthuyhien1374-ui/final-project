@@ -2,22 +2,29 @@ import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { HeaderComponent } from '../header/header.component';
 
+import { ChangeDetectorRef } from '@angular/core'; // Import ChangeDetectorRef
+import { CartService } from '../services/cart.service';
+
+
 @Component({
   selector: 'app-dang-nhap',
   templateUrl: './dang-nhap.component.html',
   styleUrls: ['./dang-nhap.component.css'],
-  standalone: true
+  standalone: true,
+  imports: [HeaderComponent]
 })
 export class DangNhapComponent {
-  constructor(private router: Router) {}
+  constructor(
+    private router: Router,
+    private cartService: CartService, // Inject CartService
+    private cdr: ChangeDetectorRef // Inject ChangeDetectorRef
+  ) {}
 
   onLogin() {
-    // Giả lập đăng nhập thành công
     console.log('Đăng nhập thành công');
-    // Cập nhật trạng thái đăng nhập trong HeaderComponent
-    const header = new HeaderComponent(this.router);
+    const header = new HeaderComponent(this.router, this.cartService, this.cdr);
+    header.ngOnInit(); // Gọi thủ công ngOnInit
     header.login();
-    // Điều hướng về trang chủ
     this.router.navigate(['/']);
   }
 }

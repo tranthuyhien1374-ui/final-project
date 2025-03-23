@@ -1,0 +1,46 @@
+<div class="gio-hang">
+  <input type="text" placeholder="Bạn có thể tìm kiếm theo Tên sản phẩm, Tên tác giả" class="search-box" [(ngModel)]="searchQuery" (input)="searchProducts()" />
+
+  <div class="cart-container">
+    <div *ngIf="cartItems.length === 0" class="empty-cart">
+      <p>Giỏ hàng của bạn đang trống!</p>
+    </div>
+
+    <table *ngIf="cartItems.length > 0">
+      <thead>
+        <tr>
+          <th>Thông tin sản phẩm</th>
+          <th>Đơn giá</th>
+          <th>Số lượng</th>
+          <th>Thành tiền</th>
+          <th></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let item of cartItems">
+          <td>
+            <input type="checkbox" [(ngModel)]="item.selected" />
+            <img [src]="item.imageUrl" alt="Sản phẩm" class="product-image" />
+            {{ item.title }}
+          </td>
+          <td>{{ item.price | number }}đ</td>
+          <td>
+            <button (click)="decreaseQuantity(item)">-</button>
+            <input type="text" [(ngModel)]="item.quantity" class="quantity-input" />
+            <button (click)="increaseQuantity(item)">+</button>
+          </td>
+          <td>{{ item.price * item.quantity | number }}đ</td>
+          <td><button class="remove-btn" (click)="removeFromCart(item)">🗑️</button></td>
+        </tr>
+      </tbody>
+    </table>
+
+    <div class="cart-footer" *ngIf="cartItems.length > 0">
+      <label><input type="checkbox" (change)="selectAll($event)" />
+      Chọn tất cả ({{ cartItems.length }})</label>
+      <button class="del-btn" (click)="removeSelectedItems()">Xóa sản phẩm đã chọn</button>
+      <span>Tổng thanh toán: <strong>{{ totalAmount | number }}đ</strong></span>
+      <button class="checkout-button" (click)="navigatetoThanhToan()">Thanh toán</button>
+    </div>
+  </div>
+</div>
