@@ -10,7 +10,6 @@ import { TheoDoiDonHangComponent } from './theo-doi-don-hang/theo-doi-don-hang.c
 import { TacGiaComponent } from './tac-gia/tac-gia.component';
 import { ChiTietTacGiaComponent } from './chi-tiet-tac-gia/chi-tiet-tac-gia.component';
 import { DangNhapComponent } from './dang-nhap/dang-nhap.component';
-// import { LienHeComponent } from './lien-he/lien-he.component';
 import { ThanhToanComponent } from './thanh-toan/thanh-toan.component';
 import { ProductPageComponent } from './product-page/product-page.component';
 import { ThanhToanChuyenKhoanComponent } from './thanh-toan-chuyen-khoan/thanh-toan-chuyen-khoan.component';
