@@ -200,4 +200,13 @@ export class HeaderComponent implements OnInit {
   navigateToVuonSach(): void {
     this.router.navigate(['/product-page']);
   }
+  // Liên hệ
+  navigateToLienHe(orderId?: string) {
+    if (orderId) {
+      // Nếu cần truyền orderId, có thể dùng queryParams
+      this.router.navigate(['/lien-he'], { queryParams: { orderId: orderId } });
+    } else {
+      this.router.navigate(['/lien-he']);
+    }
+  }
 }

@@ -1,0 +1,190 @@
+.contact-container {
+    font-family: 'Inter', sans-serif;
+    margin: 0 auto;
+    padding: 120px 100px 50px 100px;
+  }
+
+  /* Tiêu đề trang */
+  .tieu-de h1 {
+    font-size: 32px;
+    font-weight: bold;
+    color: #ffffff;
+    background-color: #5D7B6F;
+    text-transform: uppercase;
+    margin-bottom: 20px;
+    padding: 10px 20px;
+    text-align: center;
+    justify-content: center;
+  }
+  .tieu-de p {
+    font-size: 24px;
+    color: #000000;
+    margin: 0;
+    font-weight: bold;
+    text-transform: uppercase;
+    margin-bottom: 20px;
+  }
+  
+  /* Bản đồ */
+  .contact-map {
+    position: relative;
+    margin-bottom: 40px;
+  }
+  
+  .contact-map iframe {
+    width: 100%;
+    height: 400px;
+    border: 0;
+  }
+  
+  .map-link {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    background-color: #5D7B6F;
+    color: white;
+    padding: 8px 16px;
+    border-radius: 4px;
+    text-decoration: none;
+    font-size: 14px;
+  }
+  
+  .map-link:hover {
+    background-color: #4a6358;
+  }
+  
+  /* Thông tin liên hệ */
+  .contact-info {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 40px;
+    gap: 40px;
+  }
+  
+  .contact-info-item {
+    flex: 1;
+    text-align: center;
+    background-color: #ffffff;
+    padding: 20px;
+    border-radius: 16px;
+    border: #28a745 2px solid;
+  }
+  
+  .contact-info-item h3 {
+    font-size: 20px;
+    color: #5D7B6F;
+    margin-bottom: 10px;
+
+  }
+  
+  .contact-info-item p {
+    font-size: 16px;
+    color: #000000;
+    margin: 0;
+  }
+  
+  .contact-info-item a {
+    text-decoration: none;
+    color: #000000;
+  }
+  
+  .contact-info-item a:hover {
+    text-decoration: underline;
+    color: #28a745;
+  }
+   hr {
+    margin: 20px 0;
+    border: 2px solid #5D7B6F;}
+  /* Form liên hệ */
+  .tieu-de-form {
+    margin-bottom: 20px;
+    text-align: center;
+  }
+  .tieu-de-form h1 {
+    /* font-size: 24px; */
+    color: #5D7B6F;
+    margin-bottom: 10px;
+    
+  }
+  .contact-form {
+    max-width: 600px;
+    margin: 0 auto;
+  }
+  
+  .contact-form h2 {
+    font-size: 16px;
+    color: #000000;
+    margin-bottom: 10px;
+  }
+  
+  .contact-form .required {
+    color: red;
+  }
+  
+  .contact-form input,
+  .contact-form textarea {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 20px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    font-size: 16px;
+    font-family: 'Inter', sans-serif;
+  }
+  
+  .contact-form textarea {
+    height: 150px;
+    resize: none;
+  }
+  
+  .submit-button {
+    background-color: #5D7B6F;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 8px;
+    font-size: 16px;
+    cursor: pointer;
+    display: block;
+    margin: 0 auto;
+  }
+  
+  .submit-button:hover {
+    background-color: #4a6358;
+  }
+  
+  /* Popup thông báo thành công */
+  .success-popup {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: white;
+    padding: 40px;
+    border-radius: 16px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    z-index: 1002;
+    text-align: center;
+    width: 450px;
+    font-family: 'Inter', sans-serif;
+  }
+  
+  .success-popup--icon {
+    font-size: 40px;
+    margin-bottom: 20px;
+  }
+  
+  .success-popup--message {
+    font-size: 16px;
+    margin: 0;
+  }
+  .success-popup p{
+    font-size: 16px;
+
+    
+  }
+  .success-popup h3{
+    font-size: 24px;
+    color: #5D7B6F;
+    margin-bottom: 20px;
+  }

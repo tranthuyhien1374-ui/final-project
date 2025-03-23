@@ -149,7 +149,7 @@
             </button>
 
             <!-- Nút cố định "Liên hệ" -->
-            <button class="theo-doi-don-hang--don-hang-button" [routerLink]="['/lien-he']">
+            <button class="theo-doi-don-hang--don-hang-button" (click)="navigateToLienHe('lien-he')">
               Liên hệ
             </button>
           </div>
@@ -298,7 +298,7 @@
       <button *ngIf="selectedOrder.status === 'da-huy'" class="theo-doi-don-hang--don-hang-button" (click)="buyAgain(selectedOrder)">
         Mua lại
       </button>
-      <button class="theo-doi-don-hang--don-hang-button" [routerLink]="['/lien-he']">
+      <button class="theo-doi-don-hang--don-hang-button" (click)="navigateToLienHe('lien-he')">
         Liên hệ
       </button>
     </div>

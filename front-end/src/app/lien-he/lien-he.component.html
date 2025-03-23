@@ -1,0 +1,67 @@
+<div class="contact-container">
+    <!-- Bản đồ -->
+     <div class="tieu-de">
+        <h1>Liên hệ</h1>
+        <p>Vị trí văn phòng trên bản đồ</p>
+     </div>
+    <div class="contact-map">
+      <iframe
+        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3724.096614678614!2d105.801614!3d21.001614!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3135ac9f7f5b5b5b%3A0x5b5b5b5b5b5b5b5b!2sC%C3%B4ng+Ty+V%C4%83n+H%C3%B3a+Truy%E1%BB%81n+Th%C3%B4ng+Nh%E1%BA%A5t+Nam!5e0!3m2!1svi!2s!4v1698765432100!5m2!1svi!2s"
+        width="100%"
+        height="400"
+        style="border:0;"
+        allowfullscreen=""
+        loading="lazy"
+        referrerpolicy="no-referrer-when-downgrade">
+      </iframe>
+      <a class="map-link" [href]="googleMapsLink" target="_blank">Xem bản đồ lớn hơn</a>
+    </div>
+  
+    <!-- Thông tin liên hệ -->
+    <div class="contact-info">
+      <div class="contact-info-item">
+        <h3>Địa chỉ:</h3>
+        <p>{{ officeAddress }}</p>
+      </div>
+      <div class="contact-info-item">
+        <h3>Gửi thắc mắc:</h3>
+        <p><a [href]="'mailto:' + email + '?subject=EdenBook hỗ trợ chăm sóc khách hàng'" target="_blank">{{ email }}</a></p>
+      </div>
+      <div class="contact-info-item">
+        <h3>Điện thoại:</h3>
+        <p>{{ phone }}</p>
+      </div>
+    </div>
+  <hr>
+    <!-- Form liên hệ -->
+    <div class="contact-form">
+      <div class="tieu-de-form">
+        <h1>Liên hệ với chúng tôi</h1>
+        <p>Để lại thông tin, chúng tôi sẽ hỗ trợ bạn sớm nhất có thể</p>
+      </div>
+      <h2>Họ và tên <span class="required">*</span></h2>
+      <input type="text" [(ngModel)]="contactForm.name" placeholder="Nhập họ và tên" />
+  
+      <h2>Email <span class="required">*</span></h2>
+      <input type="email" [(ngModel)]="contactForm.email" placeholder="Nhập email" />
+  
+      <h2>SĐT <span class="required">*</span></h2>
+      <input type="text" [(ngModel)]="contactForm.phone" placeholder="Nhập số điện thoại" />
+  
+      <h2>Nội dung <span class="required">*</span></h2>
+      <textarea [(ngModel)]="contactForm.message" placeholder="Nhập nội dung cần hỗ trợ"></textarea>
+  
+      <button class="submit-button" (click)="submitContact()">Gửi liên hệ</button>
+    </div>
+
+    <!-- Thêm nút liên hệ --> 
+     <app-nut-lien-he></app-nut-lien-he>
+  </div>
+  
+  <!-- Popup thông báo thành công -->
+  <div class="success-popup" *ngIf="showSuccessPopup">
+    <div class="success-popup--icon"><img src="danh-gia-thanh-cong.png" alt=""></div>
+    <h3 class="success-popup--message">Gửi liên hệ thành công</h3>
+    <p class="success-popup--message">Bạn sẽ được hỗ trợ trong vòng 48 giờ tới. Chú ý kiểm tra tin nhắn bạn nhé!</p>
+  </div>
+  

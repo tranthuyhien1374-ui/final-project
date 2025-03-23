@@ -2,9 +2,10 @@ import { Component, OnInit } from '@angular/core';
 import { Router, NavigationEnd } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { RouterOutlet } from '@angular/router';
-import { HeaderComponent } from './header/header.component';
-import { FooterComponent } from './footer/footer.component';
-
+import { HeaderComponent } from "./header/header.component";
+import { FooterComponent } from "./footer/footer.component";
+import AOS from 'aos';
+import 'aos/dist/aos.css'; // Import CSS của AOS
 
 @Component({
   selector: 'app-root',
@@ -27,6 +28,11 @@ export class AppComponent implements OnInit {
         this.showHeaderFooter = !event.urlAfterRedirects.startsWith('/dang-nhap');
       }
     });
-  }
 
+    AOS.init({
+      duration: 1000, // Thời gian hiệu ứng (ms)
+      once: true, // Chỉ chạy hiệu ứng một lần
+    });
+  }
 }
+

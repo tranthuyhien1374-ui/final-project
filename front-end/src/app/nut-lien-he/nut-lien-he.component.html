@@ -1,0 +1,25 @@
+<div class="contact-button-container">
+    <!-- Nút chính (hiển thị icon điện thoại và rung) -->
+    <div class="contact-button" (click)="toggleMenu()" [ngClass]="{'shake': !isMenuOpen}">
+      <img src="customer-service.png" alt="Liên hệ" />
+    </div>
+  
+    <!-- Menu lựa chọn (hiển thị khi isMenuOpen = true) -->
+    <div class="contact-menu" *ngIf="isMenuOpen">
+      <div class="menu-item" (click)="sendEmail()">
+        <img src="gmail.png" alt="Email" />
+        <span>Gửi mail cho chúng tôi</span>
+      </div>
+      <div class="menu-item" (click)="openMessenger()">
+        <img src="facebook-messenger.png" alt="Messenger" />
+        <span>Nhắn tin qua Messenger</span>
+      </div>
+      <div class="menu-item" (click)="openZalo()">
+        <img src="zalo.png" alt="Zalo" />
+        <span>Nhắn tin qua Zalo</span>
+      </div>
+      <div class="close-button" (click)="toggleMenu()">
+        <img src="cross-circle.png" alt="Đóng" />
+      </div>
+    </div>
+  </div>
