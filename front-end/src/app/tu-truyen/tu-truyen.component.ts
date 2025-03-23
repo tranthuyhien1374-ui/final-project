@@ -30,6 +30,7 @@ export class TuTruyenComponent implements AfterViewInit {
   constructor(private router: Router, private storyService: StoryService) {}
 
   ngAfterViewInit() {
+    console.log('TuTruyenComponent loaded');
     this.loadStories();
   }
 
@@ -86,4 +87,5 @@ export class TuTruyenComponent implements AfterViewInit {
       this.router.navigate(['/tat-ca-truyen']);
     }
   }
+
 }

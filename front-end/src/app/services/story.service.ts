@@ -12,6 +12,7 @@ interface Story {
   genres: string[];
   views: number;
   description: string;
+  progress: string;
   chapters?: { _id: string; chapterNumber: number; title: string; date: string }[];
 }
 

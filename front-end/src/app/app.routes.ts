@@ -19,6 +19,7 @@ import { GioHangComponent } from './gio-hang/gio-hang.component';
 import { ProductService } from './services/product.service';
 import { inject } from '@angular/core';
 import { of } from 'rxjs';
+import { VietTruyenComponent } from './viet-truyen/viet-truyen.component';
 
 export const productBreadcrumbResolver: ResolveFn<string> = (route) => {
   const productService = inject(ProductService);
@@ -26,6 +27,7 @@ export const productBreadcrumbResolver: ResolveFn<string> = (route) => {
   // Fetch product name from service (mocked here)
   return of(`Sản phẩm ${productId}`); // Replace with actual service call
 };
+
 
 export const routes: Routes = [
     { path: '', redirectTo: '/trang-chu', pathMatch: 'full' },
@@ -50,11 +52,12 @@ export const routes: Routes = [
       component: ChiTietSanPhamComponent,
       data: { breadcrumb: 'Danh sách sản phẩm' } },
     { path: 'gio-hang', component: GioHangComponent }, // Route cho trang giỏ hàng
-    { path: 'chi-tiet-san-pham/:id', component: ChiTietSanPhamComponent }
+    { path: 'chi-tiet-san-pham/:id', component: ChiTietSanPhamComponent },
     // {
     //   path: 'products/:id',
     //   component: ChiTietSanPhamComponent,
     //   resolve: { breadcrumb: productBreadcrumbResolver },
     //   data: { breadcrumb: null } // Will be overridden by resolver
     // }
-];
+  { path: 'viet-truyen', component: VietTruyenComponent }
+]

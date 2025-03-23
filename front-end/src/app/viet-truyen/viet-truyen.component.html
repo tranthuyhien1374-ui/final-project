@@ -1,0 +1,141 @@
+<div class="viet-truyen">
+    <!-- Thanh tài khoản -->
+    <div class="thanh-tai-khoan">
+      <div class="thanh-tai-khoan__info-wrapper">
+        <div class="thanh-tai-khoan__avatar-wrapper">
+          <img src="avatar-placeholder.png" alt="User Avatar" class="thanh-tai-khoan__avatar">
+        </div>
+        <div class="thanh-tai-khoan__details">
+          <h3 class="thanh-tai-khoan__username">nguyenngoctrinh</h3>
+          <button class="thanh-tai-khoan__edit-button">
+            <img src="pencil-icon.png" alt="Edit Icon" class="thanh-tai-khoan__edit-icon">
+            Sửa hồ sơ
+          </button>
+        </div>
+      </div>
+      <hr class="thanh-tai-khoan__separator">
+      <ul class="thanh-tai-khoan-danh-sach">
+        <li class="thanh-tai-khoan-danh-sach-item" (click)="toggleDropdown('tai-khoan')">
+          <img src="user-icon.png" alt="User Icon" class="thanh-tai-khoan-danh-sach-icon">
+          Tài khoản của tôi
+        </li>
+        <li class="thanh-tai-khoan-danh-sach-dropdown" *ngIf="dropdown === 'tai-khoan'">Hồ sơ</li>
+        <li class="thanh-tai-khoan-danh-sach-dropdown" *ngIf="dropdown === 'tai-khoan'">Địa chỉ</li>
+        <li class="thanh-tai-khoan-danh-sach-dropdown" *ngIf="dropdown === 'tai-khoan'">Đổi mã PIN</li>
+        <li class="thanh-tai-khoan-danh-sach-dropdown" *ngIf="dropdown === 'tai-khoan'">Xóa tài khoản</li>
+        <li class="thanh-tai-khoan-danh-sach-item">
+          <img src="list-icon.png" alt="List Icon" class="thanh-tai-khoan-danh-sach-icon">
+          Theo dõi đơn hàng
+        </li>
+        <li class="thanh-tai-khoan-danh-sach-item" (click)="toggleDropdown('viet-sach')">
+          <img src="book-icon.png" alt="Book Icon" class="thanh-tai-khoan-danh-sach-icon">
+          Viết sách/truyện
+        </li>
+        <li class="thanh-tai-khoan-danh-sach-dropdown" *ngIf="dropdown === 'viet-sach'" (click)="navigateToSection('truyen-moi')">Truyện mới</li>
+        <li class="thanh-tai-khoan-danh-sach-dropdown" *ngIf="dropdown === 'viet-sach'" (click)="navigateToSection('truyen-cua-toi')">Viết tiếp</li>
+        <li class="thanh-tai-khoan-danh-sach-item">
+          <img src="logout-icon.png" alt="Logout Icon" class="thanh-tai-khoan-danh-sach-icon">
+          Đăng xuất
+        </li>
+      </ul>
+    </div>
+  
+    <!-- Phần nội dung chính -->
+    <div class="thong-tin-truyen">
+      <!-- Phần điền thông tin truyện -->
+      <div class="truyen-moi" *ngIf="currentSection === 'truyen-moi'">
+        <h2 class="truyen-moi__title">Truyện mới</h2>
+        <form class="truyen-moi__form">
+          <div class="truyen-moi__layout">
+            <div class="truyen-moi__cover-image">
+              <label for="coverImage" class="cover-image-label">
+                <div class="cover-image-container" (click)="triggerFileInput()" [ngClass]="{'error-border': errors.coverImage}">
+                  <div *ngIf="!coverImagePreview" class="cover-image-placeholder">
+                    <span>Tải ảnh bìa lên</span>
+                  </div>
+                  <img *ngIf="coverImagePreview" [src]="coverImagePreview" alt="Cover Image Preview" class="cover-image">
+                </div>
+              </label>
+              <input type="file" id="coverImage" #coverImageInput (change)="onFileSelected($event)" accept="image/*" style="display: none;">
+            </div>
+            <div class="truyen-moi__fields">
+              <div class="truyen-moi__field">
+                <label for="title">Tiêu đề <span class="required">*</span></label>
+                <input type="text" id="title" [(ngModel)]="story.title" name="title" placeholder="Truyện không có tiêu đề" [ngClass]="{'error-border': errors.title}">
+              </div>
+              <div class="truyen-moi__field">
+                <label for="description">Mô tả <span class="required">*</span></label>
+                <textarea id="description" [(ngModel)]="story.description" name="description" placeholder="Mô tả truyện của bạn" [ngClass]="{'error-border': errors.description}"></textarea>
+              </div>
+              <div class="truyen-moi__field">
+                <label for="genres">Thể loại <span class="required">*</span></label>
+                <select id="genres" multiple (change)="onGenreChange($event)" [ngClass]="{'error-border': errors.genres}">
+                  <option *ngFor="let genre of genres" [value]="genre">{{ genre }}</option>
+                </select>
+                <div class="selected-genres" *ngIf="story.genres.length > 0">
+                  <span *ngFor="let genre of story.genres; let i = index" class="genre-tag">
+                    {{ genre }} <span (click)="removeGenre(i)" class="remove-genre">x</span>
+                  </span>
+                </div>
+                <p class="genre-limit" *ngIf="story.genres.length >= 3">Bạn chỉ có thể chọn tối đa 3 thể loại.</p>
+              </div>
+              <div class="truyen-moi__field">
+                <label for="targetAudience">Độc giả mục tiêu</label>
+                <select id="targetAudience" [(ngModel)]="story.targetAudience" name="targetAudience">
+                  <option value="" disabled selected>Ai là độc giả chính của bạn</option>
+                  <option value="teen">Thiếu niên</option>
+                  <option value="adult">Người lớn</option>
+                  <option value="all">Tất cả</option>
+                </select>
+              </div>
+            </div>
+          </div>
+          <div class="error-message" *ngIf="errorMessage">{{ errorMessage }}</div>
+          <div class="truyen-moi__actions">
+            <button type="button" (click)="saveStory()">LƯU</button>
+            <button type="button" (click)="startWriting()">BẮT ĐẦU VIẾT</button>
+          </div>
+        </form>
+      </div>
+  
+      <!-- Phần viết chương truyện -->
+      <div class="viet-chuong" *ngIf="currentSection === 'viet-chuong'">
+        <h2 class="viet-chuong__title">Phần chương đặt tiêu đề 1</h2>
+        <form class="viet-chuong__form">
+          <div class="viet-chuong__field">
+            <textarea [(ngModel)]="chapter.content" name="chapterContent" placeholder="Bắt đầu viết..." class="viet-chuong__textarea"></textarea>
+          </div>
+          <div class="viet-chuong__actions">
+            <button type="button" (click)="saveChapter()">Lưu</button>
+            <button type="button" (click)="publishChapter()">Đăng tải</button>
+          </div>
+        </form>
+      </div>
+  
+      <!-- Phần truyện của tôi (hiển thị khi nhấn "Viết tiếp") -->
+      <div class="truyen-cua-toi" *ngIf="currentSection === 'truyen-cua-toi'">
+        <h2 class="truyen-cua-toi__title">Truyện của tôi</h2>
+        <div class="truyen-cua-toi__list">
+          <div *ngFor="let story of userStories" class="truyen-cua-toi__item" (click)="navigateToVietTiep(story.id)">
+            <div class="truyen-cua-toi__cover">
+              <img [src]="story.coverImage" alt="Cover Image" class="truyen-cua-toi__cover-image">
+            </div>
+            <div class="truyen-cua-toi__details">
+              <h3 class="truyen-cua-toi__story-title">{{ story.title }}</h3>
+              <p class="truyen-cua-toi__stats">Lượt đọc: {{ story.views }}</p>
+              <p class="truyen-cua-toi__stats">Các chương: {{ story.chapters.length }}</p>
+              <p class="truyen-cua-toi__stats">Tình trạng: {{ story.status }}</p>
+              <p class="truyen-cua-toi__stats">Thể loại: {{ story.genres.join(', ') }}</p>
+            </div>
+          </div>
+        </div>
+      </div>
+  
+      <!-- Phần viết tiếp (hiển thị khi nhấn vào một truyện trong "Truyện của tôi") -->
+      <div class="viet-tiep" *ngIf="currentSection === 'viet-tiep'">
+        <h2>Viết tiếp</h2>
+        <p>Đây là phần viết tiếp (giả lập). Bạn có thể thêm nội dung sau.</p>
+        <button (click)="navigateToSection('truyen-cua-toi')">Quay lại truyện của tôi</button>
+      </div>
+    </div>
+  </div>
